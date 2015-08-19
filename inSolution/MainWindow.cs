@@ -64,6 +64,7 @@ public partial class MainWindow: Gtk.Window
 		tblBitacora.AppendColumn ("Hora", new CellRendererText (), "text", 2);
 		tblBitacora.AppendColumn ("Fecha", new CellRendererText (), "text", 3);
 		tblBitacora.AppendColumn ("Detalle", new CellRendererText (), "text", 4);
+		tblBitacora.AppendColumn ("Estado", new CellRendererText (), "text", 5);
 		tblBitacora.Model = BitacoraModel.getModel ();
 	}
 
@@ -117,7 +118,6 @@ public partial class MainWindow: Gtk.Window
 
 	delegate void SerialDataReceivedDelegated(object sender, SerialDataReceivedEventArgs e);
 	delegate void SerialErrorReceivedDelegated(object sender, SerialDataReceivedEventArgs e);
-	//delegate void System.EventHandler(object sender, EventArgs e);
 
 	void sport_DataReceived(object sender, SerialDataReceivedEventArgs e){
 		DateTime dt = DateTime.Now;
