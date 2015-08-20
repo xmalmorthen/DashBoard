@@ -20,14 +20,14 @@ public partial class MainWindow: Gtk.Window
 		Build ();
 
 
-		/*
 		//Codigo para testear el nlog [errores controlados]
 		try {
 			throw new Exception("Error controlado!!!");
 		} catch (Exception ex) {
 			Logger logger = LogManager.GetCurrentClassLogger();
 			logger.Error(ex,ex.Message);
-		}*/
+		}
+
 
 		paned.Position = 320;
 
@@ -173,10 +173,5 @@ public partial class MainWindow: Gtk.Window
 	{
 		Application.Quit ();
 	}
-	
 
 }
-
-
-
-
