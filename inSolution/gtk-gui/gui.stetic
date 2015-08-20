@@ -7,7 +7,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/inSolution.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="638 400">
+  <widget class="Gtk.Window" id="MainWindow" design-size="738 476">
     <action-group name="Default">
       <action id="pasteAction">
         <property name="Type">Action</property>
@@ -35,7 +35,7 @@
         <child>
           <widget class="Gtk.MenuBar" id="menubar1">
             <property name="MemberName" />
-            <node name="__gtksharp_154_Stetic_Editor_ActionMenuBar" type="Menubar">
+            <node name="menubar1" type="Menubar">
               <node type="Menu" action="pasteAction">
                 <node type="Menuitem" action="yesAction" />
               </node>
@@ -52,7 +52,7 @@
           <widget class="Gtk.HPaned" id="paned">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">320</property>
+            <property name="Position">393</property>
             <property name="BorderWidth">1</property>
             <child>
               <widget class="Gtk.VBox" id="vbox5">
@@ -60,15 +60,67 @@
                 <property name="WidthRequest">38</property>
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+                  <widget class="Gtk.HBox" id="hbox1">
                     <property name="MemberName" />
-                    <property name="ShadowType">In</property>
+                    <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.TreeView" id="tblPorts">
+                      <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
                         <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="ShowScrollbars">True</property>
+                        <property name="HeightRequest">167</property>
+                        <property name="ShadowType">In</property>
+                        <child>
+                          <widget class="Gtk.TreeView" id="tblPorts">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="ShowScrollbars">True</property>
+                          </widget>
+                        </child>
                       </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.VBox" id="vbox2">
+                        <property name="MemberName" />
+                        <property name="Spacing">6</property>
+                        <child>
+                          <widget class="Gtk.Button" id="btnrefreshports">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextAndIcon</property>
+                            <property name="Icon">stock:gtk-refresh Button</property>
+                            <property name="Label" translatable="yes" />
+                            <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="OnBtnrefreshportsClicked" />
+                          </widget>
+                          <packing>
+                            <property name="Position">0</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Alignment" id="alignment1">
+                            <property name="MemberName" />
+                            <child>
+                              <placeholder />
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
                     </child>
                   </widget>
                   <packing>
@@ -83,6 +135,7 @@
                     <child>
                       <widget class="Gtk.Label" id="label3">
                         <property name="MemberName" />
+                        <property name="Visible">False</property>
                         <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large"&gt;Puerto&lt;/span&gt;</property>
                         <property name="UseMarkup">True</property>
                       </widget>
@@ -96,7 +149,6 @@
                     <child>
                       <widget class="Gtk.Label" id="lblPuerto">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="xx-large" weight="bold"&gt;DATA PORT&lt;/span&gt;</property>
                         <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
@@ -109,7 +161,6 @@
                     <child>
                       <widget class="Gtk.Image" id="imgPortStatus">
                         <property name="MemberName" />
-                        <property name="Pixbuf">stock:gtk-no Button</property>
                       </widget>
                       <packing>
                         <property name="Position">2</property>
@@ -140,6 +191,7 @@
                     <child>
                       <widget class="Gtk.Button" id="btnconnect">
                         <property name="MemberName" />
+                        <property name="Visible">False</property>
                         <property name="CanFocus">True</property>
                         <property name="Type">TextAndIcon</property>
                         <property name="Icon">stock:gtk-disconnect Button</property>
@@ -174,6 +226,7 @@
                         <child>
                           <widget class="Gtk.Label" id="label5">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <property name="Xpad">20</property>
                             <property name="LabelProp" translatable="yes">Baud Rate:</property>
                           </widget>
@@ -187,6 +240,7 @@
                         <child>
                           <widget class="Gtk.ComboBoxEntry" id="cmbBaudRate">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <property name="IsTextCombo">True</property>
                             <property name="Items" translatable="yes">9600</property>
                             <property name="Active">0</property>
@@ -212,6 +266,7 @@
                         <child>
                           <widget class="Gtk.Label" id="label6">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <property name="Xpad">31</property>
                             <property name="LabelProp" translatable="yes">Parity:</property>
                           </widget>
@@ -225,6 +280,7 @@
                         <child>
                           <widget class="Gtk.ComboBoxEntry" id="cmbParity">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <property name="IsTextCombo">True</property>
                             <property name="Items" translatable="yes">Even
 Odd
@@ -253,6 +309,7 @@ Space</property>
                         <child>
                           <widget class="Gtk.Label" id="label7">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <property name="Xpad">24</property>
                             <property name="LabelProp" translatable="yes">Databits:</property>
                           </widget>
@@ -266,6 +323,7 @@ Space</property>
                         <child>
                           <widget class="Gtk.ComboBoxEntry" id="cmbDatabits">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <property name="IsTextCombo">True</property>
                             <property name="Items" translatable="yes">4
 5
@@ -294,6 +352,7 @@ Space</property>
                         <child>
                           <widget class="Gtk.Label" id="label8">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <property name="Xpad">24</property>
                             <property name="LabelProp" translatable="yes">Stopbits:</property>
                           </widget>
@@ -307,12 +366,13 @@ Space</property>
                         <child>
                           <widget class="Gtk.ComboBoxEntry" id="cmbStopbits">
                             <property name="MemberName" />
+                            <property name="Visible">False</property>
                             <property name="IsTextCombo">True</property>
                             <property name="Items" translatable="yes">None
 One
 OnePointFive
 Two</property>
-                            <property name="Active">3</property>
+                            <property name="Active">1</property>
                           </widget>
                           <packing>
                             <property name="Position">1</property>
@@ -364,10 +424,33 @@ Two</property>
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <placeholder />
+              <widget class="Gtk.Alignment" id="alignment2">
+                <property name="MemberName" />
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Button" id="button2">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-close Dnd</property>
+                <property name="Label" translatable="yes" />
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnButton2Clicked" />
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
           </widget>
           <packing>

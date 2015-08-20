@@ -51,9 +51,18 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	private void populateTablePorts(){
-		foreach(string port in SerialPort.GetPortNames())
-		{
-			PortsModel.addItem (port.ToString (), new Gdk.Pixbuf(Directory.GetCurrentDirectory() + @"/Assets/Images/off.png"), "Desconectado");
+		PortsModel.clearModel ();
+
+		string[] portList = SerialPort.GetPortNames ();
+
+		foreach (string port in SerialPort.GetPortNames()) {
+			CnnPort cnnPort;
+			if (cnnPortList.TryGetValue (port, out cnnPort)) {
+				PortsModel.addItem (port.ToString (), new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
+			} else {
+				PortsModel.addItem (port.ToString (), new Gdk.Pixbuf(Directory.GetCurrentDirectory() + @"/Assets/Images/off.png"), "Desconectado");	
+			}
+			cnnPort = null;
 			BitacoraModel.addItem ("Detectar puerto",string.Format ("Puerto {0}", port.ToString ()));
 		}
 	}
@@ -73,6 +82,7 @@ public partial class MainWindow: Gtk.Window
 		TreeSelection selection = (sender as TreeView).Selection;
 
 		TreeModel model;
+		Boolean selected = false;
 		if (selection.GetSelected (out model, out iterSelected)) {			
 			lblPuerto.LabelProp = "<span foreground=\"black\" size=\"xx-large\" weight=\"bold\">" + model.GetValue (iterSelected, 0) + "</span>";
 			string status = model.GetValue (iterSelected, 2).ToString ().ToLower();
@@ -85,7 +95,17 @@ public partial class MainWindow: Gtk.Window
 				btndisconnect.Visible = true;
 				btnconnect.Visible = false;
 			}
+			selected = true;
 		}
+		label3.Visible = selected;
+		label5.Visible = selected;
+		label6.Visible = selected;
+		label7.Visible = selected;
+		label8.Visible = selected;
+		cmbBaudRate.Visible = selected;
+		cmbDatabits.Visible = selected;
+		cmbParity.Visible = selected;
+		cmbStopbits.Visible = selected;
 	}
 
 	private Dictionary<string,CnnPort> cnnPortList = new Dictionary<string,CnnPort>();
@@ -104,14 +124,14 @@ public partial class MainWindow: Gtk.Window
 										stopbits,
 										new SerialDataReceivedEventHandler(sport_DataReceived),
 										new SerialErrorReceivedEventHandler(sport_ErrorReceived));
-	
-		if (cnnPort.Open ()) {
+		string messageResponse;
+		if (cnnPort.Open (out messageResponse)) {
 			PortsModel.editItem (iterSelected, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
 			cnnPortList.Add (port, cnnPort);
 			BitacoraModel.addItem ("Abrir puerto",string.Format ("Puerto {0}", port.ToString ()));
 		} else {
 			PortsModel.editItem (iterSelected, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/err.png"), "Error al intentar conectar");
-			BitacoraModel.addItem ("Abrir puerto",string.Format ("Puerto {0}", port.ToString ()),"Error al intentar conectar","ERROR");
+			BitacoraModel.addItem ("Abrir puerto",string.Format ("Puerto {0}", port.ToString ()),string.Format ("Error al intentar conectar [ {0} ]",messageResponse),"ERROR");
 		}
 		tblPorts.SetCursor (PortsModel.getModel ().GetPath (iterSelected), tblPorts.GetColumn (0), false);
 	}
@@ -143,7 +163,17 @@ public partial class MainWindow: Gtk.Window
 				BitacoraModel.addItem ("Cerrar puerto", string.Format ("Puerto {0}", port.ToString ()),"Error al intentar cerrar puerto","ERROR");
 			}
 		}
-	}		
+	}	
+	protected void OnBtnrefreshportsClicked (object sender, EventArgs e)
+	{
+		this.populateTablePorts ();
+	}
+
+	protected void OnButton2Clicked (object sender, EventArgs e)
+	{
+		Application.Quit ();
+	}
+	
 
 }
 

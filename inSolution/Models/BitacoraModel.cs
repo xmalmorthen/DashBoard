@@ -5,7 +5,7 @@ namespace inSolution
 {
 	public static class BitacoraModel
 	{
-		private static Gtk.ListStore store = new Gtk.ListStore (typeof (string),typeof (string),typeof (string),typeof (string),typeof (string));
+		private static Gtk.ListStore store = new Gtk.ListStore (typeof (string),typeof (string),typeof (string),typeof (string),typeof (string),typeof (string));
 		private static Gtk.ListStore Store {
 			get {
 				return store;
