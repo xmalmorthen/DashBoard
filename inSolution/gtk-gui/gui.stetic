@@ -563,7 +563,7 @@ Two</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Entry" id="entry1">
+                          <widget class="Gtk.Entry" id="txtPuerto">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="IsEditable">True</property>
@@ -599,7 +599,7 @@ Two</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Entry" id="entry2">
+                          <widget class="Gtk.Entry" id="txtDesc">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="IsEditable">True</property>
@@ -625,13 +625,14 @@ Two</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Button" id="button91">
+                  <widget class="Gtk.Button" id="btnInsert">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
                     <property name="Icon">stock:gtk-add LargeToolbar</property>
                     <property name="Label" translatable="yes" />
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBtnInsertClicked" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -667,7 +668,7 @@ Two</property>
                             <property name="MemberName" />
                             <property name="ShadowType">In</property>
                             <child>
-                              <widget class="Gtk.TreeView" id="treeview3">
+                              <widget class="Gtk.TreeView" id="tblData">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="ShowScrollbars">True</property>
@@ -696,7 +697,7 @@ Two</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.Button" id="button113">
+                              <widget class="Gtk.Button" id="btnEdit">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
@@ -712,7 +713,7 @@ Two</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="Gtk.Button" id="button112">
+                              <widget class="Gtk.Button" id="btnDelete">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Type">TextAndIcon</property>
