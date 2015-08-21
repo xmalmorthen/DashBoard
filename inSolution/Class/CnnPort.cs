@@ -57,6 +57,21 @@ namespace inSolution
 			return result;
 		}
 
+		public Boolean SendData(String data){
+			Boolean result = false;
+			try
+			{
+				sport.Write(data);
+				result = true;
+			}
+			catch (Exception ex)
+			{
+				Logger logger = LogManager.GetCurrentClassLogger();
+				logger.Error(ex,ex.Message);
+			}
+			return result;
+		}
+
 	}
 }
 

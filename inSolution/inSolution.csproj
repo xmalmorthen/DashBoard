@@ -73,6 +73,8 @@
     <Compile Include="Class\CnnPort.cs" />
     <Compile Include="Models\BitacoraModel.cs" />
     <Compile Include="Class\DataBase.cs" />
+    <Compile Include="Forms\AutoConectPorts.cs" />
+    <Compile Include="gtk-gui\inSolution.AutoConectPorts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -80,6 +82,7 @@
     <Folder Include="Assets\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Class\" />
+    <Folder Include="Forms\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Images\off.png">

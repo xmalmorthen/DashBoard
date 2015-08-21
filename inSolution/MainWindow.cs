@@ -83,6 +83,7 @@ public partial class MainWindow: Gtk.Window
 
 		TreeModel model;
 		Boolean selected = false;
+		Boolean conected = false;
 		if (selection.GetSelected (out model, out iterSelected)) {			
 			lblPuerto.LabelProp = "<span foreground=\"black\" size=\"xx-large\" weight=\"bold\">" + model.GetValue (iterSelected, 0) + "</span>";
 			string status = model.GetValue (iterSelected, 2).ToString ().ToLower();
@@ -90,22 +91,30 @@ public partial class MainWindow: Gtk.Window
 				imgPortStatus.Pixbuf = new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/off.png");
 				btnconnect.Visible = true;
 				btndisconnect.Visible = false;
+				conected = false;
 			} else if (status.Equals("conectado", StringComparison.CurrentCultureIgnoreCase)) {
 				imgPortStatus.Pixbuf = new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png");
 				btndisconnect.Visible = true;
 				btnconnect.Visible = false;
+				conected = true;
 			}
 			selected = true;
 		}
+
 		label3.Visible = selected;
-		label5.Visible = selected;
-		label6.Visible = selected;
-		label7.Visible = selected;
-		label8.Visible = selected;
-		cmbBaudRate.Visible = selected;
-		cmbDatabits.Visible = selected;
-		cmbParity.Visible = selected;
-		cmbStopbits.Visible = selected;
+		label5.Visible = selected && !conected;
+		label6.Visible = selected && !conected;
+		label7.Visible = selected && !conected;
+		label8.Visible = selected && !conected;
+		cmbBaudRate.Visible = selected && !conected;
+		cmbDatabits.Visible = selected && !conected;
+		cmbParity.Visible = selected && !conected;
+		cmbStopbits.Visible = selected && !conected;
+
+		lblsendmsg.Visible = conected;
+		txtsendmsg.Visible = conected;
+		btnsendmsg.Visible = conected;
+
 	}
 
 	private Dictionary<string,CnnPort> cnnPortList = new Dictionary<string,CnnPort>();
@@ -146,7 +155,7 @@ public partial class MainWindow: Gtk.Window
 		thisPort.Read(buf, 0, buf.Length);
 		foreach (Byte b in buf)
 		{
-			BitacoraModel.addItem ("Leer puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("{0}",b));
+			BitacoraModel.addItem ("Leer puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("Dato recibido [ {0} ] ",b));
 		}
 	}
 
@@ -179,6 +188,38 @@ public partial class MainWindow: Gtk.Window
 	protected void OnButton2Clicked (object sender, EventArgs e)
 	{
 		Application.Quit ();
+	}
+
+	protected void OnBtnsendmsgClicked (object sender, EventArgs e)
+	{
+		CnnPort cnnPort;
+		string port = lblPuerto.Text.ToString ();
+		if (cnnPortList.TryGetValue (port, out cnnPort)) {
+			String data = txtsendmsg.Text.ToString ();
+			if (!cnnPort.SendData (data)) {
+				MessageDialog dlg = new MessageDialog (this, 
+					                    DialogFlags.DestroyWithParent, 
+					                    MessageType.Error, 
+					                    ButtonsType.Ok, 
+										string.Format ("Ocurrió un error al enviar el dato al puerto {0} [ {1} ]", port, data));
+				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Ocurrió un error al enviar el dato [ {0} ] al puerto", data),"ERROR");
+			} else {
+				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Dato enviado al puerto [ {0} ]", data));
+			}
+
+		}
+	}
+
+	protected void OnYesActionActivated (object sender, EventArgs e)
+	{
+		AutoConectPorts win = new AutoConectPorts ();
+		win.Parent = this;
+		win.ShowAll ();
+		ResponseType response = (ResponseType) win.Run ();
+		win.Destroy ();
+
+
+
 	}
 
 }
