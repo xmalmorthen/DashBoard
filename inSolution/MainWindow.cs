@@ -140,13 +140,20 @@ public partial class MainWindow: Gtk.Window
 	delegate void SerialErrorReceivedDelegated(object sender, SerialDataReceivedEventArgs e);
 
 	void sport_DataReceived(object sender, SerialDataReceivedEventArgs e){
-		DateTime dt = DateTime.Now;
-		String dtn = dt.ToShortTimeString ();
+		SerialPort thisPort = (sender as SerialPort);
+
+		byte[] buf = new byte[thisPort.BytesToRead];
+		thisPort.Read(buf, 0, buf.Length);
+		foreach (Byte b in buf)
+		{
+			BitacoraModel.addItem ("Leer puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("{0}",b));
+		}
 	}
 
 	void sport_ErrorReceived(object sender, SerialErrorReceivedEventArgs e){
-		DateTime dt = DateTime.Now;
-		String dtn = dt.ToShortTimeString ();
+		SerialPort thisPort = (sender as SerialPort);
+		SerialError err = e.EventType;
+		BitacoraModel.addItem ("Error de resepción de puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("{0}",err.ToString()),"ERROR");
 	}
 		
 	protected void OnBtndisconnectClicked (object sender, EventArgs e)
