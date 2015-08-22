@@ -19,7 +19,7 @@ namespace inSolution
 		protected void OnBtnInsertClicked (object sender, EventArgs e)
 		{
 			MySqlDataReader response = DataBase.CallSp("Insert_AutoConectPort",new string[] { txtPuerto.Text, txtDesc.Text});
-			if (!response) {
+			if (response == null) {
 				MessageDialog dlg = new MessageDialog (this, 
 					DialogFlags.DestroyWithParent, 
 					MessageType.Error, 

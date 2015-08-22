@@ -45,8 +45,6 @@ namespace inSolution
 		private global::Gtk.Label GtkLabel3;
 		
 		private global::Gtk.Button buttonOk;
-		
-		private global::Gtk.Button buttonCancel;
 
 		protected virtual void Build ()
 		{
@@ -92,7 +90,7 @@ namespace inSolution
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.txtPuerto = new global::Gtk.Entry ();
 			this.txtPuerto.CanFocus = true;
-			this.txtPuerto.Name = "entry1";
+			this.txtPuerto.Name = "txtPuerto";
 			this.txtPuerto.IsEditable = true;
 			this.txtPuerto.InvisibleChar = '●';
 			this.hbox3.Add (this.txtPuerto);
@@ -119,7 +117,7 @@ namespace inSolution
 			// Container child hbox4.Gtk.Box+BoxChild
 			this.txtDesc = new global::Gtk.Entry ();
 			this.txtDesc.CanFocus = true;
-			this.txtDesc.Name = "entry2";
+			this.txtDesc.Name = "txtDesc";
 			this.txtDesc.IsEditable = true;
 			this.txtDesc.InvisibleChar = '●';
 			this.hbox4.Add (this.txtDesc);
@@ -136,7 +134,7 @@ namespace inSolution
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.btnInsert = new global::Gtk.Button ();
 			this.btnInsert.CanFocus = true;
-			this.btnInsert.Name = "button91";
+			this.btnInsert.Name = "btnInsert";
 			this.btnInsert.UseUnderline = true;
 			global::Gtk.Image w9 = new global::Gtk.Image ();
 			w9.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-add", global::Gtk.IconSize.LargeToolbar);
@@ -170,7 +168,7 @@ namespace inSolution
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
 			this.tblData = new global::Gtk.TreeView ();
 			this.tblData.CanFocus = true;
-			this.tblData.Name = "treeview3";
+			this.tblData.Name = "tblData";
 			this.GtkScrolledWindow.Add (this.tblData);
 			this.hbox5.Add (this.GtkScrolledWindow);
 			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.GtkScrolledWindow]));
@@ -188,7 +186,7 @@ namespace inSolution
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.btnEdit = new global::Gtk.Button ();
 			this.btnEdit.CanFocus = true;
-			this.btnEdit.Name = "button113";
+			this.btnEdit.Name = "btnEdit";
 			this.btnEdit.UseUnderline = true;
 			global::Gtk.Image w15 = new global::Gtk.Image ();
 			w15.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-edit", global::Gtk.IconSize.Button);
@@ -201,7 +199,7 @@ namespace inSolution
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.btnDelete = new global::Gtk.Button ();
 			this.btnDelete.CanFocus = true;
-			this.btnDelete.Name = "button112";
+			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.UseUnderline = true;
 			global::Gtk.Image w17 = new global::Gtk.Image ();
 			w17.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-delete", global::Gtk.IconSize.Button);
@@ -248,27 +246,14 @@ namespace inSolution
 			global::Gtk.ButtonBox.ButtonBoxChild w25 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w24 [this.buttonOk]));
 			w25.Expand = false;
 			w25.Fill = false;
-			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-			this.buttonCancel = new global::Gtk.Button ();
-			this.buttonCancel.CanDefault = true;
-			this.buttonCancel.CanFocus = true;
-			this.buttonCancel.Name = "buttonCancel";
-			this.buttonCancel.UseStock = true;
-			this.buttonCancel.UseUnderline = true;
-			this.buttonCancel.Label = "gtk-cancel";
-			this.AddActionWidget (this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w26 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w24 [this.buttonCancel]));
-			w26.Position = 1;
-			w26.Expand = false;
-			w26.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show ();
+			this.btnInsert.Clicked += new global::System.EventHandler (this.OnBtnInsertClicked);
 			this.buttonOk.Clicked += new global::System.EventHandler (this.OnButtonOkClicked);
-			this.buttonCancel.Clicked += new global::System.EventHandler (this.OnButtonCancelClicked);
 		}
 	}
 }

@@ -19,7 +19,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build ();
 
-
+		/*
 		//Codigo para testear el nlog [errores controlados]
 		try {
 			throw new Exception("Error controlado!!!");
@@ -27,9 +27,10 @@ public partial class MainWindow: Gtk.Window
 			Logger logger = LogManager.GetCurrentClassLogger();
 			logger.Error(ex,ex.Message);
 		}
+		*/
 
 
-		paned.Position = 320;
+		paned.Position = 338;
 
 		this.tablePortInit ();
 		tblPorts.CursorChanged += ontblPortsCursorChanged;
@@ -54,16 +55,22 @@ public partial class MainWindow: Gtk.Window
 		PortsModel.clearModel ();
 
 		string[] portList = SerialPort.GetPortNames ();
-
-		foreach (string port in SerialPort.GetPortNames()) {
-			CnnPort cnnPort;
-			if (cnnPortList.TryGetValue (port, out cnnPort)) {
-				PortsModel.addItem (port.ToString (), new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
-			} else {
-				PortsModel.addItem (port.ToString (), new Gdk.Pixbuf(Directory.GetCurrentDirectory() + @"/Assets/Images/off.png"), "Desconectado");	
+		if (portList.Length > 0) {
+			foreach (string port in SerialPort.GetPortNames()) {
+				CnnPort cnnPort;
+				if (cnnPortList.TryGetValue (port, out cnnPort)) {
+					PortsModel.addItem (port.ToString (), new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
+				} else {
+					PortsModel.addItem (port.ToString (), new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/off.png"), "Desconectado");	
+				}
+				cnnPort = null;
+				BitacoraModel.addItem ("Detectar puerto", string.Format ("Puerto {0}", port.ToString ()));
 			}
-			cnnPort = null;
-			BitacoraModel.addItem ("Detectar puerto",string.Format ("Puerto {0}", port.ToString ()));
+			GtkScrolledWindow.Visible = true;
+		} else {
+			lblPortsNotFound.Visible = true;
+			GtkScrolledWindow.Visible = false;
+			BitacoraModel.addItem ("Detectar puerto", "No se detectaron puertos","","AVISO");
 		}
 	}
 
@@ -101,20 +108,8 @@ public partial class MainWindow: Gtk.Window
 			selected = true;
 		}
 
-		label3.Visible = selected;
-		label5.Visible = selected && !conected;
-		label6.Visible = selected && !conected;
-		label7.Visible = selected && !conected;
-		label8.Visible = selected && !conected;
-		cmbBaudRate.Visible = selected && !conected;
-		cmbDatabits.Visible = selected && !conected;
-		cmbParity.Visible = selected && !conected;
-		cmbStopbits.Visible = selected && !conected;
-
-		lblsendmsg.Visible = conected;
-		txtsendmsg.Visible = conected;
-		btnsendmsg.Visible = conected;
-
+		fraPortDetail.Visible = selected;
+		fraSendData.Visible = conected;
 	}
 
 	private Dictionary<string,CnnPort> cnnPortList = new Dictionary<string,CnnPort>();
@@ -187,7 +182,15 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnButton2Clicked (object sender, EventArgs e)
 	{
-		Application.Quit ();
+		MessageDialog dlg = new MessageDialog (this, 
+			                    DialogFlags.DestroyWithParent, 
+			                    MessageType.Question, 
+								ButtonsType.YesNo, 
+			                    "Confirmar cerrar aplicación");
+		ResponseType response = (ResponseType) dlg.Run ();
+		dlg.Destroy ();
+		if (response == ResponseType.Yes)
+			Application.Quit ();
 	}
 
 	protected void OnBtnsendmsgClicked (object sender, EventArgs e)
@@ -202,6 +205,8 @@ public partial class MainWindow: Gtk.Window
 					                    MessageType.Error, 
 					                    ButtonsType.Ok, 
 										string.Format ("Ocurrió un error al enviar el dato al puerto {0} [ {1} ]", port, data));
+				dlg.Run ();
+				dlg.Destroy ();
 				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Ocurrió un error al enviar el dato [ {0} ] al puerto", data),"ERROR");
 			} else {
 				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Dato enviado al puerto [ {0} ]", data));
@@ -217,9 +222,11 @@ public partial class MainWindow: Gtk.Window
 		win.ShowAll ();
 		ResponseType response = (ResponseType) win.Run ();
 		win.Destroy ();
+	}
 
-
-
+	protected void OnCloseActionActivated (object sender, EventArgs e)
+	{
+		this.OnButton2Clicked (sender, e);
 	}
 
 }
