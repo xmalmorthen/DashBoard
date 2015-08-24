@@ -210,6 +210,7 @@ public partial class MainWindow: Gtk.Window
 				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Ocurrió un error al enviar el dato [ {0} ] al puerto", data),"ERROR");
 			} else {
 				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Dato enviado al puerto [ {0} ]", data));
+				txtsendmsg.Text = string.Empty;
 			}
 
 		}
@@ -217,11 +218,9 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnYesActionActivated (object sender, EventArgs e)
 	{
-		AutoConectPorts win = new AutoConectPorts ();
+		AutoConnectPorts win = new AutoConnectPorts ();
 		win.Parent = this;
-		win.ShowAll ();
-		ResponseType response = (ResponseType) win.Run ();
-		win.Destroy ();
+		win.Show ();
 	}
 
 	protected void OnCloseActionActivated (object sender, EventArgs e)

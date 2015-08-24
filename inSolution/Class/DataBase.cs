@@ -58,11 +58,13 @@ namespace inSolution
 			{
 				string query = string.Format("call {0} (",sp);
 				int i = 1;
-				foreach (var item in parameters) {
-					query += string.Format("\"{0}\"",item);
-					if (i < parameters.Length ) query += ",";
-					i++;
-				}	
+				if (parameters != null){
+					foreach (var item in parameters) {
+						query += string.Format("\"{0}\"",item);
+						if (i < parameters.Length ) query += ",";
+						i++;
+					}	
+				}
 				query += ");";
 
 				cmd = new MySqlCommand(query, cnn);

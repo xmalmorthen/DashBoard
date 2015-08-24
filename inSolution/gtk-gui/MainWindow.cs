@@ -154,7 +154,7 @@ public partial class MainWindow
 		this.paned = new global::Gtk.HPaned ();
 		this.paned.CanFocus = true;
 		this.paned.Name = "paned";
-		this.paned.Position = 1;
+		this.paned.Position = 442;
 		this.paned.BorderWidth = ((uint)(1));
 		// Container child paned.Gtk.Paned+PanedChild
 		this.vbox5 = new global::Gtk.VBox ();
@@ -378,10 +378,10 @@ public partial class MainWindow
 		w27.Fill = false;
 		// Container child hbox10.Gtk.Box+BoxChild
 		this.cmbParity = global::Gtk.ComboBoxEntry.NewText ();
-		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Even\r"));
-		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Odd\r"));
-		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("None\r"));
-		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Mark\r"));
+		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Even"));
+		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Odd"));
+		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("None"));
+		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Mark"));
 		this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Space"));
 		this.cmbParity.CanFocus = true;
 		this.cmbParity.Name = "cmbParity";
@@ -410,10 +410,10 @@ public partial class MainWindow
 		w30.Fill = false;
 		// Container child hbox11.Gtk.Box+BoxChild
 		this.cmbDatabits = global::Gtk.ComboBoxEntry.NewText ();
-		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("4\r"));
-		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("5\r"));
-		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("6\r"));
-		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("7\r"));
+		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("4"));
+		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("5"));
+		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("6"));
+		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("7"));
 		this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("8"));
 		this.cmbDatabits.CanFocus = true;
 		this.cmbDatabits.Name = "cmbDatabits";
@@ -442,9 +442,9 @@ public partial class MainWindow
 		w33.Fill = false;
 		// Container child hbox12.Gtk.Box+BoxChild
 		this.cmbStopbits = global::Gtk.ComboBoxEntry.NewText ();
-		this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("None\r"));
-		this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("One\r"));
-		this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("OnePointFive\r"));
+		this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("None"));
+		this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("One"));
+		this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("OnePointFive"));
 		this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("Two"));
 		this.cmbStopbits.CanFocus = true;
 		this.cmbStopbits.Name = "cmbStopbits";

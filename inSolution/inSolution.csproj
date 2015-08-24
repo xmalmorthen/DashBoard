@@ -73,8 +73,9 @@
     <Compile Include="Class\CnnPort.cs" />
     <Compile Include="Models\BitacoraModel.cs" />
     <Compile Include="Class\DataBase.cs" />
-    <Compile Include="Forms\AutoConectPorts.cs" />
-    <Compile Include="gtk-gui\inSolution.AutoConectPorts.cs" />
+    <Compile Include="Models\AutoConnectPrtsModel.cs" />
+    <Compile Include="Forms\AutoConnectPorts.cs" />
+    <Compile Include="gtk-gui\inSolution.AutoConnectPorts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
