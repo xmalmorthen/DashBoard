@@ -42,11 +42,14 @@ namespace inSolution
 			return result;
 		}
 
-		public Boolean Close(){
+		public Boolean Close(SerialDataReceivedEventHandler sport_DataReceived,
+							 SerialErrorReceivedEventHandler sport_ErrorReceived){
 			Boolean result = false;
 			try
 			{
 				sport.Close();
+				sport.DataReceived -= sport_DataReceived;
+				sport.ErrorReceived -= sport_ErrorReceived;
 				result = true;
 			}
 			catch (Exception ex)

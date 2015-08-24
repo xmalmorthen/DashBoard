@@ -48,6 +48,7 @@ public partial class MainWindow: Gtk.Window
 		tblPorts.AppendColumn ("Descripción", new CellRendererText (), "text", 2);
 		tblPorts.Model = PortsModel.getModel ();
 		this.populateTablePorts ();
+		this.AutoConnectPorts ();
 	}
 
 	private void populateTablePorts(){
@@ -120,23 +121,47 @@ public partial class MainWindow: Gtk.Window
 		int databits = Convert.ToInt32 (cmbDatabits.ActiveText.ToString ());
 		StopBits stopbits = (StopBits)Enum.Parse (typeof(StopBits), cmbStopbits.ActiveText.ToString ());
 
-		CnnPort cnnPort = new CnnPort ( port,
-										baudRate,
-										parity,
-										databits,
-										stopbits,
-										new SerialDataReceivedEventHandler(sport_DataReceived),
-										new SerialErrorReceivedEventHandler(sport_ErrorReceived));
 		string messageResponse;
-		if (cnnPort.Open (out messageResponse)) {
+		if (
+			this.connectToPort (port,
+				baudRate,
+				parity,
+				databits,
+				stopbits,
+				new SerialDataReceivedEventHandler (sport_DataReceived),
+				new SerialErrorReceivedEventHandler (sport_ErrorReceived),
+				out messageResponse)
+		) {
 			PortsModel.editItem (iterSelected, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
-			cnnPortList.Add (port, cnnPort);
 			BitacoraModel.addItem ("Abrir puerto",string.Format ("Puerto {0}", port.ToString ()));
 		} else {
 			PortsModel.editItem (iterSelected, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/err.png"), "Error al intentar conectar");
 			BitacoraModel.addItem ("Abrir puerto",string.Format ("Puerto {0}", port.ToString ()),string.Format ("Error al intentar conectar [ {0} ]",messageResponse),"ERROR");
 		}
 		tblPorts.SetCursor (PortsModel.getModel ().GetPath (iterSelected), tblPorts.GetColumn (0), false);
+	}
+
+	private Boolean connectToPort(  string port,
+									int baudRate,
+									Parity parity,
+									int databits,
+									StopBits stopbits,
+									SerialDataReceivedEventHandler sport_DataReceived,
+									SerialErrorReceivedEventHandler sport_ErrorReceived,
+									out string messageResponse){
+		Boolean response = false;
+		CnnPort cnnPort = new CnnPort ( port,
+			baudRate,
+			parity,
+			databits,
+			stopbits,
+			new SerialDataReceivedEventHandler(sport_DataReceived),
+			new SerialErrorReceivedEventHandler(sport_ErrorReceived));		
+		if (cnnPort.Open (out messageResponse)) {
+			cnnPortList.Add (port, cnnPort);
+			response = true;
+		}
+		return response;
 	}
 
 	delegate void SerialDataReceivedDelegated(object sender, SerialDataReceivedEventArgs e);
@@ -164,7 +189,8 @@ public partial class MainWindow: Gtk.Window
 		CnnPort cnnPort;
 		string port = lblPuerto.Text.ToString ();
 		if (cnnPortList.TryGetValue (port, out cnnPort)) {
-			if (cnnPort.Close ()) {
+			if (cnnPort.Close (sport_DataReceived,
+							   sport_ErrorReceived)) {
 				PortsModel.editItem (iterSelected, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/off.png"), "Desconectado");
 				tblPorts.SetCursor (PortsModel.getModel ().GetPath (iterSelected), tblPorts.GetColumn (0), false);
 				cnnPortList.Remove (port);
@@ -226,5 +252,57 @@ public partial class MainWindow: Gtk.Window
 	{
 		this.OnButton2Clicked (sender, e);
 	}
+
+	private void AutoConnectPorts(){
+		ListStore autoConnectPortsList = AutoConnectPrtsModel.getModel ();
+		TreeIter autocnnportiter;
+		if (autoConnectPortsList.GetIterFirst (out autocnnportiter)) {
+			do {
+				string autocnnport = autoConnectPortsList.GetValue (autocnnportiter, 0).ToString();
+				ListStore portsList = PortsModel.getModel ();
+				TreeIter iter;
+				Boolean portGetConnected = false;
+				if (portsList.GetIterFirst (out iter)) {
+					do {
+						string port = portsList.GetValue (iter, 0).ToString();
+						if (port.Trim().Equals(autocnnport.Trim(), StringComparison.CurrentCultureIgnoreCase)){
+
+							string sport = lblPuerto.Text.ToString();
+							int baudRate = Convert.ToInt32 (cmbBaudRate.ActiveText.ToString ());
+							Parity parity = (Parity)Enum.Parse (typeof(Parity), cmbParity.ActiveText.ToString ());
+							int databits = Convert.ToInt32 (cmbDatabits.ActiveText.ToString ());
+							StopBits stopbits = (StopBits)Enum.Parse (typeof(StopBits), cmbStopbits.ActiveText.ToString ());
+
+							string messageResponse;
+							if (
+								this.connectToPort (port,
+									baudRate,
+									parity,
+									databits,
+									stopbits,
+									new SerialDataReceivedEventHandler (sport_DataReceived),
+									new SerialErrorReceivedEventHandler (sport_ErrorReceived),
+									out messageResponse)
+							) {
+								PortsModel.editItem (iter, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
+								BitacoraModel.addItem ("Auto abrir puerto",string.Format ("Puerto {0}", port.ToString ()));
+							} else {
+								PortsModel.editItem (iter, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/err.png"), "Error al intentar conectar");
+								BitacoraModel.addItem ("Auto abrir puerto",string.Format ("Puerto {0}", port.ToString ()),string.Format ("Error al intentar conectar [ {0} ]",messageResponse),"ERROR");
+							}
+							portGetConnected = true;
+						}
+					} while (portsList.IterNext(ref iter));
+				}
+
+				if (!portGetConnected){
+					BitacoraModel.addItem ("Auto abrir puerto",string.Format ("Puerto {0}", autocnnport),string.Format ("No se encontró el puerto disponible"),"ERROR");
+				}
+
+			} while(autoConnectPortsList.IterNext(ref autocnnportiter));
+		}
+
+	}
+
 
 }
