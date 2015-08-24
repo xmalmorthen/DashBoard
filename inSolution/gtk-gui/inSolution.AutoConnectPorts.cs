@@ -36,9 +36,9 @@ namespace inSolution
 		
 		private global::Gtk.Button btnInsert;
 		
-		private global::Gtk.Button btnClear;
-		
 		private global::Gtk.Button btnEdit;
+		
+		private global::Gtk.Button btnClear;
 		
 		private global::Gtk.Frame frame1;
 		
@@ -186,7 +186,7 @@ namespace inSolution
 			this.btnInsert.Name = "btnInsert";
 			this.btnInsert.UseUnderline = true;
 			global::Gtk.Image w12 = new global::Gtk.Image ();
-			w12.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-add", global::Gtk.IconSize.LargeToolbar);
+			w12.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-add", global::Gtk.IconSize.Button);
 			this.btnInsert.Image = w12;
 			this.vbox5.Add (this.btnInsert);
 			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.btnInsert]));
@@ -194,28 +194,28 @@ namespace inSolution
 			w13.Expand = false;
 			w13.Fill = false;
 			// Container child vbox5.Gtk.Box+BoxChild
-			this.btnClear = new global::Gtk.Button ();
-			this.btnClear.CanFocus = true;
-			this.btnClear.Name = "btnClear";
-			this.btnClear.UseUnderline = true;
-			global::Gtk.Image w14 = new global::Gtk.Image ();
-			w14.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-clear", global::Gtk.IconSize.Button);
-			this.btnClear.Image = w14;
-			this.vbox5.Add (this.btnClear);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.btnClear]));
-			w15.Position = 2;
-			w15.Expand = false;
-			w15.Fill = false;
-			// Container child vbox5.Gtk.Box+BoxChild
 			this.btnEdit = new global::Gtk.Button ();
 			this.btnEdit.CanFocus = true;
 			this.btnEdit.Name = "btnEdit";
 			this.btnEdit.UseUnderline = true;
-			global::Gtk.Image w16 = new global::Gtk.Image ();
-			w16.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-edit", global::Gtk.IconSize.Button);
-			this.btnEdit.Image = w16;
+			global::Gtk.Image w14 = new global::Gtk.Image ();
+			w14.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-edit", global::Gtk.IconSize.Button);
+			this.btnEdit.Image = w14;
 			this.vbox5.Add (this.btnEdit);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.btnEdit]));
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.btnEdit]));
+			w15.Position = 2;
+			w15.Expand = false;
+			w15.Fill = false;
+			// Container child vbox5.Gtk.Box+BoxChild
+			this.btnClear = new global::Gtk.Button ();
+			this.btnClear.CanFocus = true;
+			this.btnClear.Name = "btnClear";
+			this.btnClear.UseUnderline = true;
+			global::Gtk.Image w16 = new global::Gtk.Image ();
+			w16.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-clear", global::Gtk.IconSize.Button);
+			this.btnClear.Image = w16;
+			this.vbox5.Add (this.btnClear);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.btnClear]));
 			w17.Position = 3;
 			w17.Expand = false;
 			w17.Fill = false;
@@ -304,8 +304,9 @@ namespace inSolution
 			this.btnEdit.Hide ();
 			this.Show ();
 			this.btnInsert.Clicked += new global::System.EventHandler (this.OnBtnInsertClicked);
-			this.btnClear.Clicked += new global::System.EventHandler (this.OnBtnClearClicked);
 			this.btnEdit.Clicked += new global::System.EventHandler (this.OnBtnEditClicked);
+			this.btnClear.Clicked += new global::System.EventHandler (this.OnBtnClearClicked);
+			this.btnDelete.Clicked += new global::System.EventHandler (this.OnBtnDeleteClicked);
 		}
 	}
 }

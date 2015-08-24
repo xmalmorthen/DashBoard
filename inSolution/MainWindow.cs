@@ -11,8 +11,8 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
-		Application.Quit ();
 		a.RetVal = true;
+		this.OnButton2Clicked (sender, null);
 	}
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
@@ -28,7 +28,6 @@ public partial class MainWindow: Gtk.Window
 			logger.Error(ex,ex.Message);
 		}
 		*/
-
 
 		paned.Position = 338;
 

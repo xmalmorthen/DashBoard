@@ -24,8 +24,6 @@ namespace inSolution
 			tblData.AppendColumn ("Puerto", new CellRendererText (), "text", 0);
 			tblData.AppendColumn ("Alias", new CellRendererText (), "text", 1);
 			tblData.AppendColumn ("Descripción", new CellRendererText (), "text", 2);
-			tblData.AppendColumn ("Fecha Inserción", new CellRendererText (), "text", 3);
-			tblData.AppendColumn ("Fecha Actualización", new CellRendererText (), "text", 4);
 			tblData.Model = AutoConnectPrtsModel.getModel ();
 		}
 
@@ -34,12 +32,10 @@ namespace inSolution
 			TreeSelection selection = (sender as TreeView).Selection;
 
 			TreeModel model;
-			Boolean selected = false;
 			if (selection.GetSelected (out model, out iterSelected)) {
 				txtPuerto.Text = model.GetValue (iterSelected, 0).ToString ();
 				txtalias.Text = model.GetValue (iterSelected, 1).ToString ();
 				txtDesc.Text = model.GetValue (iterSelected, 2).ToString ();
-				selected = true;
 				ChangeFormMode (FormMode.Edit);
 				txtalias.GrabFocus ();
 			}
@@ -67,7 +63,7 @@ namespace inSolution
 			}
 
 			if (isValid) {
-				if (AutoConnectPrtsModel.addItem(new string[] { txtPuerto.Text, txtalias.Text, txtDesc.Text })) {
+				if (!AutoConnectPrtsModel.addItem(new string[] { txtPuerto.Text, txtalias.Text, txtDesc.Text })) {
 					MessageDialog dlg = new MessageDialog (this, 
 						                    DialogFlags.DestroyWithParent, 
 						                    MessageType.Error, 
@@ -122,7 +118,7 @@ namespace inSolution
 
 		protected void OnBtnEditClicked (object sender, EventArgs e)
 		{
-			if (!AutoConnectPrtsModel.editItem(new string[] { txtalias.Text, txtDesc.Text })) {
+			if (!AutoConnectPrtsModel.editItem(new string[] { tblData.Model.GetValue (iterSelected, 3).ToString (),txtalias.Text, txtDesc.Text })) {
 				MessageDialog dlg = new MessageDialog (this, 
 					DialogFlags.DestroyWithParent, 
 					MessageType.Error, 
@@ -136,6 +132,30 @@ namespace inSolution
 			}
 		}
 
+		protected void OnBtnDeleteClicked (object sender, EventArgs e)
+		{
+			MessageDialog dlg = new MessageDialog (this, 
+				DialogFlags.DestroyWithParent, 
+				MessageType.Question, 
+				ButtonsType.YesNo, 
+				"Confirmar la eliminación del registro");
+			ResponseType response = (ResponseType) dlg.Run ();
+			dlg.Destroy ();
+			if (response == ResponseType.Yes) {
+				if (!AutoConnectPrtsModel.deleteItem(tblData.Model.GetValue (iterSelected, 3).ToString())) {
+					dlg = new MessageDialog (this, 
+						DialogFlags.DestroyWithParent, 
+						MessageType.Error, 
+						ButtonsType.Ok, 
+						string.Format ("Ocurrió un error al intentar eliminar la configuracion, favor de interntarlo de nuevo"));
+					dlg.Run ();
+					dlg.Destroy ();
+				} else {					
+					CleanForm ();
+					tblData.Model = AutoConnectPrtsModel.getModel ();
+				}
+			}
+		}
 	}
 }
 

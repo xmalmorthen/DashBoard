@@ -63,7 +63,7 @@
           <widget class="Gtk.HPaned" id="paned">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">442</property>
+            <property name="Position">1</property>
             <property name="BorderWidth">1</property>
             <child>
               <widget class="Gtk.VBox" id="vbox5">
@@ -792,30 +792,13 @@ Two</property>
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Type">TextAndIcon</property>
-                        <property name="Icon">stock:gtk-add LargeToolbar</property>
+                        <property name="Icon">stock:gtk-add Button</property>
                         <property name="Label" translatable="yes" />
                         <property name="UseUnderline">True</property>
                         <signal name="Clicked" handler="OnBtnInsertClicked" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
-                        <property name="AutoSize">True</property>
-                        <property name="Expand">False</property>
-                        <property name="Fill">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Button" id="btnClear">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="Type">TextAndIcon</property>
-                        <property name="Icon">stock:gtk-clear Button</property>
-                        <property name="Label" translatable="yes" />
-                        <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="OnBtnClearClicked" />
-                      </widget>
-                      <packing>
-                        <property name="Position">2</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
@@ -831,6 +814,23 @@ Two</property>
                         <property name="Label" translatable="yes" />
                         <property name="UseUnderline">True</property>
                         <signal name="Clicked" handler="OnBtnEditClicked" />
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="btnClear">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextAndIcon</property>
+                        <property name="Icon">stock:gtk-clear Button</property>
+                        <property name="Label" translatable="yes" />
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="OnBtnClearClicked" />
                       </widget>
                       <packing>
                         <property name="Position">3</property>
@@ -910,6 +910,7 @@ Two</property>
                                 <property name="Icon">stock:gtk-delete Button</property>
                                 <property name="Label" translatable="yes" />
                                 <property name="UseUnderline">True</property>
+                                <signal name="Clicked" handler="OnBtnDeleteClicked" />
                               </widget>
                               <packing>
                                 <property name="Position">1</property>
