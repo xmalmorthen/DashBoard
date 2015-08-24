@@ -46,7 +46,7 @@
       </action>
     </action-group>
     <property name="MemberName" />
-    <property name="Title" translatable="yes">Conector de puertos</property>
+    <property name="Title" translatable="yes">Solución de entrada</property>
     <property name="Icon">stock:gtk-connect SmallToolbar</property>
     <property name="WindowPosition">Center</property>
     <property name="BorderWidth">6</property>
@@ -79,7 +79,7 @@
           <widget class="Gtk.HPaned" id="paned">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">404</property>
+            <property name="Position">1</property>
             <property name="BorderWidth">1</property>
             <child>
               <widget class="Gtk.VBox" id="vbox5">
