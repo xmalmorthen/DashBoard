@@ -273,23 +273,27 @@ public partial class MainWindow: Gtk.Window
 							int databits = Convert.ToInt32 (cmbDatabits.ActiveText.ToString ());
 							StopBits stopbits = (StopBits)Enum.Parse (typeof(StopBits), cmbStopbits.ActiveText.ToString ());
 
-							string messageResponse;
-							if (
-								this.connectToPort (port,
-									baudRate,
-									parity,
-									databits,
-									stopbits,
-									new SerialDataReceivedEventHandler (sport_DataReceived),
-									new SerialErrorReceivedEventHandler (sport_ErrorReceived),
-									out messageResponse)
-							) {
-								PortsModel.editItem (iter, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
-								BitacoraModel.addItem ("Auto abrir puerto",string.Format ("Puerto {0}", port.ToString ()));
-							} else {
-								PortsModel.editItem (iter, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/err.png"), "Error al intentar conectar");
-								BitacoraModel.addItem ("Auto abrir puerto",string.Format ("Puerto {0}", port.ToString ()),string.Format ("Error al intentar conectar [ {0} ]",messageResponse),"ERROR");
+							CnnPort cnnPort;
+							if (!cnnPortList.TryGetValue (port, out cnnPort)) {
+								string messageResponse;
+								if (
+									this.connectToPort (port,
+										baudRate,
+										parity,
+										databits,
+										stopbits,
+										new SerialDataReceivedEventHandler (sport_DataReceived),
+										new SerialErrorReceivedEventHandler (sport_ErrorReceived),
+										out messageResponse)
+								) {
+									PortsModel.editItem (iter, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
+									BitacoraModel.addItem ("Auto abrir puerto",string.Format ("Puerto {0}", port.ToString ()));
+								} else {
+									PortsModel.editItem (iter, new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/err.png"), "Error al intentar conectar");
+									BitacoraModel.addItem ("Auto abrir puerto",string.Format ("Puerto {0}", port.ToString ()),string.Format ("Error al intentar conectar [ {0} ]",messageResponse),"ERROR");
+								}	
 							}
+							cnnPort = null;
 							portGetConnected = true;
 						}
 					} while (portsList.IterNext(ref iter));
@@ -304,5 +308,22 @@ public partial class MainWindow: Gtk.Window
 
 	}
 
+	protected void OnRefreshActionActivated (object sender, EventArgs e)
+	{
+		this.AutoConnectPorts ();
+	}
+
+	protected void OnBtnlimpiarbitacoraClicked (object sender, EventArgs e)
+	{
+		MessageDialog dlg = new MessageDialog (this, 
+			DialogFlags.DestroyWithParent, 
+			MessageType.Question, 
+			ButtonsType.YesNo, 
+			"Confirmar limpiar la bitácora de salida");
+		ResponseType response = (ResponseType) dlg.Run ();
+		dlg.Destroy ();
+		if (response == ResponseType.Yes)
+			BitacoraModel.clearModel ();	
+	}
 
 }

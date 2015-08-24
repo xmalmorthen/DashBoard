@@ -11,6 +11,10 @@ public partial class MainWindow
 	
 	private global::Gtk.Action closeAction;
 	
+	private global::Gtk.Action networkAction;
+	
+	private global::Gtk.Action refreshAction;
+	
 	private global::Gtk.VBox vbox4;
 	
 	private global::Gtk.MenuBar menubar1;
@@ -105,9 +109,19 @@ public partial class MainWindow
 	
 	private global::Gtk.Label GtkLabel7;
 	
+	private global::Gtk.VBox vbox7;
+	
 	private global::Gtk.ScrolledWindow GtkScrolledWindow1;
 	
 	private global::Gtk.TreeView tblBitacora;
+	
+	private global::Gtk.HBox hbox4;
+	
+	private global::Gtk.Alignment alignment2;
+	
+	private global::Gtk.Button btnBitacoraHistorica;
+	
+	private global::Gtk.Button btnlimpiarbitacora;
 	
 	private global::Gtk.Statusbar statusbar;
 	
@@ -128,6 +142,12 @@ public partial class MainWindow
 		this.closeAction = new global::Gtk.Action ("closeAction", global::Mono.Unix.Catalog.GetString ("Cerrar"), null, "gtk-close");
 		this.closeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Cerrar");
 		w1.Add (this.closeAction, "<Primary>x");
+		this.networkAction = new global::Gtk.Action ("networkAction", global::Mono.Unix.Catalog.GetString ("Acciones"), null, "gtk-network");
+		this.networkAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Acciones");
+		w1.Add (this.networkAction, null);
+		this.refreshAction = new global::Gtk.Action ("refreshAction", global::Mono.Unix.Catalog.GetString ("Reconexión automática de puertos"), null, "gtk-refresh");
+		this.refreshAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Reconexión automática de puertos");
+		w1.Add (this.refreshAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -140,9 +160,7 @@ public partial class MainWindow
 		this.vbox4.Name = "vbox4";
 		this.vbox4.Spacing = 6;
 		// Container child vbox4.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><menubar name=\'menubar1\'><menu name=\'executeAction\' action=\'executeAction\'><m" +
-		"enuitem name=\'disconnectAction\' action=\'disconnectAction\'/></menu><menuitem name" +
-		"=\'closeAction\' action=\'closeAction\'/></menubar></ui>");
+		this.UIManager.AddUiFromString (@"<ui><menubar name='menubar1'><menu name='networkAction' action='networkAction'><menuitem name='refreshAction' action='refreshAction'/></menu><menu name='executeAction' action='executeAction'><menuitem name='disconnectAction' action='disconnectAction'/></menu><menuitem name='closeAction' action='closeAction'/></menubar></ui>");
 		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 		this.menubar1.Name = "menubar1";
 		this.vbox4.Add (this.menubar1);
@@ -154,7 +172,7 @@ public partial class MainWindow
 		this.paned = new global::Gtk.HPaned ();
 		this.paned.CanFocus = true;
 		this.paned.Name = "paned";
-		this.paned.Position = 1;
+		this.paned.Position = 404;
 		this.paned.BorderWidth = ((uint)(1));
 		// Container child paned.Gtk.Paned+PanedChild
 		this.vbox5 = new global::Gtk.VBox ();
@@ -528,6 +546,10 @@ public partial class MainWindow
 		global::Gtk.Paned.PanedChild w46 = ((global::Gtk.Paned.PanedChild)(this.paned [this.vbox5]));
 		w46.Resize = false;
 		// Container child paned.Gtk.Paned+PanedChild
+		this.vbox7 = new global::Gtk.VBox ();
+		this.vbox7.Name = "vbox7";
+		this.vbox7.Spacing = 6;
+		// Container child vbox7.Gtk.Box+BoxChild
 		this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
 		this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
 		this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
@@ -536,10 +558,54 @@ public partial class MainWindow
 		this.tblBitacora.CanFocus = true;
 		this.tblBitacora.Name = "tblBitacora";
 		this.GtkScrolledWindow1.Add (this.tblBitacora);
-		this.paned.Add (this.GtkScrolledWindow1);
+		this.vbox7.Add (this.GtkScrolledWindow1);
+		global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.GtkScrolledWindow1]));
+		w48.Position = 0;
+		// Container child vbox7.Gtk.Box+BoxChild
+		this.hbox4 = new global::Gtk.HBox ();
+		this.hbox4.Name = "hbox4";
+		this.hbox4.Spacing = 6;
+		// Container child hbox4.Gtk.Box+BoxChild
+		this.alignment2 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+		this.alignment2.Name = "alignment2";
+		this.hbox4.Add (this.alignment2);
+		global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.alignment2]));
+		w49.Position = 0;
+		// Container child hbox4.Gtk.Box+BoxChild
+		this.btnBitacoraHistorica = new global::Gtk.Button ();
+		this.btnBitacoraHistorica.CanFocus = true;
+		this.btnBitacoraHistorica.Name = "btnBitacoraHistorica";
+		this.btnBitacoraHistorica.UseUnderline = true;
+		global::Gtk.Image w50 = new global::Gtk.Image ();
+		w50.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-dnd-multiple", global::Gtk.IconSize.SmallToolbar);
+		this.btnBitacoraHistorica.Image = w50;
+		this.hbox4.Add (this.btnBitacoraHistorica);
+		global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.btnBitacoraHistorica]));
+		w51.Position = 1;
+		w51.Expand = false;
+		w51.Fill = false;
+		// Container child hbox4.Gtk.Box+BoxChild
+		this.btnlimpiarbitacora = new global::Gtk.Button ();
+		this.btnlimpiarbitacora.CanFocus = true;
+		this.btnlimpiarbitacora.Name = "btnlimpiarbitacora";
+		this.btnlimpiarbitacora.UseUnderline = true;
+		global::Gtk.Image w52 = new global::Gtk.Image ();
+		w52.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-clear", global::Gtk.IconSize.SmallToolbar);
+		this.btnlimpiarbitacora.Image = w52;
+		this.hbox4.Add (this.btnlimpiarbitacora);
+		global::Gtk.Box.BoxChild w53 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.btnlimpiarbitacora]));
+		w53.Position = 2;
+		w53.Expand = false;
+		w53.Fill = false;
+		this.vbox7.Add (this.hbox4);
+		global::Gtk.Box.BoxChild w54 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hbox4]));
+		w54.Position = 1;
+		w54.Expand = false;
+		w54.Fill = false;
+		this.paned.Add (this.vbox7);
 		this.vbox4.Add (this.paned);
-		global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.paned]));
-		w49.Position = 1;
+		global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.paned]));
+		w56.Position = 1;
 		// Container child vbox4.Gtk.Box+BoxChild
 		this.statusbar = new global::Gtk.Statusbar ();
 		this.statusbar.Name = "statusbar";
@@ -550,37 +616,40 @@ public partial class MainWindow
 		this.button2.CanFocus = true;
 		this.button2.Name = "button2";
 		this.button2.UseUnderline = true;
-		global::Gtk.Image w50 = new global::Gtk.Image ();
-		w50.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Dnd);
-		this.button2.Image = w50;
+		global::Gtk.Image w57 = new global::Gtk.Image ();
+		w57.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Dnd);
+		this.button2.Image = w57;
 		this.statusbar.Add (this.button2);
-		global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.statusbar [this.button2]));
-		w51.Position = 1;
-		w51.Expand = false;
-		w51.Fill = false;
+		global::Gtk.Box.BoxChild w58 = ((global::Gtk.Box.BoxChild)(this.statusbar [this.button2]));
+		w58.Position = 1;
+		w58.Expand = false;
+		w58.Fill = false;
 		this.vbox4.Add (this.statusbar);
-		global::Gtk.Box.BoxChild w52 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.statusbar]));
-		w52.Position = 2;
-		w52.Expand = false;
-		w52.Fill = false;
+		global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.statusbar]));
+		w59.Position = 2;
+		w59.Expand = false;
+		w59.Fill = false;
 		this.Add (this.vbox4);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 827;
+		this.DefaultWidth = 887;
 		this.DefaultHeight = 612;
 		this.lblPortsNotFound.Hide ();
 		this.fraPortDetail.Hide ();
 		this.fraCnnConfig.Hide ();
 		this.fraSendData.Hide ();
+		this.btnBitacoraHistorica.Hide ();
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.disconnectAction.Activated += new global::System.EventHandler (this.OnYesActionActivated);
 		this.closeAction.Activated += new global::System.EventHandler (this.OnCloseActionActivated);
+		this.refreshAction.Activated += new global::System.EventHandler (this.OnRefreshActionActivated);
 		this.btnrefreshports.Clicked += new global::System.EventHandler (this.OnBtnrefreshportsClicked);
 		this.btnconnect.Clicked += new global::System.EventHandler (this.OnBtnconnectClicked);
 		this.btndisconnect.Clicked += new global::System.EventHandler (this.OnBtndisconnectClicked);
 		this.btnsendmsg.Clicked += new global::System.EventHandler (this.OnBtnsendmsgClicked);
+		this.btnlimpiarbitacora.Clicked += new global::System.EventHandler (this.OnBtnlimpiarbitacoraClicked);
 		this.button2.Clicked += new global::System.EventHandler (this.OnButton2Clicked);
 	}
 }
