@@ -1,6 +1,8 @@
 ﻿using System;
 using Gtk;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+using System.IO.Ports;
 
 namespace outSolution
 {
@@ -26,6 +28,10 @@ namespace outSolution
 			tblData.AppendColumn ("Puerto", new CellRendererText (), "text", 0);
 			tblData.AppendColumn ("Alias", new CellRendererText (), "text", 1);
 			tblData.AppendColumn ("Descripción", new CellRendererText (), "text", 2);
+			tblData.AppendColumn ("Baud Rate", new CellRendererText (), "text", 3);
+			tblData.AppendColumn ("Parity", new CellRendererText (), "text", 4);
+			tblData.AppendColumn ("Data Bits", new CellRendererText (), "text", 5);
+			tblData.AppendColumn ("Stop Bits", new CellRendererText (), "text", 6);
 			tblData.Model = AutoConnectPrtsModel.getModel ();
 		}
 
@@ -38,8 +44,32 @@ namespace outSolution
 				txtPuerto.Text = model.GetValue (iterSelected, 0).ToString ();
 				txtalias.Text = model.GetValue (iterSelected, 1).ToString ();
 				txtDesc.Text = model.GetValue (iterSelected, 2).ToString ();
+
+				this.SelIterCmb (cmbBaudRate, model.GetValue (iterSelected, 3).ToString ());
+				this.SelIterCmb (cmbParity, model.GetValue (iterSelected, 4).ToString ());
+				this.SelIterCmb (cmbDatabits, model.GetValue (iterSelected, 5).ToString ());
+				this.SelIterCmb (cmbStopbits, model.GetValue (iterSelected, 6).ToString ());
+
 				ChangeFormMode (FormMode.Edit);
 				txtalias.GrabFocus ();
+			}
+		}
+
+		private void SelIterCmb(ComboBoxEntry cmb, string itemtoselect){
+			Boolean isSelected = false;
+			TreeIter cmbiter;
+			cmb.Model.GetIterFirst (out cmbiter);
+			do {
+				GLib.Value value = new GLib.Value();
+				cmb.Model.GetValue(cmbiter,0,ref value);
+				if ((value.Val as string).Equals(itemtoselect, StringComparison.CurrentCultureIgnoreCase)){
+					cmb.SetActiveIter(cmbiter);
+					isSelected = true;
+				}
+			} while (cmb.Model.IterNext(ref cmbiter));
+			if (!isSelected) {
+				cmb.AppendText (itemtoselect);
+				this.SelIterCmb (cmb, itemtoselect);
 			}
 		}
 			
@@ -64,8 +94,21 @@ namespace outSolution
 				isValid = false;
 			}
 
+			string baudRate = cmbBaudRate.ActiveText.ToString ();
+			string parity = cmbParity.ActiveText.ToString ();
+			string databits = cmbDatabits.ActiveText.ToString ();
+			string stopbits = cmbStopbits.ActiveText.ToString ();
+
+			if (string.IsNullOrEmpty (baudRate)) {
+				
+			}
+
+
+
+
+
 			if (isValid) {
-				if (!AutoConnectPrtsModel.addItem(new string[] { txtPuerto.Text, txtalias.Text, txtDesc.Text })) {
+				if (!AutoConnectPrtsModel.addItem(new string[] { txtPuerto.Text, txtalias.Text, txtDesc.Text, baudRate, parity, databits, stopbits })) {
 					MessageDialog dlg = new MessageDialog (this, 
 						                    DialogFlags.DestroyWithParent, 
 						                    MessageType.Error, 
@@ -120,7 +163,12 @@ namespace outSolution
 
 		protected void OnBtnEditClicked (object sender, EventArgs e)
 		{
-			if (!AutoConnectPrtsModel.editItem(new string[] { tblData.Model.GetValue (iterSelected, 3).ToString (),txtalias.Text, txtDesc.Text })) {
+			string baudRate = cmbBaudRate.ActiveText.ToString ();
+			string parity = cmbParity.ActiveText.ToString ();
+			string databits = cmbDatabits.ActiveText.ToString ();
+			string stopbits = cmbStopbits.ActiveText.ToString ();
+
+			if (!AutoConnectPrtsModel.editItem(new string[] { tblData.Model.GetValue (iterSelected, 3).ToString (),txtalias.Text, txtDesc.Text, baudRate, parity, databits, stopbits  })) {
 				MessageDialog dlg = new MessageDialog (this, 
 					DialogFlags.DestroyWithParent, 
 					MessageType.Error, 

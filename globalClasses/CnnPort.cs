@@ -2,7 +2,7 @@
 using System.IO.Ports;
 using NLog;
 
-namespace outSolution
+namespace globalClasses
 {
 	public class CnnPort
 	{

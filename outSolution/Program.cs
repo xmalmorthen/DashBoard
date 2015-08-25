@@ -12,7 +12,7 @@ namespace outSolution
 
 			ConfigurationManager cnfg = new ConfigurationManager ();
 
-			Boolean isDatabaseOpened = DataBase.Open (cnfg.AppSettings ["server"],
+			Boolean isDatabaseOpened = globalClasses.DataBase.Open (cnfg.AppSettings ["server"],
 											  		  cnfg.AppSettings ["database"],
 													  cnfg.AppSettings ["usr"],
 													  cnfg.AppSettings ["pwd"]);
@@ -29,7 +29,7 @@ namespace outSolution
 				win.Show ();
 				Application.Run ();
 
-				DataBase.Close ();
+				globalClasses.DataBase.Close ();
 			}
 		}
 	}

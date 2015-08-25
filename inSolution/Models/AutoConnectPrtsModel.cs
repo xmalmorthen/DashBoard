@@ -11,7 +11,7 @@ namespace inSolution
 
 		private static void dataBaseData(){
 			store.Clear ();
-			MySqlDataReader data = DataBase.CallSp ("pa_get_AutoConnectPorts");
+			MySqlDataReader data = globalClasses.DataBase.CallSp ("pa_get_AutoConnectPorts");
 			if (data != null){
 				while (data.Read ()) {
 					store.AppendValues (data ["portname"].ToString (),
@@ -32,7 +32,7 @@ namespace inSolution
 		public static Boolean addItem(string[] parameters = null){
 			Boolean result = false;
 			try {
-				MySqlDataReader response = DataBase.CallSp ("pa_insert_AutoConnectPort", parameters);
+				MySqlDataReader response = globalClasses.DataBase.CallSp ("pa_insert_AutoConnectPort", parameters);
 				if (response != null){
 					response.Close();	
 					result = true;
@@ -46,7 +46,7 @@ namespace inSolution
 		public static Boolean editItem(string[] parameters = null){
 			Boolean result = false;
 			try {
-				MySqlDataReader response = DataBase.CallSp ("pa_edit_AutoConnectPort", parameters);
+				MySqlDataReader response = globalClasses.DataBase.CallSp ("pa_edit_AutoConnectPort", parameters);
 				if (response != null){
 					response.Close();	
 					result = true;
@@ -60,7 +60,7 @@ namespace inSolution
 		public static Boolean deleteItem(string id){
 			Boolean result = false;
 			try {
-				MySqlDataReader response = DataBase.CallSp ("pa_delete_AutoConnectPort", new string[] {id});
+				MySqlDataReader response = globalClasses.DataBase.CallSp ("pa_delete_AutoConnectPort", new string[] {id});
 				if (response != null){
 					response.Close();	
 					result = true;

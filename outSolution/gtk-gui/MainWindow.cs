@@ -172,7 +172,7 @@ public partial class MainWindow
 		this.paned = new global::Gtk.HPaned ();
 		this.paned.CanFocus = true;
 		this.paned.Name = "paned";
-		this.paned.Position = 495;
+		this.paned.Position = 334;
 		this.paned.BorderWidth = ((uint)(1));
 		// Container child paned.Gtk.Paned+PanedChild
 		this.vbox5 = new global::Gtk.VBox ();
@@ -649,6 +649,7 @@ public partial class MainWindow
 		this.btnconnect.Clicked += new global::System.EventHandler (this.OnBtnconnectClicked);
 		this.btndisconnect.Clicked += new global::System.EventHandler (this.OnBtndisconnectClicked);
 		this.btnsendmsg.Clicked += new global::System.EventHandler (this.OnBtnsendmsgClicked);
+		this.btnBitacoraHistorica.Clicked += new global::System.EventHandler (this.OnBtnBitacoraHistoricaClicked);
 		this.btnlimpiarbitacora.Clicked += new global::System.EventHandler (this.OnBtnlimpiarbitacoraClicked);
 		this.button2.Clicked += new global::System.EventHandler (this.OnButton2Clicked);
 	}

@@ -5,6 +5,7 @@ using System.IO.Ports;
 using System.IO;
 using NLog;
 using System.Collections.Generic;
+using globalClasses;
 
 public partial class MainWindow: Gtk.Window
 {

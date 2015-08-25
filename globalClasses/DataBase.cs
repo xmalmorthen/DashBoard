@@ -4,7 +4,7 @@ using System.Data.Common;
 using NLog;
 using System.Data;
 
-namespace outSolution
+namespace globalClasses
 {
 	public static class DataBase
 	{

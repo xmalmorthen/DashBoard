@@ -6,6 +6,7 @@
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/outSolution.exe" internal="true" />
+    <widget-library name="../../globalClasses/bin/Debug/globalClasses.dll" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="887 612">
     <action-group name="Default">
@@ -79,7 +80,7 @@
           <widget class="Gtk.HPaned" id="paned">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">495</property>
+            <property name="Position">334</property>
             <property name="BorderWidth">1</property>
             <child>
               <widget class="Gtk.VBox" id="vbox5">
@@ -642,6 +643,7 @@ Two</property>
                         <property name="Icon">stock:gtk-dnd-multiple SmallToolbar</property>
                         <property name="Label" translatable="yes" />
                         <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="OnBtnBitacoraHistoricaClicked" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -716,7 +718,7 @@ Two</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="outSolution.AutoConnectPorts" design-size="706 315">
+  <widget class="Gtk.Window" id="outSolution.AutoConnectPorts" design-size="706 333">
     <property name="MemberName" />
     <property name="Title" translatable="yes">AutoConnectPorts</property>
     <property name="Icon">stock:gtk-execute SmallToolbar</property>
@@ -730,7 +732,7 @@ Two</property>
           <widget class="Gtk.HPaned" id="hpaned2">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">1</property>
+            <property name="Position">389</property>
             <child>
               <widget class="Gtk.HBox" id="hbox7">
                 <property name="MemberName" />
@@ -743,6 +745,7 @@ Two</property>
                       <widget class="Gtk.Frame" id="frame2">
                         <property name="MemberName" />
                         <property name="ShadowType">None</property>
+                        <property name="BorderWidth">3</property>
                         <child>
                           <widget class="Gtk.Alignment" id="GtkAlignment5">
                             <property name="MemberName" />
@@ -889,6 +892,7 @@ Two</property>
                       <widget class="Gtk.Frame" id="fraCnnConfig">
                         <property name="MemberName" />
                         <property name="ShadowType">None</property>
+                        <property name="BorderWidth">3</property>
                         <child>
                           <widget class="Gtk.Alignment" id="GtkAlignment8">
                             <property name="MemberName" />
