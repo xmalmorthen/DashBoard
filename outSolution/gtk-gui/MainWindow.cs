@@ -151,7 +151,7 @@ public partial class MainWindow
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("Solución de entrada");
+		this.Title = global::Mono.Unix.Catalog.GetString ("Solución de salida");
 		this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-connect", global::Gtk.IconSize.SmallToolbar);
 		this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 		this.BorderWidth = ((uint)(6));
@@ -172,7 +172,7 @@ public partial class MainWindow
 		this.paned = new global::Gtk.HPaned ();
 		this.paned.CanFocus = true;
 		this.paned.Name = "paned";
-		this.paned.Position = 1;
+		this.paned.Position = 495;
 		this.paned.BorderWidth = ((uint)(1));
 		// Container child paned.Gtk.Paned+PanedChild
 		this.vbox5 = new global::Gtk.VBox ();

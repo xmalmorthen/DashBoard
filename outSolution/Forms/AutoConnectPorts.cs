@@ -16,6 +16,8 @@ namespace outSolution
 		{
 			this.Build ();
 
+			hpaned2.Position = 416;
+
 			this.tablePortInit ();
 			tblData.CursorChanged += ontblPortsCursorChanged;
 		}
