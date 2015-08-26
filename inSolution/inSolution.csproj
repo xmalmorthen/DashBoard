@@ -74,6 +74,9 @@
     <Compile Include="Models\AutoConnectPrtsModel.cs" />
     <Compile Include="Forms\AutoConnectPorts.cs" />
     <Compile Include="gtk-gui\inSolution.AutoConnectPorts.cs" />
+    <Compile Include="Classes\CnnPort.cs" />
+    <Compile Include="Classes\DataBase.cs" />
+    <Compile Include="Classes\dlg.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -100,11 +103,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\globalClasses\globalClasses.csproj">
-      <Project>{A15D4DE8-68C0-4953-B8FB-146184891AB4}</Project>
-      <Name>globalClasses</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -5,7 +5,6 @@ using System.IO.Ports;
 using System.IO;
 using NLog;
 using System.Collections.Generic;
-using globalClasses;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -57,7 +56,7 @@ public partial class MainWindow: Gtk.Window
 		string[] portList = SerialPort.GetPortNames ();
 		if (portList.Length > 0) {
 			foreach (string port in SerialPort.GetPortNames()) {
-				globalClasses.CnnPort cnnPort;
+				CnnPort cnnPort;
 				if (cnnPortList.TryGetValue (port, out cnnPort)) {
 					PortsModel.addItem (port.ToString (), new Gdk.Pixbuf (Directory.GetCurrentDirectory () + @"/Assets/Images/on.png"), "Conectado");
 				} else {
@@ -113,7 +112,7 @@ public partial class MainWindow: Gtk.Window
 		fraCnnConfig.Visible = selected && !conected;
 	}
 
-	private Dictionary<string,globalClasses.CnnPort> cnnPortList = new Dictionary<string,globalClasses.CnnPort>();
+	private Dictionary<string,CnnPort> cnnPortList = new Dictionary<string,CnnPort>();
 	protected void OnBtnconnectClicked (object sender, EventArgs e)
 	{
 		string port = lblPuerto.Text.ToString();
@@ -151,7 +150,7 @@ public partial class MainWindow: Gtk.Window
 									SerialErrorReceivedEventHandler sport_ErrorReceived,
 									out string messageResponse){
 		Boolean response = false;
-		globalClasses.CnnPort cnnPort = new globalClasses.CnnPort ( port,
+		CnnPort cnnPort = new CnnPort ( port,
 			baudRate,
 			parity,
 			databits,
@@ -187,7 +186,7 @@ public partial class MainWindow: Gtk.Window
 		
 	protected void OnBtndisconnectClicked (object sender, EventArgs e)
 	{
-		globalClasses.CnnPort cnnPort;
+		CnnPort cnnPort;
 		string port = lblPuerto.Text.ToString ();
 		if (cnnPortList.TryGetValue (port, out cnnPort)) {
 			if (cnnPort.Close (sport_DataReceived,
@@ -209,18 +208,18 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnButton2Clicked (object sender, EventArgs e)
 	{
-		if ( globalClasses.dlg.show(this, DialogFlags.DestroyWithParent, MessageType.Question, ButtonsType.YesNo, "Confirmar cerrar aplicación") == ResponseType.Yes)
+		if ( dlg.show(this, DialogFlags.DestroyWithParent, MessageType.Question, ButtonsType.YesNo, "Confirmar cerrar aplicación") == ResponseType.Yes)
 			Application.Quit ();
 	}
 
 	protected void OnBtnsendmsgClicked (object sender, EventArgs e)
 	{
-		globalClasses.CnnPort cnnPort;
+		CnnPort cnnPort;
 		string port = lblPuerto.Text.ToString ();
 		if (cnnPortList.TryGetValue (port, out cnnPort)) {
 			String data = txtsendmsg.Text.ToString ();
 			if (!cnnPort.SendData (data)) {
-				globalClasses.dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al enviar el dato al puerto {0} [ {1} ]", port, data));
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al enviar el dato al puerto {0} [ {1} ]", port, data));
 				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Ocurrió un error al enviar el dato [ {0} ] al puerto", data),"ERROR");
 			} else {
 				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Dato enviado al puerto [ {0} ]", data));
@@ -262,7 +261,7 @@ public partial class MainWindow: Gtk.Window
 							int databits = Convert.ToInt32 (cmbDatabits.ActiveText.ToString ());
 							StopBits stopbits = (StopBits)Enum.Parse (typeof(StopBits), cmbStopbits.ActiveText.ToString ());
 
-							globalClasses.CnnPort cnnPort;
+							CnnPort cnnPort;
 							if (!cnnPortList.TryGetValue (port, out cnnPort)) {
 								string messageResponse;
 								if (

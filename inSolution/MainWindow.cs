@@ -5,7 +5,6 @@ using System.IO.Ports;
 using System.IO;
 using NLog;
 using System.Collections.Generic;
-using globalClasses;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -208,14 +207,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnButton2Clicked (object sender, EventArgs e)
 	{
-		MessageDialog dlg = new MessageDialog (this, 
-			                    DialogFlags.DestroyWithParent, 
-			                    MessageType.Question, 
-								ButtonsType.YesNo, 
-			                    "Confirmar cerrar aplicación");
-		ResponseType response = (ResponseType) dlg.Run ();
-		dlg.Destroy ();
-		if (response == ResponseType.Yes)
+		if (dlg.show(this, DialogFlags.DestroyWithParent, MessageType.Question, ButtonsType.YesNo, "Confirmar cerrar aplicación") == ResponseType.Yes)
 			Application.Quit ();
 	}
 
@@ -226,13 +218,7 @@ public partial class MainWindow: Gtk.Window
 		if (cnnPortList.TryGetValue (port, out cnnPort)) {
 			String data = txtsendmsg.Text.ToString ();
 			if (!cnnPort.SendData (data)) {
-				MessageDialog dlg = new MessageDialog (this, 
-					                    DialogFlags.DestroyWithParent, 
-					                    MessageType.Error, 
-					                    ButtonsType.Ok, 
-										string.Format ("Ocurrió un error al enviar el dato al puerto {0} [ {1} ]", port, data));
-				dlg.Run ();
-				dlg.Destroy ();
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al enviar el dato al puerto {0} [ {1} ]", port, data));
 				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Ocurrió un error al enviar el dato [ {0} ] al puerto", data),"ERROR");
 			} else {
 				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Dato enviado al puerto [ {0} ]", data));
@@ -316,14 +302,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnBtnlimpiarbitacoraClicked (object sender, EventArgs e)
 	{
-		MessageDialog dlg = new MessageDialog (this, 
-			DialogFlags.DestroyWithParent, 
-			MessageType.Question, 
-			ButtonsType.YesNo, 
-			"Confirmar limpiar la bitácora de salida");
-		ResponseType response = (ResponseType) dlg.Run ();
-		dlg.Destroy ();
-		if (response == ResponseType.Yes)
+		if (dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Question, ButtonsType.YesNo, "Confirmar limpiar la bitácora de salida") == ResponseType.Yes)
 			BitacoraModel.clearModel ();	
 	}
 

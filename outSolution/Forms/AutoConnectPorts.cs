@@ -45,10 +45,15 @@ namespace outSolution
 				txtalias.Text = model.GetValue (iterSelected, 1).ToString ();
 				txtDesc.Text = model.GetValue (iterSelected, 2).ToString ();
 
-				this.SelIterCmb (cmbBaudRate, model.GetValue (iterSelected, 3).ToString ());
-				this.SelIterCmb (cmbParity, model.GetValue (iterSelected, 4).ToString ());
-				this.SelIterCmb (cmbDatabits, model.GetValue (iterSelected, 5).ToString ());
-				this.SelIterCmb (cmbStopbits, model.GetValue (iterSelected, 6).ToString ());
+				string baudRate = model.GetValue (iterSelected, 3).ToString ();
+				string parity = model.GetValue (iterSelected, 4).ToString ();
+				string databits = model.GetValue (iterSelected, 5).ToString ();
+				string stopbits = model.GetValue (iterSelected, 6).ToString ();
+
+				this.SelIterCmb (cmbBaudRate, baudRate);
+				this.SelIterCmb (cmbParity,parity);
+				this.SelIterCmb (cmbDatabits, databits);
+				this.SelIterCmb (cmbStopbits, stopbits);
 
 				ChangeFormMode (FormMode.Edit);
 				txtalias.GrabFocus ();
@@ -83,13 +88,7 @@ namespace outSolution
 			Boolean isValid = true;
 
 			if (string.IsNullOrEmpty (txtPuerto.Text)) {
-				MessageDialog dlg = new MessageDialog (this, 
-					DialogFlags.DestroyWithParent, 
-					MessageType.Error, 
-					ButtonsType.Ok, 
-					string.Format ("Falta indicar el puerto"));
-				dlg.Run ();
-				dlg.Destroy ();
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Falta indicar el puerto"));
 				txtPuerto.GrabFocus ();
 				isValid = false;
 			}
@@ -100,22 +99,33 @@ namespace outSolution
 			string stopbits = cmbStopbits.ActiveText.ToString ();
 
 			if (string.IsNullOrEmpty (baudRate)) {
-				
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Faltan datos"));
+				cmbBaudRate.GrabFocus ();
+				isValid = false;
+				return;
 			}
-
-
-
-
+			if (string.IsNullOrEmpty (parity)) {
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Faltan datos"));
+				cmbParity.GrabFocus ();
+				isValid = false;
+				return;
+			}
+			if (string.IsNullOrEmpty (databits)) {
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Faltan datos"));
+				cmbDatabits.GrabFocus ();
+				isValid = false;
+				return;
+			}
+			if (string.IsNullOrEmpty (stopbits)) {
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Faltan datos"));
+				cmbStopbits.GrabFocus ();
+				isValid = false;
+				return;
+			}
 
 			if (isValid) {
 				if (!AutoConnectPrtsModel.addItem(new string[] { txtPuerto.Text, txtalias.Text, txtDesc.Text, baudRate, parity, databits, stopbits })) {
-					MessageDialog dlg = new MessageDialog (this, 
-						                    DialogFlags.DestroyWithParent, 
-						                    MessageType.Error, 
-						                    ButtonsType.Ok, 
-						                    string.Format ("Ocurrió un error al intentar guardar las configuraciones, favor de interntarlo de nuevo"));
-					dlg.Run ();
-					dlg.Destroy ();
+					dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al intentar guardar las configuraciones, favor de interntarlo de nuevo"));
 				} else {					
 					CleanForm ();
 					tblData.Model = AutoConnectPrtsModel.getModel ();
@@ -124,15 +134,8 @@ namespace outSolution
 		}
 
 		protected void OnBtnClearClicked (object sender, EventArgs e)
-		{
-			MessageDialog dlg = new MessageDialog (this, 
-				DialogFlags.DestroyWithParent, 
-				MessageType.Question, 
-				ButtonsType.YesNo, 
-				string.Format ("Limpiar formulario"));
-			ResponseType response = (ResponseType) dlg.Run ();
-			dlg.Destroy ();
-			if (response == ResponseType.Yes) {
+		{			
+			if (dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Question, ButtonsType.YesNo, string.Format ("Limpiar formulario")) == ResponseType.Yes) {
 				this.CleanForm ();
 				txtPuerto.GrabFocus ();
 
@@ -168,14 +171,8 @@ namespace outSolution
 			string databits = cmbDatabits.ActiveText.ToString ();
 			string stopbits = cmbStopbits.ActiveText.ToString ();
 
-			if (!AutoConnectPrtsModel.editItem(new string[] { tblData.Model.GetValue (iterSelected, 3).ToString (),txtalias.Text, txtDesc.Text, baudRate, parity, databits, stopbits  })) {
-				MessageDialog dlg = new MessageDialog (this, 
-					DialogFlags.DestroyWithParent, 
-					MessageType.Error, 
-					ButtonsType.Ok, 
-					string.Format ("Ocurrió un error al intentar editar las configuraciones, favor de interntarlo de nuevo"));
-				dlg.Run ();
-				dlg.Destroy ();
+			if (!AutoConnectPrtsModel.editItem(new string[] { tblData.Model.GetValue (iterSelected, 7).ToString (),txtalias.Text, txtDesc.Text, baudRate, parity, databits, stopbits  })) {
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al intentar editar las configuraciones, favor de interntarlo de nuevo"));
 			} else {					
 				CleanForm ();
 				tblData.Model = AutoConnectPrtsModel.getModel ();
@@ -183,26 +180,21 @@ namespace outSolution
 		}
 
 		protected void OnBtnDeleteClicked (object sender, EventArgs e)
-		{
-			MessageDialog dlg = new MessageDialog (this, 
-				DialogFlags.DestroyWithParent, 
-				MessageType.Question, 
-				ButtonsType.YesNo, 
-				"Confirmar la eliminación del registro");
-			ResponseType response = (ResponseType) dlg.Run ();
-			dlg.Destroy ();
-			if (response == ResponseType.Yes) {
-				if (!AutoConnectPrtsModel.deleteItem(tblData.Model.GetValue (iterSelected, 3).ToString())) {
-					dlg = new MessageDialog (this, 
-						DialogFlags.DestroyWithParent, 
-						MessageType.Error, 
-						ButtonsType.Ok, 
-						string.Format ("Ocurrió un error al intentar eliminar la configuracion, favor de interntarlo de nuevo"));
-					dlg.Run ();
-					dlg.Destroy ();
-				} else {					
-					CleanForm ();
-					tblData.Model = AutoConnectPrtsModel.getModel ();
+		{		
+			string id = null;
+			try {
+				id = tblData.Model.GetValue (iterSelected, 7).ToString();
+			} catch (Exception) {}
+			if (string.IsNullOrEmpty (id)) {
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Info, ButtonsType.Ok, string.Format ("Falta seleccionar el registro a eliminar"));
+			} else {
+				if (dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Question, ButtonsType.YesNo, "Confirmar la eliminación del registro") == ResponseType.Yes) {
+					if (!AutoConnectPrtsModel.deleteItem (id)) {
+						dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al intentar eliminar la configuracion, favor de interntarlo de nuevo"));
+					} else {					
+						CleanForm ();
+						tblData.Model = AutoConnectPrtsModel.getModel ();
+					}	
 				}
 			}
 		}

@@ -20,7 +20,7 @@ namespace inSolution
 			try {
 				DateTime dt = DateTime.Now;
 				Store.AppendValues (accion,mensaje,dt.ToShortTimeString(),dt.ToShortDateString(),detalle,status);
-				globalClasses.DataBase.CallSp("pa_insert_tbl_bitacora",new string[] { accion,mensaje,detalle,status}).Close();
+				DataBase.CallSp("pa_insert_tbl_bitacora",new string[] { accion,mensaje,detalle,status}).Close();
 				result = true;
 			} catch (Exception) {
 				result = false;

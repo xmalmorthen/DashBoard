@@ -115,7 +115,7 @@ namespace outSolution
 			this.hpaned2 = new global::Gtk.HPaned ();
 			this.hpaned2.CanFocus = true;
 			this.hpaned2.Name = "hpaned2";
-			this.hpaned2.Position = 389;
+			this.hpaned2.Position = 402;
 			// Container child hpaned2.Gtk.Paned+PanedChild
 			this.hbox7 = new global::Gtk.HBox ();
 			this.hbox7.Name = "hbox7";
@@ -168,6 +168,7 @@ namespace outSolution
 			w3.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.label3 = new global::Gtk.Label ();
@@ -289,10 +290,10 @@ namespace outSolution
 			w16.Fill = false;
 			// Container child hbox10.Gtk.Box+BoxChild
 			this.cmbParity = global::Gtk.ComboBoxEntry.NewText ();
-			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Even\r"));
-			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Odd\r"));
-			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("None\r"));
-			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Mark\r"));
+			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Even"));
+			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Odd"));
+			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("None"));
+			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Mark"));
 			this.cmbParity.AppendText (global::Mono.Unix.Catalog.GetString ("Space"));
 			this.cmbParity.CanFocus = true;
 			this.cmbParity.Name = "cmbParity";
@@ -321,10 +322,10 @@ namespace outSolution
 			w19.Fill = false;
 			// Container child hbox11.Gtk.Box+BoxChild
 			this.cmbDatabits = global::Gtk.ComboBoxEntry.NewText ();
-			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("4\r"));
-			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("5\r"));
-			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("6\r"));
-			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("7\r"));
+			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("4"));
+			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("5"));
+			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("6"));
+			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("7"));
 			this.cmbDatabits.AppendText (global::Mono.Unix.Catalog.GetString ("8"));
 			this.cmbDatabits.CanFocus = true;
 			this.cmbDatabits.Name = "cmbDatabits";
@@ -353,9 +354,9 @@ namespace outSolution
 			w22.Fill = false;
 			// Container child hbox12.Gtk.Box+BoxChild
 			this.cmbStopbits = global::Gtk.ComboBoxEntry.NewText ();
-			this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("None\r"));
-			this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("One\r"));
-			this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("OnePointFive\r"));
+			this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("None"));
+			this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("One"));
+			this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("OnePointFive"));
 			this.cmbStopbits.AppendText (global::Mono.Unix.Catalog.GetString ("Two"));
 			this.cmbStopbits.CanFocus = true;
 			this.cmbStopbits.Name = "cmbStopbits";

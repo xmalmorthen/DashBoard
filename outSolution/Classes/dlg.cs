@@ -1,7 +1,7 @@
 ﻿using System;
 using Gtk;
 
-namespace globalClasses
+namespace outSolution
 {
 	public static class dlg
 	{

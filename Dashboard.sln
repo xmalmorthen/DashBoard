@@ -5,18 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inSolution", "inSolution\in
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "outSolution", "outSolution\outSolution.csproj", "{F3CC3807-33D9-4D2D-BB80-2EB69AC3DFFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "globalClasses", "globalClasses\globalClasses.csproj", "{A15D4DE8-68C0-4953-B8FB-146184891AB4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A15D4DE8-68C0-4953-B8FB-146184891AB4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A15D4DE8-68C0-4953-B8FB-146184891AB4}.Debug|x86.Build.0 = Debug|Any CPU
-		{A15D4DE8-68C0-4953-B8FB-146184891AB4}.Release|x86.ActiveCfg = Release|Any CPU
-		{A15D4DE8-68C0-4953-B8FB-146184891AB4}.Release|x86.Build.0 = Release|Any CPU
 		{D420B0FE-81F9-466E-9579-9D0BA9632027}.Debug|x86.ActiveCfg = Debug|x86
 		{D420B0FE-81F9-466E-9579-9D0BA9632027}.Debug|x86.Build.0 = Debug|x86
 		{D420B0FE-81F9-466E-9579-9D0BA9632027}.Release|x86.ActiveCfg = Release|x86

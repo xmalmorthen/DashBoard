@@ -6,7 +6,6 @@
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/outSolution.exe" internal="true" />
-    <widget-library name="../../globalClasses/bin/Debug/globalClasses.dll" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="887 612">
     <action-group name="Default">
@@ -732,7 +731,7 @@ Two</property>
           <widget class="Gtk.HPaned" id="hpaned2">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">389</property>
+            <property name="Position">402</property>
             <child>
               <widget class="Gtk.HBox" id="hbox7">
                 <property name="MemberName" />

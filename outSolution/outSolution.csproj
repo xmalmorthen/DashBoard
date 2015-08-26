@@ -74,12 +74,16 @@
     <Compile Include="Models\BitacoraModel.cs" />
     <Compile Include="Models\PortsModel.cs" />
     <Compile Include="gtk-gui\outSolution.AutoConnectPorts.cs" />
+    <Compile Include="Classes\CnnPort.cs" />
+    <Compile Include="Classes\DataBase.cs" />
+    <Compile Include="Classes\dlg.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Forms\" />
     <Folder Include="Models\" />
+    <Folder Include="Classes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Images\err.png">
@@ -99,11 +103,5 @@
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\globalClasses\globalClasses.csproj">
-      <Project>{A15D4DE8-68C0-4953-B8FB-146184891AB4}</Project>
-      <Name>globalClasses</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

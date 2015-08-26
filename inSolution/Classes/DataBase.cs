@@ -4,7 +4,7 @@ using System.Data.Common;
 using NLog;
 using System.Data;
 
-namespace globalClasses
+namespace inSolution
 {
 	public static class DataBase
 	{
@@ -56,7 +56,13 @@ namespace globalClasses
 			MySqlDataReader dr;
 			try
 			{
-				string query = string.Format("call {0} (",sp);
+				string query = string.Format("call {0} ({1}",sp,MainClass.Id_application);
+				if (parameters != null){
+					if (parameters.Length > 0){
+						query += ",";
+					}
+				}
+
 				int i = 1;
 				if (parameters != null){
 					foreach (var item in parameters) {
