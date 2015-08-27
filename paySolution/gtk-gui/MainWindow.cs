@@ -3,18 +3,54 @@
 
 public partial class MainWindow
 {
+	private global::Gtk.VBox vbox6;
+	
+	private global::Gtk.Image image1;
+	
+	private global::Gtk.Label label6;
+
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
 		// Widget MainWindow
+		this.WidthRequest = 800;
+		this.HeightRequest = 600;
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
-		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+		this.Title = "";
+		this.TypeHint = ((global::Gdk.WindowTypeHint)(4));
+		this.Modal = true;
+		this.Resizable = false;
+		this.Decorated = false;
+		this.Gravity = ((global::Gdk.Gravity)(5));
+		// Container child MainWindow.Gtk.Container+ContainerChild
+		this.vbox6 = new global::Gtk.VBox ();
+		this.vbox6.Name = "vbox6";
+		this.vbox6.Spacing = 6;
+		// Container child vbox6.Gtk.Box+BoxChild
+		this.image1 = new global::Gtk.Image ();
+		this.image1.Name = "image1";
+		this.vbox6.Add (this.image1);
+		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.image1]));
+		w1.Position = 0;
+		// Container child vbox6.Gtk.Box+BoxChild
+		this.label6 = new global::Gtk.Label ();
+		this.label6.Name = "label6";
+		this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"60000\" font_weight=\"heavy\">Inserte Ticket</span>");
+		this.label6.UseMarkup = true;
+		this.label6.Justify = ((global::Gtk.Justification)(2));
+		this.vbox6.Add (this.label6);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.label6]));
+		w2.Position = 1;
+		w2.Expand = false;
+		w2.Fill = false;
+		w2.Padding = ((uint)(110));
+		this.Add (this.vbox6);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 400;
-		this.DefaultHeight = 300;
+		this.DefaultWidth = 800;
+		this.DefaultHeight = 600;
+		this.label6.MnemonicWidget = this.vbox6;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 	}

@@ -29,11 +29,6 @@ namespace outSolution
 			if (!isDatabaseOpened) {
 				dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al intentar abrir la base de datos Servidor: {0}, Base de datos: {1}", cnfg.AppSettings ["server"], cnfg.AppSettings ["database"]));
 			} else {
-
-				LogManager.Configuration.Variables["currentDataTransfer"] = char.ConvertFromUtf32(new Random().Next(65, 90));
-				LogManager.ReconfigExistingLoggers();
-
-
 				MainWindow win = new MainWindow ();
 				win.Show ();
 				Application.Run ();
