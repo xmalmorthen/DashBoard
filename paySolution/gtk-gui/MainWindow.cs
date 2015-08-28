@@ -37,7 +37,6 @@ public partial class MainWindow
 		this.lblNotifications.HeightRequest = 100;
 		this.lblNotifications.Sensitive = false;
 		this.lblNotifications.Name = "lblNotifications";
-		this.lblNotifications.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"60000\" font_weight=\"heavy\">Inserte Ticket</span>");
 		this.lblNotifications.UseMarkup = true;
 		this.lblNotifications.Justify = ((global::Gtk.Justification)(2));
 		this.vbox6.Add (this.lblNotifications);
@@ -51,6 +50,5 @@ public partial class MainWindow
 		this.DefaultHeight = 600;
 		this.Hide ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-		this.Shown += new global::System.EventHandler (this.OnShown);
 	}
 }

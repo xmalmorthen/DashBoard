@@ -7,24 +7,30 @@ using System.IO.Ports;
 
 public partial class MainWindow: Gtk.Window
 {
-	Timer blink = new Timer (int.Parse(MainClass.cnfg.AppSettings ["blink_timer"]));
+	private Boolean isShow = false;
+
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
-	{
-		this.Shown  += new EventHandler (this.OnShown); 
+	{	
+		if (!isShow) this.Shown  += new EventHandler (this.OnShown); 	
 		Build ();
 	}
 
 	protected virtual void OnShown (object sender, System.EventArgs e) 
 	{ 
-		this.Maximize ();
-		mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (MainClass.imagesPath + "backGround2.jpg"));
-		image1.PixbufAnimation = new Gdk.PixbufAnimation(MainClass.imagesPath + "ticket.png");
+		if (!isShow) {
+			isShow = true;
+			this.Shown  -= this.OnShown; 
 
-		this.blink.Elapsed+=new ElapsedEventHandler(blinkOnTimedEvent);
-		this.blink.Enabled=true;
+			this.Maximize ();
+			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (MainClass.imagesPath + "backGround2.jpg"));
+			image1.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + "ticket.png");
 
-		this.timer.Elapsed+=new ElapsedEventHandler(OnTimedEvent);
-		this.timer.Enabled=true;
+			lblNotifications.LabelProp = "<span foreground='white' size='60000' font_weight='heavy'>Inserte Ticket</span>";
+
+			this.timer = new Timer (2000);
+			this.timer.Elapsed += new ElapsedEventHandler (OnTimedEvent);
+			this.timer.Enabled = true;
+		}
 	} 
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -36,13 +42,15 @@ public partial class MainWindow: Gtk.Window
 	string lblcontent = string.Empty;
 	private void blinkOnTimedEvent(object source, ElapsedEventArgs e)
 	{
-		if (lblcontent.Length > 0) {
+		lblNotifications.Visible = !lblNotifications.Visible;
+
+		/*if (lblcontent.Length > 0) {
 			lblNotifications.LabelProp = lblcontent;
 			lblcontent = string.Empty;
 		} else {
 			lblcontent = lblNotifications.LabelProp;
 			lblNotifications.LabelProp = string.Empty;
-		}
+		}*/
 	}
 
 	public Boolean AutoConnectPorts(out string autoConnectPortsMessageResponse){
@@ -130,15 +138,16 @@ public partial class MainWindow: Gtk.Window
 	/*
 	 * CODIGO DE SIMULACIÓN [ BORRAR HASTA LA MARCA DE FIN ]
 	 */ 
-	Timer timer = new Timer(2000);
+	Timer timer;
 	private Boolean showPayForm = false;
 	private void OnTimedEvent(object source, ElapsedEventArgs e)
 	{		
-		lblNotifications.LabelProp = "<span foreground=\"red\" size=\"70000\" font_weight=\"heavy\">Leyendo Ticket</span>\n<span foreground=\"white\" size=\"30000\" font_weight=\"heavy\">favor de esperar</span>";
+		lblNotifications.LabelProp = "<span foreground='red' size='70000' font_weight='heavy'>Leyendo Ticket</span>\n<span foreground='white' size='30000' font_weight='heavy'>favor de esperar</span>";
 		if (!this.showPayForm) {
 			this.showPayForm = true;
 		} else {
 			this.timer.Enabled = false;	
+			//this.Hide ();
 			MainClass.FrmPayPanel.Show ();
 		}
 	}

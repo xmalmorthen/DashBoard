@@ -35,7 +35,7 @@ namespace paySolution
 				loadPanels ();
 
 				string messageResponse;
-				if (MainWin.AutoConnectPorts (out messageResponse)){
+				if (MainWin.AutoConnectPorts (out messageResponse)){					
 					MainWin.Show ();
 					Application.Run ();
 				} else {
@@ -54,6 +54,7 @@ namespace paySolution
 			FrmPayPanel = new frmPayPanel ();
 			FrmPayPanel.Hide ();
 			MainWin = new MainWindow ();
+			MainWin.Hide ();
 		}
 
 		private static void unloadPanels(){

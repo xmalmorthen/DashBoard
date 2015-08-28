@@ -4,15 +4,21 @@ namespace paySolution
 {
 	public partial class frmPayPanel : Gtk.Window
 	{
+		private Boolean isShow = false;
+
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
-		{
-			this.Shown  += new EventHandler (this.OnShown); 
+		{	
+			if (!isShow) this.Shown  += new EventHandler (this.OnShown); 
 			this.Build ();
 		}
 
 		protected void OnShown (object sender, System.EventArgs e) 
 		{ 
-			this.Maximize ();
+			if (!isShow) {				
+				isShow = true;
+				this.Shown  -= this.OnShown; 
+				this.Maximize ();
+			}
 		} 
 
 	}
