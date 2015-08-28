@@ -7,7 +7,7 @@ public partial class MainWindow
 	
 	private global::Gtk.Image image1;
 	
-	private global::Gtk.Label label6;
+	private global::Gtk.Label lblNotifications;
 
 	protected virtual void Build ()
 	{
@@ -18,7 +18,6 @@ public partial class MainWindow
 		this.Name = "MainWindow";
 		this.Title = "";
 		this.TypeHint = ((global::Gdk.WindowTypeHint)(4));
-		this.Modal = true;
 		this.Resizable = false;
 		this.Decorated = false;
 		this.Gravity = ((global::Gdk.Gravity)(5));
@@ -28,30 +27,30 @@ public partial class MainWindow
 		this.vbox6.Spacing = 6;
 		// Container child vbox6.Gtk.Box+BoxChild
 		this.image1 = new global::Gtk.Image ();
+		this.image1.HeightRequest = 125;
 		this.image1.Name = "image1";
 		this.vbox6.Add (this.image1);
 		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.image1]));
 		w1.Position = 0;
 		// Container child vbox6.Gtk.Box+BoxChild
-		this.label6 = new global::Gtk.Label ();
-		this.label6.Name = "label6";
-		this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"60000\" font_weight=\"heavy\">Inserte Ticket</span>");
-		this.label6.UseMarkup = true;
-		this.label6.Justify = ((global::Gtk.Justification)(2));
-		this.vbox6.Add (this.label6);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.label6]));
+		this.lblNotifications = new global::Gtk.Label ();
+		this.lblNotifications.HeightRequest = 100;
+		this.lblNotifications.Sensitive = false;
+		this.lblNotifications.Name = "lblNotifications";
+		this.lblNotifications.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"60000\" font_weight=\"heavy\">Inserte Ticket</span>");
+		this.lblNotifications.UseMarkup = true;
+		this.lblNotifications.Justify = ((global::Gtk.Justification)(2));
+		this.vbox6.Add (this.lblNotifications);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.lblNotifications]));
 		w2.Position = 1;
-		w2.Expand = false;
-		w2.Fill = false;
-		w2.Padding = ((uint)(110));
 		this.Add (this.vbox6);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
 		this.DefaultWidth = 800;
 		this.DefaultHeight = 600;
-		this.label6.MnemonicWidget = this.vbox6;
-		this.Show ();
+		this.Hide ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.Shown += new global::System.EventHandler (this.OnShown);
 	}
 }

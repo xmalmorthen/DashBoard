@@ -73,13 +73,19 @@
     <Compile Include="Classes\CnnPort.cs" />
     <Compile Include="Classes\DataBase.cs" />
     <Compile Include="Classes\dlg.cs" />
+    <Compile Include="Forms\frmPayPanel.cs" />
+    <Compile Include="gtk-gui\paySolution.frmPayPanel.cs" />
+    <Compile Include="Models\AutoConnectPrtsModel.cs" />
+    <Compile Include="Models\BitacoraModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="NLog.xsd" />
-    <None Include="NLog.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Assets\images\backGround.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -94,9 +100,14 @@
     <Content Include="Assets\images\ticket.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\images\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Classes\" />
+    <Folder Include="Forms\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
