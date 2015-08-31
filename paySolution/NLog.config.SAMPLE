@@ -4,10 +4,10 @@
       autoReload="true"
       throwExceptions="true"
       internalLogLevel="Error"
-      internalLogFile="D:\Proyectos\mono\Dashboard\logs\paySolution.log">
+      internalLogFile="E:\programacion\mono\DashBoard\logs\paySolution.log">
 
-  <variable name="logspath" value="D:\Proyectos\mono\Dashboard\logs\paySolution\" />
-  <variable name="id_application" value="2" />
+  <variable name="logspath" value="E:\programacion\mono\DashBoard\logs\paySolution\" />
+  <variable name="id_application" value="3" />
   <variable name="LogServer" value="localhost" />
   <variable name="DbLogs" value="dashboard" />
   <variable name="TblLogs" value="tbl_logs" />
