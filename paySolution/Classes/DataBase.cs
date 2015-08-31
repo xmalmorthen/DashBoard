@@ -56,7 +56,7 @@ namespace paySolution
 			MySqlDataReader dr;
 			try
 			{
-				string query = string.Format("call {0} ({1}",sp,MainClass.Id_application);
+				string query = string.Format("call {0} ({1}",sp,cnfg.Id_application);
 				if (parameters != null){
 					if (parameters.Length > 0){
 						query += ",";

@@ -7,14 +7,26 @@ using System.IO.Ports;
 
 public partial class MainWindow: Gtk.Window
 {
+	private void configureBackgroundForm(){
+		mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
+	}
+
+	private void configureImagesControls(){
+		imgMain.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetPrincipalGifAnimated);
+	}
+
+	public void initLanguajeConfigurations(){
+		imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetGif("inserte_ticket.gif"));
+	}
+
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{	
 		Build ();
-		mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (MainClass.imagesPath + @"backgrounds\backGround3.jpg"));
-		imgMain.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + "ticket.png");
+		this.configureBackgroundForm ();
+		this.configureImagesControls ();
 
-		imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + @"gifs\esp\inserte_ticket.gif");
+		this.initLanguajeConfigurations ();
 
 		this.Maximize ();
 	} 
@@ -59,7 +71,7 @@ public partial class MainWindow: Gtk.Window
 				result = true;
 
 		} else {
-			autoConnectPortsMessageResponse = string.Format("No se encontraron puertos para auto conectar [ {0} ]",MainClass.Id_application);
+			autoConnectPortsMessageResponse = string.Format("No se encontraron puertos para auto conectar [ {0} ]",cnfg.Id_application);
 		}
 		return result;
 	}
@@ -119,10 +131,10 @@ public partial class MainWindow: Gtk.Window
 		clicks++;
 		switch (clicks) {
 		case 1:
-			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + @"gifs\esp\leyendo_ticket.gif");
+			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetGif("leyendo_ticket.gif"));
 			break;
 		case 2:
-			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + @"gifs\esp\calculando_importe.gif");
+			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetGif("calculando_importe.gif"));
 			break;
 		case 3:
 			MainClass.FrmPayPanel.ShowAll ();

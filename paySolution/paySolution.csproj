@@ -57,6 +57,8 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.4.0.1\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cairo, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -77,6 +79,9 @@
     <Compile Include="gtk-gui\paySolution.frmPayPanel.cs" />
     <Compile Include="Models\AutoConnectPrtsModel.cs" />
     <Compile Include="Models\BitacoraModel.cs" />
+    <Compile Include="Classes\cnfg.cs" />
+    <Compile Include="Classes\markup.cs" />
+    <Compile Include="Models\Culturize.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -85,9 +90,6 @@
     <None Include="NLog.xsd" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\images\backgrounds\backGround3.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Assets\images\gifs\esp\inserte_ticket.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -98,21 +100,33 @@
     <None Include="Assets\images\gifs\esp\calculando_importe.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Assets\images\icons\Eng\eng.png">
+    <None Include="Assets\images\main\eng.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\backgrounds\backGround.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\gifs\eng\calculando_importe.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\gifs\eng\inserte_ticket.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\gifs\eng\leyendo_ticket.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\images\ticket.png">
+    <Content Include="Assets\images\main\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\Logo.png">
+    <Content Include="Assets\images\gifs\ticket.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\anim.gif">
+    <Content Include="Assets\images\gifs\main.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\images\icons\Esp\esp.png">
+    <Content Include="Assets\images\main\esp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -121,5 +135,6 @@
     <Folder Include="Classes\" />
     <Folder Include="Forms\" />
     <Folder Include="Models\" />
+    <Folder Include="Assets\images\main\" />
   </ItemGroup>
 </Project>
