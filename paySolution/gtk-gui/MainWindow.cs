@@ -5,9 +5,15 @@ public partial class MainWindow
 {
 	private global::Gtk.VBox vbox6;
 	
-	private global::Gtk.Image image1;
+	private global::Gtk.Image imgMain;
 	
-	private global::Gtk.Label lblNotifications;
+	private global::Gtk.Image imgNotifications;
+	
+	private global::Gtk.HBox hbox1;
+	
+	private global::Gtk.Alignment alignment1;
+	
+	private global::Gtk.Button button1;
 
 	protected virtual void Build ()
 	{
@@ -26,22 +32,47 @@ public partial class MainWindow
 		this.vbox6.Name = "vbox6";
 		this.vbox6.Spacing = 6;
 		// Container child vbox6.Gtk.Box+BoxChild
-		this.image1 = new global::Gtk.Image ();
-		this.image1.HeightRequest = 125;
-		this.image1.Name = "image1";
-		this.vbox6.Add (this.image1);
-		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.image1]));
+		this.imgMain = new global::Gtk.Image ();
+		this.imgMain.HeightRequest = 125;
+		this.imgMain.Name = "imgMain";
+		this.vbox6.Add (this.imgMain);
+		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.imgMain]));
 		w1.Position = 0;
 		// Container child vbox6.Gtk.Box+BoxChild
-		this.lblNotifications = new global::Gtk.Label ();
-		this.lblNotifications.HeightRequest = 100;
-		this.lblNotifications.Sensitive = false;
-		this.lblNotifications.Name = "lblNotifications";
-		this.lblNotifications.UseMarkup = true;
-		this.lblNotifications.Justify = ((global::Gtk.Justification)(2));
-		this.vbox6.Add (this.lblNotifications);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.lblNotifications]));
+		this.imgNotifications = new global::Gtk.Image ();
+		this.imgNotifications.HeightRequest = 125;
+		this.imgNotifications.Name = "imgNotifications";
+		this.vbox6.Add (this.imgNotifications);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.imgNotifications]));
 		w2.Position = 1;
+		w2.Expand = false;
+		w2.Fill = false;
+		// Container child vbox6.Gtk.Box+BoxChild
+		this.hbox1 = new global::Gtk.HBox ();
+		this.hbox1.Name = "hbox1";
+		this.hbox1.Spacing = 6;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+		this.alignment1.Name = "alignment1";
+		this.hbox1.Add (this.alignment1);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment1]));
+		w3.Position = 0;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.button1 = new global::Gtk.Button ();
+		this.button1.CanFocus = true;
+		this.button1.Name = "button1";
+		this.button1.UseUnderline = true;
+		this.button1.Label = global::Mono.Unix.Catalog.GetString ("Continue");
+		this.hbox1.Add (this.button1);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.button1]));
+		w4.Position = 1;
+		w4.Expand = false;
+		w4.Fill = false;
+		this.vbox6.Add (this.hbox1);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox1]));
+		w5.Position = 2;
+		w5.Expand = false;
+		w5.Fill = false;
 		this.Add (this.vbox6);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -50,5 +81,6 @@ public partial class MainWindow
 		this.DefaultHeight = 600;
 		this.Hide ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
 	}
 }

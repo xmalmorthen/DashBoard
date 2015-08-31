@@ -39,9 +39,13 @@ namespace paySolution
 					MainWin.Show ();
 					Application.Run ();
 				} else {
-					unloadPanels ();
-					dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un problema al intentar conectar al/los puerto(s) [ {0} ]",messageResponse));
+					//unloadPanels ();
+					//dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un problema al intentar conectar al/los puerto(s) [ {0} ]",messageResponse));
 				}
+
+				MainWin.Show ();
+				Application.Run ();
+
 				DataBase.Close ();
 			}
 		}

@@ -23,7 +23,7 @@
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <child>
-          <widget class="Gtk.Image" id="image1">
+          <widget class="Gtk.Image" id="imgMain">
             <property name="MemberName" />
             <property name="HeightRequest">125</property>
           </widget>
@@ -33,16 +33,55 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="lblNotifications">
+          <widget class="Gtk.Image" id="imgNotifications">
             <property name="MemberName" />
-            <property name="HeightRequest">100</property>
-            <property name="Sensitive">False</property>
-            <property name="UseMarkup">True</property>
-            <property name="Justify">Center</property>
+            <property name="HeightRequest">125</property>
           </widget>
           <packing>
             <property name="Position">1</property>
-            <property name="AutoSize">False</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Alignment" id="alignment1">
+                <property name="MemberName" />
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="button1">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Continue</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnButton1Clicked" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>
@@ -55,6 +94,7 @@
     <property name="Title" translatable="yes">frmPayPanel</property>
     <property name="TypeHint">Splashscreen</property>
     <property name="Modal">True</property>
+    <property name="BorderWidth">33</property>
     <property name="Decorated">False</property>
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -89,6 +129,48 @@
                   <packing>
                     <property name="Position">1</property>
                     <property name="AutoSize">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.VBox" id="vbox8">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Button" id="btnEsp">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextAndIcon</property>
+                        <property name="Label" translatable="yes" />
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="btnEng">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextAndIcon</property>
+                        <property name="Label" translatable="yes" />
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
                   </packing>
                 </child>
               </widget>
@@ -467,7 +549,7 @@
                           <widget class="Gtk.Label" id="label10">
                             <property name="MemberName" />
                             <property name="WidthRequest">250</property>
-                            <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="40000" weight="heavy"&gt;A Pagar&lt;/span&gt;</property>
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="40000" weight="heavy" border="1"&gt;A Pagar&lt;/span&gt;</property>
                             <property name="UseMarkup">True</property>
                             <property name="Justify">Right</property>
                           </widget>

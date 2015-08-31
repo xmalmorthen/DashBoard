@@ -7,50 +7,22 @@ using System.IO.Ports;
 
 public partial class MainWindow: Gtk.Window
 {
-	private Boolean isShow = false;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{	
-		if (!isShow) this.Shown  += new EventHandler (this.OnShown); 	
 		Build ();
-	}
+		mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (MainClass.imagesPath + @"backgrounds\backGround3.jpg"));
+		imgMain.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + "ticket.png");
 
-	protected virtual void OnShown (object sender, System.EventArgs e) 
-	{ 
-		if (!isShow) {
-			isShow = true;
-			this.Shown  -= this.OnShown; 
+		imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + @"gifs\esp\inserte_ticket.gif");
 
-			this.Maximize ();
-			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (MainClass.imagesPath + "backGround2.jpg"));
-			image1.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + "ticket.png");
-
-			lblNotifications.LabelProp = "<span foreground='white' size='60000' font_weight='heavy'>Inserte Ticket</span>";
-
-			this.timer = new Timer (2000);
-			this.timer.Elapsed += new ElapsedEventHandler (OnTimedEvent);
-			this.timer.Enabled = true;
-		}
+		this.Maximize ();
 	} 
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
 		a.RetVal = true;
-	}
-
-	string lblcontent = string.Empty;
-	private void blinkOnTimedEvent(object source, ElapsedEventArgs e)
-	{
-		lblNotifications.Visible = !lblNotifications.Visible;
-
-		/*if (lblcontent.Length > 0) {
-			lblNotifications.LabelProp = lblcontent;
-			lblcontent = string.Empty;
-		} else {
-			lblcontent = lblNotifications.LabelProp;
-			lblNotifications.LabelProp = string.Empty;
-		}*/
 	}
 
 	public Boolean AutoConnectPorts(out string autoConnectPortsMessageResponse){
@@ -134,26 +106,29 @@ public partial class MainWindow: Gtk.Window
 		BitacoraModel.addItem ("Error de resepción de puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("{0}",err.ToString()),"ERROR");
 	}
 
-
-	/*
-	 * CODIGO DE SIMULACIÓN [ BORRAR HASTA LA MARCA DE FIN ]
-	 */ 
-	Timer timer;
-	private Boolean showPayForm = false;
-	private void OnTimedEvent(object source, ElapsedEventArgs e)
-	{		
-		lblNotifications.LabelProp = "<span foreground='red' size='70000' font_weight='heavy'>Leyendo Ticket</span>\n<span foreground='white' size='30000' font_weight='heavy'>favor de esperar</span>";
-		if (!this.showPayForm) {
-			this.showPayForm = true;
-		} else {
-			this.timer.Enabled = false;	
-			//this.Hide ();
-			MainClass.FrmPayPanel.Show ();
-		}
+	enum formStates
+	{
+		insertTicket,
+		readingTicket,
+		calculatingImport
 	}
-	/*
-	 * FIN DE CODIGO DE SIMULACIÓN [ BORRAR HASTA AQUI ]
-	 */ 
 
+	int clicks = 0;
+	protected void OnButton1Clicked (object sender, EventArgs e)
+	{
+		clicks++;
+		switch (clicks) {
+		case 1:
+			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + @"gifs\esp\leyendo_ticket.gif");
+			break;
+		case 2:
+			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (MainClass.imagesPath + @"gifs\esp\calculando_importe.gif");
+			break;
+		case 3:
+			MainClass.FrmPayPanel.ShowAll ();
+			this.Hide ();
+			break;
+		}	
+	}
 
 }
