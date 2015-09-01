@@ -15,32 +15,17 @@ namespace paySolution
 			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
 		}
 
-		private void configureBackgroundEntrys(){
-			Gtk.Style style = new Style();
-			style.FontDescription.Size = 28000;
-			style.FontDescription.Weight = Pango.Weight.Heavy;
-
-			entry1.ModifyFont (style.FontDescription);
-			entry1.ModifyBase(StateType.Normal, new Gdk.Color(143,189,38));
+		private void putDateTimeinLanguaje(){
+			lblfechaData.LabelProp = markup.make(string.Format("{0:MM/dd/yyyy}",DateTime.Now),"red", null, "20000","bold");
+			lblhoraData.LabelProp = markup.make(string.Format("{0:H:mm:ss}",DateTime.Now),"red", null, "20000","bold");
 		}
 
 		void hour_Tick(object sender, EventArgs e){
-			lblfechaData.LabelProp = markup.make(string.Format("{0:MM/dd/yyyy}",DateTime.Now),"red", null, "15000","bold");
-			lblhoraData.LabelProp = markup.make(string.Format("{0:H:mm:ss}",DateTime.Now),"red", null, "15000","bold");
-		}
-
-		public void initLanguajeConfigurations(){
-			lbl1.LabelProp = markup.make (string.Format("{0}",lbl1.LabelProp), "black", null,"23000","bold");
-			lbl2.LabelProp = markup.make (string.Format("{0}",lbl2.LabelProp), "black", null,"23000","bold");
-			lbl3.LabelProp = markup.make (string.Format("{0}",lbl3.LabelProp), "black", null,"23000","bold");
-			lbl4.LabelProp = markup.make (string.Format("{0}",lbl4.LabelProp), "black", null,"23000","bold");
-
-			lblfecha.LabelProp = markup.make (string.Format("{0}",Culturize.GetString(1)), "black", null,"15000","bold");
-			lblhora.LabelProp = markup.make (string.Format("{0}",Culturize.GetString(2)), "black", null,"15000","bold");
+			this.putDateTimeinLanguaje ();
 		}
 
 		public void configureIdiomsButtons(){
-			
+
 			int i = 0;
 
 			MySqlDataReader idioms = Culturize.getCaIdioms ();
@@ -62,6 +47,10 @@ namespace paySolution
 					btn.CanFocus = false;
 					btn.UseUnderline = true;
 					btn.Image = new Gtk.Image (string.Format ("{0}", cnfg.GetBaseImage(idioms["image_fileName"].ToString())));
+					btn.Clicked	+= (object sender, EventArgs e) => {
+						string idiom = ( (Gtk.Button) sender).Name;
+						changeLanguajeConfiguration (idiom);
+					};
 
 					vbox.Add (btn);
 
@@ -80,7 +69,7 @@ namespace paySolution
 					}
 					par = !par;
 				}
-					
+
 				if (i % 2 != 0) {
 					Gtk.Alignment alignment = new Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 					vbox.Add (alignment);
@@ -98,14 +87,59 @@ namespace paySolution
 			}
 		}
 
+		public void eachItems(Gtk.Container container){
+			foreach (Gtk.Widget item in container.AllChildren) 
+			{ 
+				if (item is Gtk.Container) eachItems (item as Gtk.Container);
+				
+				if (item is Gtk.Label) { 
+					Gtk.Label lbl = item as Gtk.Label;
+					if (lbl.Text.Equals ("[") || lbl.Text.Equals ("]")) {
+						lbl.LabelProp = markup.make (string.Format ("{0}", lbl.Text), "black", null, "22000", "bold");
+					} else {
+						lbl.LabelProp = markup.make (string.Format ("{0}", lbl.Text), "black", null, "20000", "normal");
+					}
+					lbl.UseMarkup = true;
+				} else if (item is Gtk.Image) {
+					if (item.Name.Contains ("imghorizontalLine")) {
+						Gtk.Image img = item as Gtk.Image;
+						img.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage ("horizontalLine.png"));
+					}
+				}
+			} 
+		} 
+
+		public void initLanguajeConfigurations(){
+			this.configureIdiomsButtons ();
+
+			lblfecha.Text = Culturize.GetString(1);
+			lblhora.Text = Culturize.GetString(2);
+			lblCajero.Text = Culturize.GetString(3);
+
+			this.eachItems (this);
+
+			lblAPagar.LabelProp = markup.make (Culturize.GetString (4), "red", null, "50000", "heavy");
+			lblPorPagar.LabelProp = markup.make (Culturize.GetString (5), "black", null, "25000", "heavy");
+			lblADevolver.LabelProp = markup.make (Culturize.GetString (6), "black", null, "25000", "heavy");
+
+			lblAPagarData.LabelProp = markup.make ("000.00", "red", null, "50000", "heavy");
+			lblSignoPesos.LabelProp = markup.make ("$", "red", null, "50000", "heavy");
+			lbl21.LabelProp = markup.make ("[", "red", null, "65000", "heavy");;
+			lbl24.LabelProp = markup.make ("]", "red", null, "65000", "heavy");
+			lblPorPagarData.LabelProp = markup.make ("000.00", "black", null, "25000", "heavy");
+			lblSignoPesos1.LabelProp = markup.make ("$", "black", null, "25000", "heavy");
+			lblADevolverData.LabelProp = markup.make ("000.00", "black", null, "25000", "heavy");
+			lblSignoPesos2.LabelProp = markup.make ("$", "black", null, "25000", "heavy");
+
+			this.putDateTimeinLanguaje ();
+		}
+
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
 		{	
 			this.Build ();
 			this.Maximize ();
 
 			this.configureBackgroundForm ();
-			this.configureBackgroundEntrys ();
-			this.configureIdiomsButtons ();
 
 			this.initLanguajeConfigurations ();
 
@@ -117,19 +151,8 @@ namespace paySolution
 			hour.Start ();
 
 			imgLogo.Pixbuf = new Gdk.Pixbuf (cnfg.GetLogoImage);
-
-			//btnEsp.Image = new Gtk.Image (cnfg.GetBaseImage("esp.png"));
-			//btnEng.Image = new Gtk.Image (cnfg.GetBaseImage("eng.png"));
-		}
-
-		protected void OnBtnEngClicked (object sender, EventArgs e)
-		{
-			changeLanguajeConfiguration ("eng");
-		}
-
-		protected void OnBtnEspClicked (object sender, EventArgs e)
-		{
-			changeLanguajeConfiguration ("esp");
+			imgfecha.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("date.png"));
+			imghora.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("clock.png"));
 		}
 
 		public void changeLanguajeConfiguration(string siglas){

@@ -87,7 +87,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="paySolution.frmPayPanel" design-size="800 689">
+  <widget class="Gtk.Window" id="paySolution.frmPayPanel" design-size="800 938">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="HeightRequest">600</property>
@@ -140,9 +140,31 @@
               </packing>
             </child>
             <child>
+              <widget class="Gtk.Image" id="imghorizontalLine">
+                <property name="MemberName" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.HBox" id="hbox1">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Image" id="imgfecha">
+                    <property name="MemberName" />
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
                 <child>
                   <widget class="Gtk.Label" id="lblfecha">
                     <property name="MemberName" />
@@ -150,7 +172,7 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">0</property>
+                    <property name="Position">1</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -163,7 +185,7 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">1</property>
+                    <property name="Position">2</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -172,10 +194,11 @@
                 <child>
                   <widget class="Gtk.Label" id="lblfechaData">
                     <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes" />
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">2</property>
+                    <property name="Position">3</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -188,7 +211,32 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">3</property>
+                    <property name="Position">4</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Alignment" id="alignment3">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">25</property>
+                    <child>
+                      <placeholder />
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">5</property>
+                    <property name="AutoSize">False</property>
+                    <property name="Expand">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Image" id="imghora">
+                    <property name="MemberName" />
+                  </widget>
+                  <packing>
+                    <property name="Position">6</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -201,7 +249,7 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">4</property>
+                    <property name="Position">7</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -214,7 +262,7 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">5</property>
+                    <property name="Position">8</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -223,10 +271,11 @@
                 <child>
                   <widget class="Gtk.Label" id="lblhoraData">
                     <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes" />
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">6</property>
+                    <property name="Position">9</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -239,7 +288,7 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">7</property>
+                    <property name="Position">10</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -253,7 +302,7 @@
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">8</property>
+                    <property name="Position">11</property>
                     <property name="AutoSize">True</property>
                   </packing>
                 </child>
@@ -264,7 +313,20 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">9</property>
+                    <property name="Position">12</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lbl5">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">[</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">13</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -273,10 +335,24 @@
                 <child>
                   <widget class="Gtk.Label" id="lblCajeroData">
                     <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes" />
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">10</property>
+                    <property name="Position">14</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lbl6">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">]</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">15</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -284,7 +360,18 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">1</property>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Image" id="imghorizontalLine1">
+                <property name="MemberName" />
+              </widget>
+              <packing>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -306,6 +393,7 @@
               <widget class="Gtk.VBox" id="vbox3">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
+                <property name="BorderWidth">1</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox5">
                     <property name="MemberName" />
@@ -324,16 +412,42 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry1">
+                      <widget class="Gtk.Label" id="lbl7">
                         <property name="MemberName" />
-                        <property name="Text" translatable="yes">Valor</property>
-                        <property name="IsEditable">False</property>
-                        <property name="InvisibleChar">●</property>
-                        <property name="Xalign">0.5</property>
+                        <property name="LabelProp" translatable="yes">[</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label14Data">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lbl8">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">]</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -362,29 +476,81 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry2">
+                      <widget class="Gtk.Label" id="lbl9">
                         <property name="MemberName" />
-                        <property name="Text" translatable="yes">Valor</property>
-                        <property name="IsEditable">False</property>
-                        <property name="InvisibleChar">●</property>
-                        <property name="Xalign">0.5</property>
+                        <property name="LabelProp" translatable="yes">[</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry3">
+                      <widget class="Gtk.Label" id="label11Data">
                         <property name="MemberName" />
-                        <property name="Text" translatable="yes">Valor</property>
-                        <property name="IsEditable">False</property>
-                        <property name="InvisibleChar">●</property>
-                        <property name="Xalign">0.5</property>
+                        <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="Position">2</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lbl10">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">]</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lbl11">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">[</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">4</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label12Data">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">5</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lbl12">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">]</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">6</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -398,15 +564,17 @@
               </widget>
               <packing>
                 <property name="Position">0</property>
-                <property name="AutoSize">True</property>
+                <property name="AutoSize">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.VBox" id="vbox4">
+              <widget class="Gtk.VBox" id="vbox8">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
+                <property name="BorderWidth">1</property>
                 <child>
-                  <widget class="Gtk.HBox" id="hbox6">
+                  <widget class="Gtk.HBox" id="hbox8">
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
@@ -423,16 +591,42 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry4">
+                      <widget class="Gtk.Label" id="lbl13">
                         <property name="MemberName" />
-                        <property name="Text" translatable="yes">Valor</property>
-                        <property name="IsEditable">False</property>
-                        <property name="InvisibleChar">●</property>
-                        <property name="Xalign">0.5</property>
+                        <property name="LabelProp" translatable="yes">[</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label15Data">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lbl14">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">]</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -444,7 +638,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.HBox" id="hbox7">
+                  <widget class="Gtk.HBox" id="hbox9">
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
@@ -461,16 +655,42 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry5">
+                      <widget class="Gtk.Label" id="lbl15">
                         <property name="MemberName" />
-                        <property name="Text" translatable="yes">Valor</property>
-                        <property name="IsEditable">False</property>
-                        <property name="InvisibleChar">●</property>
-                        <property name="Xalign">0.5</property>
+                        <property name="LabelProp" translatable="yes">[</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label16Data">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lbl16">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">]</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -484,13 +704,15 @@
               </widget>
               <packing>
                 <property name="Position">1</property>
-                <property name="AutoSize">True</property>
+                <property name="AutoSize">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
             <child>
               <widget class="Gtk.VBox" id="vbox5">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
+                <property name="BorderWidth">1</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox10">
                     <property name="MemberName" />
@@ -509,16 +731,42 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry6">
+                      <widget class="Gtk.Label" id="lbl17">
                         <property name="MemberName" />
-                        <property name="Text" translatable="yes">Valor</property>
-                        <property name="IsEditable">False</property>
-                        <property name="InvisibleChar">●</property>
-                        <property name="Xalign">0.5</property>
+                        <property name="LabelProp" translatable="yes">[</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label17Data">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lbl19">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">]</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -547,16 +795,42 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry7">
+                      <widget class="Gtk.Label" id="lbl18">
                         <property name="MemberName" />
-                        <property name="Text" translatable="yes">Valor</property>
-                        <property name="IsEditable">False</property>
-                        <property name="InvisibleChar">●</property>
-                        <property name="Xalign">0.5</property>
+                        <property name="LabelProp" translatable="yes">[</property>
+                        <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label18Data">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="lbl20">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">]</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -570,7 +844,8 @@
               </widget>
               <packing>
                 <property name="Position">2</property>
-                <property name="AutoSize">True</property>
+                <property name="AutoSize">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
           </widget>
@@ -580,6 +855,17 @@
             <property name="Expand">False</property>
             <property name="Fill">False</property>
             <property name="Padding">10</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Image" id="imghorizontalLine2">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
@@ -601,7 +887,7 @@
                         <child>
                           <widget class="Gtk.Label" id="lblAPagar">
                             <property name="MemberName" />
-                            <property name="WidthRequest">250</property>
+                            <property name="WidthRequest">279</property>
                             <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="40000" weight="heavy"&gt;A Pagar&lt;/span&gt;</property>
                             <property name="UseMarkup">True</property>
                             <property name="Justify">Right</property>
@@ -609,21 +895,58 @@
                           <packing>
                             <property name="Position">0</property>
                             <property name="AutoSize">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lbl21">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="50000" weight="heavy"&gt;[&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Entry" id="txtAPagar">
+                          <widget class="Gtk.Label" id="lblSignoPesos">
                             <property name="MemberName" />
-                            <property name="WidthRequest">200</property>
-                            <property name="IsEditable">False</property>
-                            <property name="InvisibleChar">●</property>
-                            <property name="Xalign">0.5</property>
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="50000" weight="heavy"&gt;$&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
                           </widget>
                           <packing>
-                            <property name="Position">1</property>
+                            <property name="Position">2</property>
                             <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lblAPagarData">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">230</property>
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="50000" weight="heavy"&gt;000.00&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">3</property>
+                            <property name="AutoSize">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lbl24">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="50000" weight="heavy"&gt;]&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">4</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
                           </packing>
                         </child>
                       </widget>
@@ -649,21 +972,58 @@
                           <packing>
                             <property name="Position">0</property>
                             <property name="AutoSize">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lbl22">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">[</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Entry" id="txtPorPagar">
+                          <widget class="Gtk.Label" id="lblSignoPesos1">
                             <property name="MemberName" />
-                            <property name="WidthRequest">200</property>
-                            <property name="IsEditable">False</property>
-                            <property name="InvisibleChar">●</property>
-                            <property name="Xalign">0.5</property>
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="50000" weight="heavy"&gt;$&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
                           </widget>
                           <packing>
-                            <property name="Position">1</property>
+                            <property name="Position">2</property>
                             <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lblPorPagarData">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">230</property>
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">3</property>
+                            <property name="AutoSize">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lbl25">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">]</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">4</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
                           </packing>
                         </child>
                       </widget>
@@ -688,22 +1048,59 @@
                           </widget>
                           <packing>
                             <property name="Position">0</property>
+                            <property name="AutoSize">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lbl23">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">[</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
                             <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Entry" id="txtADevolver">
+                          <widget class="Gtk.Label" id="lblSignoPesos2">
                             <property name="MemberName" />
-                            <property name="WidthRequest">200</property>
-                            <property name="IsEditable">False</property>
-                            <property name="InvisibleChar">●</property>
-                            <property name="Xalign">0.5</property>
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="50000" weight="heavy"&gt;$&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
                           </widget>
                           <packing>
-                            <property name="Position">1</property>
+                            <property name="Position">2</property>
                             <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lblADevolverData">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">230</property>
+                            <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Valor&lt;/span&gt;</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">3</property>
+                            <property name="AutoSize">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="lbl26">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">]</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">4</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
                           </packing>
                         </child>
                       </widget>
@@ -712,6 +1109,17 @@
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Image" id="imghorizontalLine3">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">100</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">False</property>
+                        <property name="Expand">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -740,6 +1148,18 @@
                   </packing>
                 </child>
                 <child>
+                  <widget class="Gtk.Image" id="imghorizontalLine4">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">100</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
                     <property name="MemberName" />
                     <property name="ShadowType">In</property>
@@ -751,7 +1171,7 @@
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">2</property>
+                    <property name="Position">3</property>
                     <property name="AutoSize">True</property>
                   </packing>
                 </child>
@@ -759,8 +1179,6 @@
               <packing>
                 <property name="Position">0</property>
                 <property name="AutoSize">False</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
               </packing>
             </child>
             <child>
@@ -775,24 +1193,25 @@
                 </child>
               </widget>
               <packing>
+                <property name="PackType">End</property>
                 <property name="Position">1</property>
                 <property name="AutoSize">True</property>
               </packing>
             </child>
           </widget>
           <packing>
-            <property name="Position">2</property>
+            <property name="Position">3</property>
             <property name="AutoSize">True</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label13">
+          <widget class="Gtk.Label" id="lblnotifications">
             <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">&lt;span foreground="red" size="40000" weight="heavy"&gt;Area de Notificaciones&lt;/span&gt;</property>
+            <property name="LabelProp" translatable="yes" />
             <property name="UseMarkup">True</property>
           </widget>
           <packing>
-            <property name="Position">3</property>
+            <property name="Position">4</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
