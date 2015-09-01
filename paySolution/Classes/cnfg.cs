@@ -15,12 +15,17 @@ namespace paySolution
 
 		public static string getConfiguration(string configurationItem){
 			try {
-				string pathSeparator = config.AppSettings["pathSeparator"].ToString();
-				if (!pathSeparator.Equals(@"\")){
-					return config.AppSettings[configurationItem].Replace(@"\",pathSeparator);
-				} else {
-					return config.AppSettings[configurationItem];
+				string response = string.Empty;
+
+				OperatingSystem os = Environment.OSVersion;
+				PlatformID pid = os.Platform;
+
+				if (pid == PlatformID.Unix) {
+					response =  config.AppSettings[configurationItem].Replace(@"\","/");
+				} else{
+					response = config.AppSettings[configurationItem];
 				}
+				return response;
 			} catch (Exception) {
 				return null;
 			}

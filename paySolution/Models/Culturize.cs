@@ -10,10 +10,18 @@ namespace paySolution
 		public static string GetString(int id){
 			string response = string.Empty;
 			try {
-				MySqlDataReader data = DataBase.CallSp ("pa_get_culturize",new string[] {id.ToString()});
+				MySqlDataReader data = DataBase.CallSp ("pa_get_culturize",new string[] {id.ToString()},false);
 				if (data != null){
 					while (data.Read ()) {
-						response = data[MainClass.Languaje].ToString();
+						try {
+							response = data[MainClass.Languaje].ToString();	
+						} catch (Exception) {
+							response = data["default"].ToString();	
+						}
+
+						if (Boolean.Parse(cnfg.getConfiguration("upperCaseStrings")) == true){
+							response = response.ToUpper();
+						}
 					}
 					if (!data.IsClosed)
 						data.Close ();
@@ -23,6 +31,14 @@ namespace paySolution
 				logger.Error(ex,ex.Message);
 			}
 			return response;
+		}
+
+		public static MySqlDataReader getCaIdioms(){
+			return DataBase.CallSp ("pa_get_Idioms",false);
+		}
+
+		public static void changeLenguaje(string siglas){
+			MainClass.Languaje = siglas;
 		}
 	}
 }

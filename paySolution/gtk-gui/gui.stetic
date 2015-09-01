@@ -131,48 +131,6 @@
                     <property name="AutoSize">True</property>
                   </packing>
                 </child>
-                <child>
-                  <widget class="Gtk.VBox" id="vbox8">
-                    <property name="MemberName" />
-                    <property name="Spacing">6</property>
-                    <child>
-                      <widget class="Gtk.Button" id="btnEsp">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="Type">TextAndIcon</property>
-                        <property name="Label" translatable="yes" />
-                        <property name="UseUnderline">True</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">0</property>
-                        <property name="AutoSize">True</property>
-                        <property name="Expand">False</property>
-                        <property name="Fill">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Button" id="btnEng">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="Type">TextAndIcon</property>
-                        <property name="Label" translatable="yes" />
-                        <property name="UseUnderline">True</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">1</property>
-                        <property name="AutoSize">True</property>
-                        <property name="Expand">False</property>
-                        <property name="Fill">False</property>
-                      </packing>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="Position">2</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -186,9 +144,9 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Label" id="lblFechaHora">
+                  <widget class="Gtk.Label" id="lblfecha">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Fecha/Hora&lt;/span&gt;</property>
+                    <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Fecha&lt;/span&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -199,8 +157,9 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="lblfecha">
+                  <widget class="Gtk.Label" id="lbl1">
                     <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">[</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -211,12 +170,76 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="lblhora">
+                  <widget class="Gtk.Label" id="lblfechaData">
                     <property name="MemberName" />
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
                     <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lbl2">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">]</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">3</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lblhora">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;span foreground="black" size="large" weight="heavy"&gt;Hora&lt;/span&gt;</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">4</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lbl3">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">[</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">5</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lblhoraData">
+                    <property name="MemberName" />
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">6</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lbl4">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">]</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">7</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -230,7 +253,7 @@
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">3</property>
+                    <property name="Position">8</property>
                     <property name="AutoSize">True</property>
                   </packing>
                 </child>
@@ -241,7 +264,7 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">4</property>
+                    <property name="Position">9</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -253,7 +276,7 @@
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
-                    <property name="Position">5</property>
+                    <property name="Position">10</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>

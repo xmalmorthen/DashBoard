@@ -51,13 +51,36 @@ namespace paySolution
 			}
 		}
 
-		public static MySqlDataReader CallSp(string sp, string[] parameters = null){
+		public static MySqlDataReader CallSp(string sp){
+			return DataBase._CallSp (sp);
+		}
+
+		public static MySqlDataReader CallSp(string sp,Boolean default_id_application = true){
+			return DataBase._CallSp (sp,null,null,default_id_application);
+		}
+
+		public static MySqlDataReader CallSp(string sp, string[] parameters){
+			return DataBase._CallSp (sp,parameters);
+		}
+
+		public static MySqlDataReader CallSp(string sp, string[] parameters, int id_application){
+			return DataBase._CallSp (sp,parameters,id_application);
+		}
+
+		public static MySqlDataReader CallSp(string sp, string[] parameters, Boolean default_id_application){
+			return DataBase._CallSp (sp,parameters,null,default_id_application);
+		}
+			
+		private static MySqlDataReader _CallSp(string sp, string[] parameters = null, int? id_application = null, Boolean default_id_application = true){
 			MySqlCommand cmd;
 			MySqlDataReader dr;
 			try
 			{
-				string query = string.Format("call {0} ({1}",sp,cnfg.Id_application);
-				if (parameters != null){
+				string idApplication = default_id_application == false ? (id_application != null ? id_application.ToString() : string.Empty)  : cnfg.Id_application;
+
+				string query = string.Format("call {0} ({1}",sp, idApplication);
+
+				if (parameters != null && !string.IsNullOrEmpty(idApplication)){
 					if (parameters.Length > 0){
 						query += ",";
 					}
