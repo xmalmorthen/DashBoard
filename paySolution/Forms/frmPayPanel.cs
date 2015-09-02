@@ -11,6 +11,12 @@ namespace paySolution
 	{
 		Timer hour;
 
+		public string SetNotification{
+			set {
+				lblnotifications.LabelProp = markup.make (value, "black", null, "25000", "heavy");
+			}
+		}
+
 		private void configureBackgroundForm(){
 			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
 		}
@@ -46,12 +52,14 @@ namespace paySolution
 						vbox = new VBox ();
 						vbox.Spacing = 6;
 						vbox.Homogeneous = false;
+						vbox.Visible = true;
 					}
 
 					Gtk.Button btn = new Gtk.Button();
 					btn.Name = string.Format ("{0}", idioms ["siglas"].ToString ());
 					btn.CanFocus = false;
 					btn.UseUnderline = true;
+					btn.Visible = true;
 					btn.Image = new Gtk.Image (string.Format ("{0}", cnfg.GetBaseImage(idioms["image_fileName"].ToString())));
 					btn.Clicked	+= (object sender, EventArgs e) => {
 						string idiom = ( (Gtk.Button) sender).Name;
@@ -115,8 +123,7 @@ namespace paySolution
 			} 
 		} 
 
-		public void initLanguajeConfigurations(){
-			this.configureIdiomsButtons ();
+		public void initLanguajeConfigurations(){			
 
 			lblfecha.Text = Culturize.GetString(1);
 			lblhora.Text = Culturize.GetString(2);
@@ -130,20 +137,25 @@ namespace paySolution
 			lblPorPagar.LabelProp = markup.make (Culturize.GetString (5), "black", null, "25000", "heavy");
 			lblADevolver.LabelProp = markup.make (Culturize.GetString (6), "black", null, "25000", "heavy");
 
-			lblAPagarData.LabelProp = markup.make ("000.00", "red", null, "50000", "heavy");
 			lblSignoPesos.LabelProp = markup.make ("$", "red", null, "50000", "heavy");
 			lbl21.LabelProp = markup.make ("[", "red", null, "65000", "heavy");;
 			lbl24.LabelProp = markup.make ("]", "red", null, "65000", "heavy");
-			lblPorPagarData.LabelProp = markup.make ("000.00", "black", null, "25000", "heavy");
 			lblSignoPesos1.LabelProp = markup.make ("$", "black", null, "25000", "heavy");
-			lblADevolverData.LabelProp = markup.make ("000.00", "black", null, "25000", "heavy");
 			lblSignoPesos2.LabelProp = markup.make ("$", "black", null, "25000", "heavy");
+
+			string path = cnfg.GetBaseImage ("cancel.png");
+
+			Gtk.Image cancelImage = new Gtk.Image (cnfg.GetBaseImage ("clock.png"));
+
+			btnCancel.Image =  new Gtk.Image (cnfg.GetBaseImage ("cancel.png"));
 
 			this.putDateTimeinLanguaje ();
 		}
 
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
 		{	
+			this.Shown  += new EventHandler (this.OnShown);
+
 			this.Build ();
 			this.Maximize ();
 
@@ -151,6 +163,7 @@ namespace paySolution
 
 			this.initLanguajeConfigurations ();
 
+			this.configureIdiomsButtons ();
 
 			hour = new Timer ();
 			hour.Tick += new EventHandler (hour_Tick);
@@ -164,10 +177,22 @@ namespace paySolution
 
 		}
 
+		protected void OnShown (object sender, System.EventArgs e) 
+		{ 
+			lblAPagarData.LabelProp = markup.make (payLogic.ToPay.ToString(), "red", null, "50000", "heavy");
+			lblPorPagarData.LabelProp = markup.make (payLogic.Payable.ToString(), "black", null, "25000", "heavy");
+			lblADevolverData.LabelProp = markup.make (payLogic.ToReturn.ToString(), "black", null, "25000", "heavy");
+		} 
+
 		public void changeLanguajeConfiguration(string siglas){
 			Culturize.changeLenguaje (siglas);
 			MainClass.MainWin.initLanguajeConfigurations ();
 			this.initLanguajeConfigurations ();
+		}
+
+		protected void OnBtnCancelClicked (object sender, EventArgs e)
+		{
+			payLogic.Status = payLogic.payStatus.cancelPay;
 		}
 	}
 }

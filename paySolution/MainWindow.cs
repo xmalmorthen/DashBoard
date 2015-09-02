@@ -1,12 +1,19 @@
 ﻿using System;
 using Gtk;
+using System.Windows.Forms;
 using paySolution;
-using System.Timers;
 using NLog;
 using System.IO.Ports;
+using MySql.Data.MySqlClient;
 
 public partial class MainWindow: Gtk.Window
 {
+	public string SetNotification{
+		set {
+			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetGif(value));			 
+		}
+	}
+		
 	private void configureBackgroundForm(){
 		mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
 	}
@@ -15,10 +22,80 @@ public partial class MainWindow: Gtk.Window
 		imgMain.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetPrincipalGifAnimated);
 	}
 
-	public void initLanguajeConfigurations(){
-		imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetGif("inserte_ticket.gif"));
+	public void configureIdiomsButtons(){
+		int i = 0;
+
+		MySqlDataReader idioms = Culturize.getCaIdioms ();
+		if (idioms != null){
+
+			VBox vbox = null;
+			Boolean par = false;
+			while (idioms.Read ()) {
+				i++;
+
+				if (!par) {
+					vbox = new VBox ();
+					vbox.Spacing = 6;
+					vbox.Homogeneous = false;
+					vbox.Visible = true;
+				}
+
+				Gtk.Button btn = new Gtk.Button();
+				btn.Name = string.Format ("{0}", idioms ["siglas"].ToString ());
+				btn.CanFocus = false;
+				btn.UseUnderline = true;
+				btn.Visible = true;
+				btn.Image = new Gtk.Image (string.Format ("{0}", cnfg.GetBaseImage(idioms["image_fileName"].ToString())));
+				btn.Clicked	+= (object sender, EventArgs e) => {
+					string idiom = ( (Gtk.Button) sender).Name;
+					changeLanguajeConfiguration (idiom);
+				};
+
+				vbox.Add (btn);
+
+				Gtk.Box.BoxChild boxchild = ((Gtk.Box.BoxChild)(vbox [btn]));
+				boxchild.Position = !par ? 0 : 1;
+				boxchild.Expand = false;
+				boxchild.Fill = false;
+				boxchild.PackType = PackType.Start;
+
+				if (par) {
+					
+					hbox1.Add (vbox);
+					Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(hbox1 [vbox]));
+					w1.Expand = false;
+					w1.Fill = false;
+				}
+				par = !par;
+			}
+
+			if (i % 2 != 0) {
+				Gtk.Alignment alignment = new Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+				vbox.Add (alignment);
+				Box.BoxChild boxchild = ((global::Gtk.Box.BoxChild)(vbox [alignment]));
+				boxchild.Position = 1;
+
+				hbox1.Add (vbox);
+				Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(hbox1 [vbox]));
+				w1.Expand = false;
+				w1.Fill = false;
+			}
+
+			if (!idioms.IsClosed)
+				idioms.Close ();
+		}
 	}
 
+	public void changeLanguajeConfiguration(string siglas){
+		Culturize.changeLenguaje (siglas);
+		MainClass.FrmPayPanel.initLanguajeConfigurations ();
+		this.initLanguajeConfigurations ();
+	}
+
+	public void initLanguajeConfigurations(){		
+		payLogic.Status = payLogic.payStatus.insertTicket;
+	}
+		
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{	
@@ -26,14 +103,16 @@ public partial class MainWindow: Gtk.Window
 		this.configureBackgroundForm ();
 		this.configureImagesControls ();
 
-		this.initLanguajeConfigurations ();
-
 		this.Maximize ();
+
+		this.configureIdiomsButtons ();
+
+		imgLogo.Pixbuf = new Gdk.Pixbuf (cnfg.GetLogoImage);
 	} 
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
-		Application.Quit ();
+		Gtk.Application.Quit ();
 		a.RetVal = true;
 	}
 
@@ -118,29 +197,45 @@ public partial class MainWindow: Gtk.Window
 		BitacoraModel.addItem ("Error de resepción de puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("{0}",err.ToString()),"ERROR");
 	}
 
-	enum formStates
-	{
-		insertTicket,
-		readingTicket,
-		calculatingImport
-	}
-
 	int clicks = 0;
 	protected void OnButton1Clicked (object sender, EventArgs e)
 	{
 		clicks++;
-		switch (clicks) {
+
+	}
+
+	private void configurePayLogic(decimal toPay){
+		payLogic.ToPay = toPay;
+		payLogic.Payable = payLogic.ToPay;
+		payLogic.ToReturn = 0.00m;
+		payLogic.Status = payLogic.payStatus.waithToMoney;
+	}
+
+
+	private Timer tmPaySimulation;
+	public void configureTimerPaySimulation(){
+		tmPaySimulation = new Timer ();
+		tmPaySimulation.Tick += new EventHandler (tmPaySimulation_Tick);
+		tmPaySimulation.Interval = 1000;
+		tmPaySimulation.Enabled = true;
+		tmPaySimulation.Start ();
+	}
+
+	public int SimulationIter = 1;
+	void tmPaySimulation_Tick(object sender, EventArgs e){	
+		switch (SimulationIter) {
 		case 1:
-			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetGif("leyendo_ticket.gif"));
+			payLogic.Status = payLogic.payStatus.readingTicket;
 			break;
 		case 2:
-			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetGif("calculando_importe.gif"));
+			payLogic.Status = payLogic.payStatus.calculatingAmount;
 			break;
 		case 3:
-			MainClass.FrmPayPanel.ShowAll ();
-			this.Hide ();
+			configurePayLogic (decimal.Parse(cnfg.getConfiguration ("toPay").ToString ()));
 			break;
-		}	
+		}
+		SimulationIter++;
 	}
+
 
 }

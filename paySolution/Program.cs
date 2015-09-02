@@ -34,7 +34,16 @@ namespace paySolution
 
 				string messageResponse;
 				if (MainWin.AutoConnectPorts (out messageResponse)){					
-					MainWin.Show ();
+					MainWin.Visible = true;
+
+					/*
+					 * INICIO DE CODIGO DE SIMULACIÓN - [BOORAR AL IMPLEMENTAR]
+					 */ 
+					MainWin.configureTimerPaySimulation ();
+					/*
+					 * FIN DE CODIGO DE SIMULACIÓN
+					 */ 
+
 					Application.Run ();
 				} else {
 					unloadPanels ();
@@ -51,9 +60,10 @@ namespace paySolution
 
 		private static void loadPanels(){
 			FrmPayPanel = new frmPayPanel ();
-			FrmPayPanel.Hide ();
+			FrmPayPanel.Visible = false;
 			MainWin = new MainWindow ();
-			MainWin.Hide ();
+			MainWin.initLanguajeConfigurations ();
+			MainWin.Visible = false;
 		}
 
 		private static void unloadPanels(){

@@ -82,6 +82,7 @@
     <Compile Include="Classes\cnfg.cs" />
     <Compile Include="Classes\markup.cs" />
     <Compile Include="Models\Culturize.cs" />
+    <Compile Include="Models\payLogic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -122,6 +123,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Assets\images\main\date.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\main\cancel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

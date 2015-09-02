@@ -14,40 +14,31 @@
     <property name="Visible">False</property>
     <property name="Title" translatable="yes" />
     <property name="TypeHint">Splashscreen</property>
+    <property name="WindowPosition">CenterAlways</property>
+    <property name="BorderWidth">18</property>
     <property name="Resizable">False</property>
     <property name="Decorated">False</property>
-    <property name="Gravity">Center</property>
+    <property name="Gravity">Static</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.VBox" id="vbox6">
+      <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
         <property name="Spacing">6</property>
-        <child>
-          <widget class="Gtk.Image" id="imgMain">
-            <property name="MemberName" />
-            <property name="HeightRequest">125</property>
-          </widget>
-          <packing>
-            <property name="Position">0</property>
-            <property name="AutoSize">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.Image" id="imgNotifications">
-            <property name="MemberName" />
-            <property name="HeightRequest">125</property>
-          </widget>
-          <packing>
-            <property name="Position">1</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
         <child>
           <widget class="Gtk.HBox" id="hbox1">
             <property name="MemberName" />
             <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Image" id="imgLogo">
+                <property name="MemberName" />
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
             <child>
               <widget class="Gtk.Alignment" id="alignment1">
                 <property name="MemberName" />
@@ -56,46 +47,69 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Button" id="button1">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Continue</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnButton1Clicked" />
-              </widget>
-              <packing>
                 <property name="Position">1</property>
                 <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
               </packing>
             </child>
           </widget>
           <packing>
-            <property name="Position">2</property>
+            <property name="Position">0</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
         </child>
+        <child>
+          <widget class="Gtk.Alignment" id="alignment3">
+            <property name="MemberName" />
+            <property name="HeightRequest">50</property>
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="PackType">End</property>
+            <property name="Position">1</property>
+            <property name="AutoSize">False</property>
+            <property name="Expand">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Image" id="imgNotifications">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="PackType">End</property>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+            <property name="Padding">10</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Image" id="imgMain">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="PackType">End</property>
+            <property name="Position">3</property>
+            <property name="AutoSize">False</property>
+          </packing>
+        </child>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="paySolution.frmPayPanel" design-size="800 938">
+  <widget class="Gtk.Window" id="paySolution.frmPayPanel" design-size="800 1035">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="HeightRequest">600</property>
     <property name="Title" translatable="yes">frmPayPanel</property>
     <property name="TypeHint">Splashscreen</property>
-    <property name="Modal">True</property>
+    <property name="WindowPosition">CenterAlways</property>
     <property name="BorderWidth">33</property>
     <property name="Decorated">False</property>
+    <property name="Gravity">Static</property>
     <child>
       <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
@@ -1205,17 +1219,46 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="lblnotifications">
+          <placeholder />
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox6">
             <property name="MemberName" />
-            <property name="LabelProp" translatable="yes" />
-            <property name="UseMarkup">True</property>
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="lblnotifications">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes" />
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="btnCancel">
+                <property name="MemberName" />
+                <property name="Type">TextAndIcon</property>
+                <property name="Label" translatable="yes" />
+                <property name="UseUnderline">True</property>
+                <property name="FocusOnClick">False</property>
+                <signal name="Clicked" handler="OnBtnCancelClicked" />
+              </widget>
+              <packing>
+                <property name="PackType">End</property>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
           </widget>
           <packing>
-            <property name="Position">4</property>
+            <property name="Position">5</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
-            <property name="Padding">3</property>
           </packing>
         </child>
       </widget>

@@ -186,7 +186,11 @@ namespace paySolution
 		
 		private global::Gtk.TreeView treeview3;
 		
+		private global::Gtk.HBox hbox6;
+		
 		private global::Gtk.Label lblnotifications;
+		
+		private global::Gtk.Button btnCancel;
 
 		protected virtual void Build ()
 		{
@@ -197,9 +201,10 @@ namespace paySolution
 			this.Name = "paySolution.frmPayPanel";
 			this.Title = global::Mono.Unix.Catalog.GetString ("frmPayPanel");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(4));
-			this.Modal = true;
+			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.BorderWidth = ((uint)(33));
 			this.Decorated = false;
+			this.Gravity = ((global::Gdk.Gravity)(10));
 			// Container child paySolution.frmPayPanel.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
@@ -1033,23 +1038,43 @@ namespace paySolution
 			global::Gtk.Box.BoxChild w90 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox12]));
 			w90.Position = 3;
 			// Container child vbox1.Gtk.Box+BoxChild
+			this.hbox6 = new global::Gtk.HBox ();
+			this.hbox6.Name = "hbox6";
+			this.hbox6.Spacing = 6;
+			// Container child hbox6.Gtk.Box+BoxChild
 			this.lblnotifications = new global::Gtk.Label ();
 			this.lblnotifications.Name = "lblnotifications";
 			this.lblnotifications.LabelProp = "";
 			this.lblnotifications.UseMarkup = true;
-			this.vbox1.Add (this.lblnotifications);
-			global::Gtk.Box.BoxChild w91 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.lblnotifications]));
-			w91.Position = 4;
-			w91.Expand = false;
-			w91.Fill = false;
-			w91.Padding = ((uint)(3));
+			this.hbox6.Add (this.lblnotifications);
+			global::Gtk.Box.BoxChild w91 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.lblnotifications]));
+			w91.Position = 0;
+			// Container child hbox6.Gtk.Box+BoxChild
+			this.btnCancel = new global::Gtk.Button ();
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.UseUnderline = true;
+			this.btnCancel.FocusOnClick = false;
+			global::Gtk.Image w92 = new global::Gtk.Image ();
+			this.btnCancel.Image = w92;
+			this.hbox6.Add (this.btnCancel);
+			global::Gtk.Box.BoxChild w93 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.btnCancel]));
+			w93.PackType = ((global::Gtk.PackType)(1));
+			w93.Position = 1;
+			w93.Expand = false;
+			w93.Fill = false;
+			this.vbox1.Add (this.hbox6);
+			global::Gtk.Box.BoxChild w94 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox6]));
+			w94.Position = 5;
+			w94.Expand = false;
+			w94.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 800;
-			this.DefaultHeight = 938;
+			this.DefaultHeight = 1035;
 			this.Show ();
+			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 		}
 	}
 }
