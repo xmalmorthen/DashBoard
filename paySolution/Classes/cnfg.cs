@@ -1,5 +1,7 @@
 ﻿using System;
 using NLog.Internal;
+using MySql.Data.MySqlClient;
+using NLog;
 
 namespace paySolution
 {
@@ -39,7 +41,27 @@ namespace paySolution
 
 		public static string DefaultLanguaje{
 			get {
-				return getConfiguration("defaultLanguaje");
+				string response = string.Empty;
+				try {
+					MySqlDataReader data = DataBase.CallSp ("pa_get_ApplicationParameter",new string[] {"defaultLanguaje"},true);
+					if (data != null){
+						while (data.Read ()) {
+							try {
+								response = data["value"].ToString();	
+							} catch (Exception) {
+								response = getConfiguration("defaultLanguaje");	
+							}
+						}
+						if (!data.IsClosed)
+							data.Close ();
+					} else {
+						response = getConfiguration("defaultLanguaje");	
+					}
+				} catch (Exception ex) {
+					Logger logger = LogManager.GetCurrentClassLogger();
+					logger.Error(ex,ex.Message);
+				}
+				return response;
 			}
 		}
 
@@ -73,6 +95,32 @@ namespace paySolution
 
 		public static string GetBaseImage(string imageName){
 			return System.IO.Path.Combine (baseDirectory,ImagesPath,getConfiguration("baseImagesPath"),imageName);
+		}
+
+		public static string GetCheckerName(int id){
+			string response = string.Empty;
+			try {
+				MySqlDataReader data = DataBase.CallSp ("pa_get_ApplicationInfo",new string[] {id.ToString()},false);
+				if (data != null){
+					while (data.Read ()) {
+						try {
+							response = data["description"].ToString();	
+						} catch (Exception) {
+							response = getConfiguration("stringDefaultValue");	
+						}
+
+						if (Boolean.Parse(cnfg.getConfiguration("upperCaseStrings")) == true){
+							response = response.ToUpper();
+						}
+					}
+					if (!data.IsClosed)
+						data.Close ();
+				}
+			} catch (Exception ex) {
+				Logger logger = LogManager.GetCurrentClassLogger();
+				logger.Error(ex,ex.Message);
+			}
+			return response;
 		}
 
 

@@ -40,6 +40,25 @@ namespace paySolution
 		public static void changeLenguaje(string siglas){
 			MainClass.Languaje = siglas;
 		}
+
+		public static string GetParameter(string parameter){
+			string response = string.Empty;
+			try {
+				MySqlDataReader data = DataBase.CallSp ("pa_get_culturizeParameter",new string[] {MainClass.Languaje,parameter},false);
+				if (data != null){
+					while (data.Read ()) {
+						response = data["val"].ToString();	
+					}
+					if (!data.IsClosed)
+						data.Close ();
+				}
+			} catch (Exception ex) {
+				Logger logger = LogManager.GetCurrentClassLogger();
+				logger.Error(ex,ex.Message);
+			}
+			return response;
+		}
+
 	}
 }
 

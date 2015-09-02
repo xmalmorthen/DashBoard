@@ -21,8 +21,6 @@ namespace paySolution
 		{
 			Application.Init ();
 
-			Languaje = cnfg.DefaultLanguaje;
-
 			Boolean isDatabaseOpened = DataBase.Open ( cnfg.getConfiguration("server"),
 													   cnfg.getConfiguration("database"),
 													   cnfg.getConfiguration("usr"),
@@ -30,6 +28,8 @@ namespace paySolution
 			if (!isDatabaseOpened) {
 				dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al intentar abrir la base de datos Servidor: {0}, Base de datos: {1}", cnfg.getConfiguration("server"), cnfg.getConfiguration("database")));
 			} else {
+				Languaje = cnfg.DefaultLanguaje;
+
 				loadPanels ();
 
 				string messageResponse;
@@ -37,12 +37,9 @@ namespace paySolution
 					MainWin.Show ();
 					Application.Run ();
 				} else {
-					//unloadPanels ();
-					//dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un problema al intentar conectar al/los puerto(s) [ {0} ]",messageResponse));
+					unloadPanels ();
+					dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un problema al intentar conectar al/los puerto(s) [ {0} ]",messageResponse));
 				}
-
-				MainWin.Show ();
-				Application.Run ();
 
 				DataBase.Close ();
 			}

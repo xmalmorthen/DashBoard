@@ -16,8 +16,14 @@ namespace paySolution
 		}
 
 		private void putDateTimeinLanguaje(){
-			lblfechaData.LabelProp = markup.make(string.Format("{0:MM/dd/yyyy}",DateTime.Now),"red", null, "20000","bold");
-			lblhoraData.LabelProp = markup.make(string.Format("{0:H:mm:ss}",DateTime.Now),"red", null, "20000","bold");
+			string fecha = Culturize.GetParameter ("fecha");
+			fecha = !string.IsNullOrEmpty (fecha) ? fecha : "{0:dd/MM/yyyy}";
+
+			string hora = Culturize.GetParameter ("hora");
+			hora = !string.IsNullOrEmpty (hora) ? hora : "{0:H:mm:ss}";
+
+			lblfechaData.LabelProp = markup.make(string.Format(fecha,DateTime.Now),"red", null, "20000","bold");
+			lblhoraData.LabelProp = markup.make(string.Format(hora,DateTime.Now),"red", null, "20000","bold");
 		}
 
 		void hour_Tick(object sender, EventArgs e){
@@ -118,6 +124,8 @@ namespace paySolution
 
 			this.eachItems (this);
 
+			lblCajeroData.LabelProp = markup.make(cnfg.GetCheckerName(int.Parse(cnfg.getConfiguration("id_application"))), "black", null, "20000", "bold");
+
 			lblAPagar.LabelProp = markup.make (Culturize.GetString (4), "red", null, "50000", "heavy");
 			lblPorPagar.LabelProp = markup.make (Culturize.GetString (5), "black", null, "25000", "heavy");
 			lblADevolver.LabelProp = markup.make (Culturize.GetString (6), "black", null, "25000", "heavy");
@@ -153,6 +161,7 @@ namespace paySolution
 			imgLogo.Pixbuf = new Gdk.Pixbuf (cnfg.GetLogoImage);
 			imgfecha.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("date.png"));
 			imghora.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("clock.png"));
+
 		}
 
 		public void changeLanguajeConfiguration(string siglas){
