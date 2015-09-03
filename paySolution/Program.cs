@@ -37,7 +37,7 @@ namespace paySolution
 					MainWin.Visible = true;
 
 					/*
-					 * INICIO DE CODIGO DE SIMULACIÓN - [BOORAR AL IMPLEMENTAR]
+					 * TODO: INICIO DE CODIGO DE SIMULACIÓN - [BOORAR AL IMPLEMENTAR]
 					 */ 
 					MainWin.configureTimerPaySimulation ();
 					/*

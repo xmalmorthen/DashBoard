@@ -4,16 +4,20 @@ using Gtk;
 using System.Windows.Forms;
 using System.Collections;
 using MySql.Data.MySqlClient;
+using System.Threading;
 
 namespace paySolution
 {
 	public partial class frmPayPanel : Gtk.Window
 	{
-		Timer hour;
+		System.Windows.Forms.Timer hour;
 
 		public string SetNotification{
 			set {
-				lblnotifications.LabelProp = markup.make (value, "black", null, "25000", "heavy");
+				Gtk.Application.Invoke (delegate {
+					lblnotifications.GdkWindow.ProcessUpdates (true);
+					lblnotifications.LabelProp = markup.make (value, "black", null, "25000", "heavy");
+				});
 			}
 		}
 
@@ -148,11 +152,19 @@ namespace paySolution
 			this.putDateTimeinLanguaje ();
 		}
 
-		private void refreshPayLabels(){
-			lblAPagarData.LabelProp = markup.make (payLogic.ToPay.ToString(), "red", null, "50000", "heavy");
-			lblPorPagarData.LabelProp = markup.make (payLogic.Payable.ToString(), "black", null, "25000", "heavy");
-			lblADevolverData.LabelProp = markup.make (payLogic.ToReturn.ToString(), "black", null, "25000", "heavy");
+		public void refreshPayLabels(){
+			lblAPagarData.LabelProp = markup.make (string.Format("{0:N}",payLogic.ToPay), "red", null, "50000", "heavy");
+			lblPorPagarData.LabelProp = markup.make (string.Format("{0:N}",payLogic.Payable), "black", null, "25000", "heavy");
+				lblADevolverData.LabelProp = markup.make (string.Format("{0:N}",payLogic.ToReturn), "black", null, "25000", "heavy");
 			payLogic.RefreshNotification (payLogic.Status);
+		}
+
+		public void changeCancelButtonVisibility(Boolean visible){
+			btnCancel.Visible = visible;
+		}
+
+		public void changeReciboButtonVisibility(Boolean visible){
+			btnRecibo.Visible = visible;
 		}
 
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
@@ -168,7 +180,7 @@ namespace paySolution
 
 			this.configureIdiomsButtons ();
 
-			hour = new Timer ();
+			hour = new System.Windows.Forms.Timer ();
 			hour.Tick += new EventHandler (hour_Tick);
 			hour.Interval = 1000;
 			hour.Enabled = true;
@@ -178,16 +190,34 @@ namespace paySolution
 			imgfecha.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("date.png"));
 			imghora.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("clock.png"));
 			btnCancel.Image =  new Gtk.Image (cnfg.GetBaseImage ("cancel.png"));
+			btnRecibo.Image = new Gtk.Image (cnfg.GetBaseImage ("recibo.png"));
+
 		}
 
 		protected void OnShown (object sender, System.EventArgs e) 
 		{ 
-			//this.refreshPayLabels ();
+			this.refreshPayLabels ();
 		} 
 
 		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
 			payLogic.Status = payLogic.payStatus.cancelPay;
+		}
+
+		protected void OnBtnReciboClicked (object sender, EventArgs e)
+		{
+			payLogic.Status = payLogic.payStatus.printingRecepit;
+
+			//TODO: IMPLEMENTAR CODIGO PARA IMPRIMIR RECIBO DE PAGO
+
+			Thread thrpayProcessTerminated = new Thread (new ThreadStart (delegate {
+				payLogic.Status = payLogic.payStatus.recepitPrinted;
+				System.Threading.Thread.Sleep (int.Parse(cnfg.getConfiguration("sleepTime")));
+				Gtk.Application.Invoke( delegate {
+					payLogic.Status = paySolution.payLogic.payStatus.insertTicket;
+				});
+			}));
+			thrpayProcessTerminated.Start ();
 		}
 	}
 }

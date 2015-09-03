@@ -190,6 +190,8 @@ namespace paySolution
 		
 		private global::Gtk.Label lblnotifications;
 		
+		private global::Gtk.Button btnRecibo;
+		
 		private global::Gtk.Button btnCancel;
 
 		protected virtual void Build ()
@@ -1050,30 +1052,44 @@ namespace paySolution
 			global::Gtk.Box.BoxChild w91 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.lblnotifications]));
 			w91.Position = 0;
 			// Container child hbox6.Gtk.Box+BoxChild
+			this.btnRecibo = new global::Gtk.Button ();
+			this.btnRecibo.CanFocus = true;
+			this.btnRecibo.Name = "btnRecibo";
+			this.btnRecibo.UseUnderline = true;
+			global::Gtk.Image w92 = new global::Gtk.Image ();
+			this.btnRecibo.Image = w92;
+			this.hbox6.Add (this.btnRecibo);
+			global::Gtk.Box.BoxChild w93 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.btnRecibo]));
+			w93.Position = 1;
+			w93.Expand = false;
+			w93.Fill = false;
+			// Container child hbox6.Gtk.Box+BoxChild
 			this.btnCancel = new global::Gtk.Button ();
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.UseUnderline = true;
 			this.btnCancel.FocusOnClick = false;
-			global::Gtk.Image w92 = new global::Gtk.Image ();
-			this.btnCancel.Image = w92;
+			global::Gtk.Image w94 = new global::Gtk.Image ();
+			this.btnCancel.Image = w94;
 			this.hbox6.Add (this.btnCancel);
-			global::Gtk.Box.BoxChild w93 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.btnCancel]));
-			w93.PackType = ((global::Gtk.PackType)(1));
-			w93.Position = 1;
-			w93.Expand = false;
-			w93.Fill = false;
+			global::Gtk.Box.BoxChild w95 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.btnCancel]));
+			w95.PackType = ((global::Gtk.PackType)(1));
+			w95.Position = 2;
+			w95.Expand = false;
+			w95.Fill = false;
 			this.vbox1.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w94 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox6]));
-			w94.Position = 5;
-			w94.Expand = false;
-			w94.Fill = false;
+			global::Gtk.Box.BoxChild w96 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox6]));
+			w96.Position = 5;
+			w96.Expand = false;
+			w96.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 800;
 			this.DefaultHeight = 1035;
+			this.btnRecibo.Hide ();
 			this.Show ();
+			this.btnRecibo.Clicked += new global::System.EventHandler (this.OnBtnReciboClicked);
 			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 		}
 	}

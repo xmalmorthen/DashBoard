@@ -123,8 +123,25 @@ namespace paySolution
 			return response;
 		}
 
-
-
+		public static string getApplicationParameter(string parameter){
+			string response = string.Empty;
+			try {
+				MySqlDataReader data = DataBase.CallSp ("pa_get_ApplicationParameter",new string[] {parameter},true);
+				if (data != null){
+					while (data.Read ()) {
+						try {
+							response = data["value"].ToString();	
+						} catch (Exception) {}
+					}
+					if (!data.IsClosed)
+						data.Close ();
+				}
+			} catch (Exception ex) {
+				Logger logger = LogManager.GetCurrentClassLogger();
+				logger.Error(ex,ex.Message);
+			}
+			return response;
+		}
 
 	}
 }

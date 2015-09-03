@@ -205,7 +205,7 @@ public partial class MainWindow: Gtk.Window
 	public void configureTimerPaySimulation(){
 		tmPaySimulation = new Timer ();
 		tmPaySimulation.Tick += new EventHandler (tmPaySimulation_Tick);
-		tmPaySimulation.Interval = 15000;
+		tmPaySimulation.Interval = 300;
 		tmPaySimulation.Enabled = true;
 		tmPaySimulation.Start ();
 	}
@@ -221,6 +221,10 @@ public partial class MainWindow: Gtk.Window
 			break;
 		case 3:
 			configurePayLogic (decimal.Parse(cnfg.getConfiguration ("toPay").ToString ()));
+			break;
+		case 4:
+			payLogic.PayDeposit = 10;
+			if (payLogic.Payable > 0) SimulationIter--;
 			break;
 		}
 		SimulationIter++;
