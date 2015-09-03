@@ -48,7 +48,7 @@ public partial class MainWindow: Gtk.Window
 				btn.Image = new Gtk.Image (string.Format ("{0}", cnfg.GetBaseImage(idioms["image_fileName"].ToString())));
 				btn.Clicked	+= (object sender, EventArgs e) => {
 					string idiom = ( (Gtk.Button) sender).Name;
-					changeLanguajeConfiguration (idiom);
+					Culturize.changeLenguaje (idiom);
 				};
 
 				vbox.Add (btn);
@@ -85,18 +85,7 @@ public partial class MainWindow: Gtk.Window
 				idioms.Close ();
 		}
 	}
-
-	public void changeLanguajeConfiguration(string siglas){
-		Culturize.changeLenguaje (siglas);
-		MainClass.FrmPayPanel.initLanguajeConfigurations ();
-		this.initLanguajeConfigurations ();
-	}
-
-	public void initLanguajeConfigurations(){		
-		payLogic.Status = payLogic.payStatus.insertTicket;
-	}
 		
-
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{	
 		Build ();
@@ -216,7 +205,7 @@ public partial class MainWindow: Gtk.Window
 	public void configureTimerPaySimulation(){
 		tmPaySimulation = new Timer ();
 		tmPaySimulation.Tick += new EventHandler (tmPaySimulation_Tick);
-		tmPaySimulation.Interval = 1000;
+		tmPaySimulation.Interval = 15000;
 		tmPaySimulation.Enabled = true;
 		tmPaySimulation.Start ();
 	}

@@ -63,7 +63,7 @@ namespace paySolution
 					btn.Image = new Gtk.Image (string.Format ("{0}", cnfg.GetBaseImage(idioms["image_fileName"].ToString())));
 					btn.Clicked	+= (object sender, EventArgs e) => {
 						string idiom = ( (Gtk.Button) sender).Name;
-						changeLanguajeConfiguration (idiom);
+						Culturize.changeLenguaje (idiom);
 					};
 
 					vbox.Add (btn);
@@ -122,8 +122,8 @@ namespace paySolution
 				}
 			} 
 		} 
-
-		public void initLanguajeConfigurations(){			
+			
+		public void initLanguajeConfigurations(){
 
 			lblfecha.Text = Culturize.GetString(1);
 			lblhora.Text = Culturize.GetString(2);
@@ -143,13 +143,16 @@ namespace paySolution
 			lblSignoPesos1.LabelProp = markup.make ("$", "black", null, "25000", "heavy");
 			lblSignoPesos2.LabelProp = markup.make ("$", "black", null, "25000", "heavy");
 
-			string path = cnfg.GetBaseImage ("cancel.png");
-
-			Gtk.Image cancelImage = new Gtk.Image (cnfg.GetBaseImage ("clock.png"));
-
-			btnCancel.Image =  new Gtk.Image (cnfg.GetBaseImage ("cancel.png"));
+			this.refreshPayLabels ();
 
 			this.putDateTimeinLanguaje ();
+		}
+
+		private void refreshPayLabels(){
+			lblAPagarData.LabelProp = markup.make (payLogic.ToPay.ToString(), "red", null, "50000", "heavy");
+			lblPorPagarData.LabelProp = markup.make (payLogic.Payable.ToString(), "black", null, "25000", "heavy");
+			lblADevolverData.LabelProp = markup.make (payLogic.ToReturn.ToString(), "black", null, "25000", "heavy");
+			payLogic.RefreshNotification (payLogic.Status);
 		}
 
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
@@ -174,21 +177,13 @@ namespace paySolution
 			imgLogo.Pixbuf = new Gdk.Pixbuf (cnfg.GetLogoImage);
 			imgfecha.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("date.png"));
 			imghora.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("clock.png"));
-
+			btnCancel.Image =  new Gtk.Image (cnfg.GetBaseImage ("cancel.png"));
 		}
 
 		protected void OnShown (object sender, System.EventArgs e) 
 		{ 
-			lblAPagarData.LabelProp = markup.make (payLogic.ToPay.ToString(), "red", null, "50000", "heavy");
-			lblPorPagarData.LabelProp = markup.make (payLogic.Payable.ToString(), "black", null, "25000", "heavy");
-			lblADevolverData.LabelProp = markup.make (payLogic.ToReturn.ToString(), "black", null, "25000", "heavy");
+			//this.refreshPayLabels ();
 		} 
-
-		public void changeLanguajeConfiguration(string siglas){
-			Culturize.changeLenguaje (siglas);
-			MainClass.MainWin.initLanguajeConfigurations ();
-			this.initLanguajeConfigurations ();
-		}
 
 		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{

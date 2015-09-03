@@ -39,6 +39,9 @@ namespace paySolution
 
 		public static void changeLenguaje(string siglas){
 			MainClass.Languaje = siglas;
+
+			MainClass.FrmPayPanel.initLanguajeConfigurations ();
+			payLogic.RefreshNotification (payLogic.Status);
 		}
 
 		public static string GetParameter(string parameter){

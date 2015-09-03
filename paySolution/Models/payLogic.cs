@@ -53,14 +53,9 @@ namespace paySolution
 			}
 		}
 
-		public static payStatus status;
-		public static payStatus Status {
-			get {
-				return status;
-			}
-			set {
-
-				switch (value) {
+		public static void RefreshNotification(payStatus status){
+			try {
+				switch (status) {
 				case payStatus.insertTicket: 		//En espera de ticket
 					MainClass.MainWin.SetNotification = "inserte_ticket.gif";
 					break;
@@ -75,17 +70,41 @@ namespace paySolution
 					break;
 				case payStatus.waithToMoney: 		//Esperando depósito de dinero
 					payLogic.SetNotification = Culturize.GetString (7);
+					break;
+				case payStatus.cancelPay: 			//Proceso de pago cancelado
+					MainClass.MainWin.SetNotification = "inserte_ticket.gif";
+					break;
+				case payStatus.withMoney: 			//Con dinero depositado y esperando más para completar el monto a pagar
+					break;
+				case payStatus.withAmountPayed:		//Depósito de dinero completado
+					break;
+				case payStatus.printingTicket:		//Impresión de ticket de pago
+					break;
 
+				default:
+					break;
+				}	
+			} catch (Exception) {}
+
+		}
+
+		private static payStatus status;
+		public static payStatus Status{
+			get {
+				return status;
+			}
+			set {
+				
+				RefreshNotification (value);
+
+				switch (value) {
+				case payStatus.waithToMoney: 		//Esperando depósito de dinero
 					MainClass.FrmPayPanel.Visible = true;
 					//MainClass.MainWin.Visible = false;
 					break;
 				case payStatus.cancelPay: 			//Proceso de pago cancelado
-					MainClass.MainWin.SetNotification = "inserte_ticket.gif";
 					//MainClass.MainWin.Visible = true;
 					MainClass.FrmPayPanel.Visible = false;
-
-
-
 
 					value = payStatus.insertTicket;
 

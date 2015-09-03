@@ -62,7 +62,7 @@ namespace paySolution
 			FrmPayPanel = new frmPayPanel ();
 			FrmPayPanel.Visible = false;
 			MainWin = new MainWindow ();
-			MainWin.initLanguajeConfigurations ();
+			payLogic.Status = payLogic.payStatus.insertTicket;
 			MainWin.Visible = false;
 		}
 
