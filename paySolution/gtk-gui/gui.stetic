@@ -75,13 +75,17 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Image" id="imgNotifications">
+          <widget class="Gtk.Label" id="lblNotification">
             <property name="MemberName" />
+            <property name="HeightRequest">200</property>
+            <property name="UseMarkup">True</property>
+            <property name="UseUnderline">True</property>
+            <property name="Justify">Center</property>
           </widget>
           <packing>
             <property name="PackType">End</property>
             <property name="Position">2</property>
-            <property name="AutoSize">True</property>
+            <property name="AutoSize">False</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
             <property name="Padding">10</property>
@@ -208,7 +212,6 @@
                 <child>
                   <widget class="Gtk.Label" id="lblfechaData">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes" />
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -285,7 +288,6 @@
                 <child>
                   <widget class="Gtk.Label" id="lblhoraData">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes" />
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -349,7 +351,6 @@
                 <child>
                   <widget class="Gtk.Label" id="lblCajeroData">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes" />
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -1145,16 +1146,8 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+                  <widget class="Gtk.TreeView" id="treeview1">
                     <property name="MemberName" />
-                    <property name="WidthRequest">0</property>
-                    <property name="ShadowType">In</property>
-                    <child>
-                      <widget class="Gtk.TreeView" id="treeview1">
-                        <property name="MemberName" />
-                        <property name="ShowScrollbars">True</property>
-                      </widget>
-                    </child>
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -1174,15 +1167,8 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
+                  <widget class="Gtk.TreeView" id="treeview2">
                     <property name="MemberName" />
-                    <property name="ShadowType">In</property>
-                    <child>
-                      <widget class="Gtk.TreeView" id="treeview2">
-                        <property name="MemberName" />
-                        <property name="ShowScrollbars">True</property>
-                      </widget>
-                    </child>
                   </widget>
                   <packing>
                     <property name="Position">3</property>
@@ -1196,15 +1182,8 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow2">
+              <widget class="Gtk.TreeView" id="treeview3">
                 <property name="MemberName" />
-                <property name="ShadowType">In</property>
-                <child>
-                  <widget class="Gtk.TreeView" id="treeview3">
-                    <property name="MemberName" />
-                    <property name="ShowScrollbars">True</property>
-                  </widget>
-                </child>
               </widget>
               <packing>
                 <property name="PackType">End</property>
@@ -1228,7 +1207,6 @@
             <child>
               <widget class="Gtk.Label" id="lblnotifications">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes" />
                 <property name="UseMarkup">True</property>
               </widget>
               <packing>
@@ -1288,7 +1266,7 @@
     <property name="Visible">False</property>
     <property name="Title" translatable="yes">frmNotificationsWin</property>
     <property name="TypeHint">Splashscreen</property>
-    <property name="WindowPosition">Center</property>
+    <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AcceptFocus">False</property>
     <property name="Decorated">False</property>

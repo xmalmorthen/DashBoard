@@ -13,7 +13,7 @@ public partial class MainWindow
 	
 	private global::Gtk.Alignment alignment3;
 	
-	private global::Gtk.Image imgNotifications;
+	private global::Gtk.Label lblNotification;
 	
 	private global::Gtk.Image imgMain;
 
@@ -68,10 +68,14 @@ public partial class MainWindow
 		w4.Position = 1;
 		w4.Expand = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.imgNotifications = new global::Gtk.Image ();
-		this.imgNotifications.Name = "imgNotifications";
-		this.vbox1.Add (this.imgNotifications);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.imgNotifications]));
+		this.lblNotification = new global::Gtk.Label ();
+		this.lblNotification.HeightRequest = 200;
+		this.lblNotification.Name = "lblNotification";
+		this.lblNotification.UseMarkup = true;
+		this.lblNotification.UseUnderline = true;
+		this.lblNotification.Justify = ((global::Gtk.Justification)(2));
+		this.vbox1.Add (this.lblNotification);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.lblNotification]));
 		w5.PackType = ((global::Gtk.PackType)(1));
 		w5.Position = 2;
 		w5.Expand = false;

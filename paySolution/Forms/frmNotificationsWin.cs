@@ -6,18 +6,20 @@ namespace paySolution
 {
 	public partial class frmNotificationsWin : Gtk.Window
 	{
-		Timer close;
+		Timer close,languaje;
 
 		private void configureBackgroundForm(){
 			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
 		}
-
-		public frmNotificationsWin (Window parent_window, MessageType messageType,string  message, int? closeInterval = null) :
+			
+		public frmNotificationsWin (Window parent_window, MessageType messageType,string  message, EventHandler OnDestroyedEvent = null, int? closeInterval = null) :
 			base (Gtk.WindowType.Toplevel)
 		{
 			string imagePath = cnfg.GetBaseImage ("view");
 
 			this.Build ();
+
+			this.Destroyed += OnDestroyedEvent;
 
 			this.configureBackgroundForm ();
 
@@ -66,15 +68,31 @@ namespace paySolution
 			close.Enabled = true;
 			close.Start ();
 
+			languajeInit = MainClass.Languaje;
+
+			languaje = new Timer ();
+			languaje.Tick += new EventHandler (languaje_Tick);
+			languaje.Interval = 500;
+			languaje.Enabled = true;
+			languaje.Start ();
+
 		}
 
 		void close_Tick(object sender, EventArgs e){
+			languaje.Stop ();
+			languaje.Dispose ();
+
 			close.Stop ();
 			this.Destroy ();
-			close.Dispose ();
 
-			if (payLogic.Status == payLogic.payStatus.payProcessTerminated) {
-				payLogic.Status = payLogic.payStatus.insertTicket;
+			close.Dispose ();
+		}
+
+		string languajeInit;
+		void languaje_Tick(object sender, EventArgs e){
+			if (languajeInit != MainClass.Languaje) {
+				languajeInit = MainClass.Languaje;
+				lblNotification.LabelProp = markup.make (resourseMessages.exitMessage, "black", null, "30000", "heavy");
 			}
 		}
 

@@ -37,7 +37,7 @@ namespace paySolution
 			this.Name = "paySolution.frmNotificationsWin";
 			this.Title = global::Mono.Unix.Catalog.GetString ("frmNotificationsWin");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(4));
-			this.WindowPosition = ((global::Gtk.WindowPosition)(1));
+			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Resizable = false;
 			this.AcceptFocus = false;
 			this.Decorated = false;

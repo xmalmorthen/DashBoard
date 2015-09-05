@@ -84,22 +84,22 @@ namespace paySolution
 			try {
 				switch (status) {
 				case payStatus.insertTicket: 		//En espera de ticket
-					MainClass.MainWin.SetNotification = "inserte_ticket.gif";
+					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.insertTicket;
 					break;
 				case payStatus.readingTicket:		//Leyendo el ticket
-					MainClass.MainWin.SetNotification = "leyendo_ticket.gif";
+					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.readingTicket;
 					break;
 				case payStatus.errorReadingTicket:	//Error al leer el ticket
-					MainClass.MainWin.SetNotification = "inserte_ticket.gif";
+					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.errReadingTicket;
 					break;
 				case payStatus.calculatingAmount:	//Calculando monto a pagar
-					MainClass.MainWin.SetNotification = "calculando_importe.gif";
+					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.calculatingAmount;
 					break;
 				case payStatus.waithToMoney: 		//Esperando depósito de dinero
 					payLogic.SetNotification = Culturize.GetString (7);
 					break;
 				case payStatus.cancelPay: 			//Proceso de pago cancelado
-					MainClass.MainWin.SetNotification = "inserte_ticket.gif";
+					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.insertTicket;
 					break;
 				case payStatus.withMoney: 			//Con dinero depositado y esperando más para completar el monto a pagar
 					break;
@@ -119,7 +119,7 @@ namespace paySolution
 					payLogic.SetNotification =  string.Format ("{0}, {1}...",Culturize.GetString (13),Culturize.GetString (9));
 					break;
 				case payStatus.recepitPrinted:		//Recibo impreso
-					payLogic.SetNotification =  Culturize.GetString (16);
+					payLogic.SetNotification = resourseMessages.printingReceiptMessage;
 					break;
 				}	
 			} catch (Exception) {}
@@ -175,14 +175,23 @@ namespace paySolution
 					case payStatus.payProcessTerminated:
 						MainClass.FrmPayPanel.changeReciboButtonVisibility (true);
 
-						string msg = string.Format ("{0}. {1} \n {2} {3}", Culturize.GetString (14), Culturize.GetString (15), cnfg.getApplicationParameter ("tiempoSalida"),Culturize.GetString (17));
-						dlg.show (MainClass.FrmPayPanel, Gtk.MessageType.Info, msg);
-
+						dlg.show (MainClass.FrmPayPanel, Gtk.MessageType.Info, resourseMessages.exitMessage, 
+							new EventHandler( delegate(object o, EventArgs args) {
+								if (Status == payStatus.payProcessTerminated) {
+									payLogic.Status = payLogic.payStatus.insertTicket;
+								}
+							})
+						);
 						break;
 					case payStatus.printingRecepit:		//Impresión de recibo de pago
 						MainClass.FrmPayPanel.changeReciboButtonVisibility (false);
 						break;	
 					case payStatus.recepitPrinted:		//Recibo impreso
+						dlg.show (MainClass.FrmPayPanel, Gtk.MessageType.Info, resourseMessages.printingReceiptMessage,
+							new EventHandler( delegate(object o, EventArgs args) {
+								payLogic.Status = payLogic.payStatus.insertTicket;
+							})
+						);
 						break;
 					}
 					status = value;

@@ -14,8 +14,8 @@ namespace paySolution
 			return response;
 		}
 
-		public static void show(Window parent_window, MessageType messageType, string  message, int? closeInterval = null){
-			frmNotificationsWin FrmNotificationsWin = new frmNotificationsWin(parent_window,messageType,message,closeInterval);
+		public static void show(Window parent_window, MessageType messageType, string  message, EventHandler OnDestroyedEvent = null, int? closeInterval = null){
+			frmNotificationsWin FrmNotificationsWin = new frmNotificationsWin(parent_window,messageType,message,OnDestroyedEvent,closeInterval);
 			FrmNotificationsWin.ShowAll ();
 		}
 	}

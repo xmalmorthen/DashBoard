@@ -12,12 +12,36 @@ namespace paySolution
 	{
 		System.Windows.Forms.Timer hour;
 
+		System.Windows.Forms.Timer blink;
+		private Boolean iterBlink = false;
+		void blink_Tick(object sender, EventArgs e){		
+			iterBlink = !iterBlink;
+			setNotification (lblnotifications.Text);
+		}
+
+		string[] colors = new string[] {"black", 
+			"#fffc00", 	//amarillo
+			"#ff0000",	//rojo
+			"#6f0000"	//marron
+		};
+
+		private void setNotification(string value){
+			Thread thrpayProcessTerminated = new Thread (new ThreadStart (delegate {
+				Gtk.Application.Invoke( delegate {
+					string color = iterBlink ? colors[0] : colors[2];
+
+					lblnotifications.GdkWindow.ProcessUpdates (true);
+					lblnotifications.LabelProp = markup.make (value, color, null, "40000", "heavy");
+
+				});
+			}));
+			thrpayProcessTerminated.Start ();
+		}
+
+
 		public string SetNotification{
 			set {
-				Gtk.Application.Invoke (delegate {
-					lblnotifications.GdkWindow.ProcessUpdates (true);
-					lblnotifications.LabelProp = markup.make (value, "black", null, "25000", "heavy");
-				});
+				setNotification (value);
 			}
 		}
 
@@ -138,7 +162,7 @@ namespace paySolution
 			lblCajeroData.LabelProp = markup.make(cnfg.GetCheckerName(int.Parse(cnfg.getConfiguration("id_application"))), "black", null, "20000", "bold");
 
 			lblAPagar.LabelProp = markup.make (Culturize.GetString (4), "red", null, "50000", "heavy");
-			lblPorPagar.LabelProp = markup.make (Culturize.GetString (5), "black", null, "25000", "heavy");
+			lblPorPagar.LabelProp = markup.make (Culturize.GetString (5), "black", null, "27000", "heavy");
 			lblADevolver.LabelProp = markup.make (Culturize.GetString (6), "black", null, "25000", "heavy");
 
 			lblSignoPesos.LabelProp = markup.make ("$", "red", null, "50000", "heavy");
@@ -154,7 +178,7 @@ namespace paySolution
 
 		public void refreshPayLabels(){
 			lblAPagarData.LabelProp = markup.make (string.Format("{0:N}",payLogic.ToPay), "red", null, "50000", "heavy");
-			lblPorPagarData.LabelProp = markup.make (string.Format("{0:N}",payLogic.Payable), "black", null, "25000", "heavy");
+			lblPorPagarData.LabelProp = markup.make (string.Format("{0:N}",payLogic.Payable), "black", null, "27000", "heavy");
 				lblADevolverData.LabelProp = markup.make (string.Format("{0:N}",payLogic.ToReturn), "black", null, "25000", "heavy");
 			payLogic.RefreshNotification (payLogic.Status);
 		}
@@ -175,6 +199,12 @@ namespace paySolution
 			this.Maximize ();
 
 			this.configureBackgroundForm ();
+
+			blink = new System.Windows.Forms.Timer ();
+			blink.Tick += new EventHandler (blink_Tick);
+			blink.Interval = int.Parse(cnfg.getConfiguration("blinkLabelTime"));
+			blink.Enabled = true;
+			blink.Start ();
 
 			this.initLanguajeConfigurations ();
 
@@ -210,14 +240,7 @@ namespace paySolution
 
 			//TODO: IMPLEMENTAR CODIGO PARA IMPRIMIR RECIBO DE PAGO
 
-			Thread thrpayProcessTerminated = new Thread (new ThreadStart (delegate {
-				payLogic.Status = payLogic.payStatus.recepitPrinted;
-				System.Threading.Thread.Sleep (int.Parse(cnfg.getConfiguration("sleepTime")));
-				Gtk.Application.Invoke( delegate {
-					payLogic.Status = paySolution.payLogic.payStatus.insertTicket;
-				});
-			}));
-			thrpayProcessTerminated.Start ();
+			payLogic.Status = payLogic.payStatus.recepitPrinted;
 		}
 	}
 }

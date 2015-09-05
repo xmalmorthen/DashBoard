@@ -5,12 +5,73 @@ using paySolution;
 using NLog;
 using System.IO.Ports;
 using MySql.Data.MySqlClient;
+using System.Threading;
 
 public partial class MainWindow: Gtk.Window
 {
-	public string SetNotification{
+	public enum mainWindowNotification
+	{
+		insertTicket,
+		readingTicket,
+		errReadingTicket,
+		calculatingAmount
+	}
+
+
+	System.Windows.Forms.Timer blink;
+	private Boolean iterBlink = false;
+	void blink_Tick(object sender, EventArgs e){		
+		iterBlink = !iterBlink;
+		setNotification(notificationState);
+	}
+
+	string[] colors = new string[] {"black", 
+									"#fffc00", 	//amarillo
+									"#ff0000",	//rojo
+									"#6f0000"	//marron
+	};
+
+	private void setNotification(mainWindowNotification notificationType){
+		Thread thrpayProcessTerminated = new Thread (new ThreadStart (delegate {
+			Gtk.Application.Invoke( delegate {
+
+				string notification = string.Empty;
+				string color = colors [0];
+
+				switch (notificationType) {
+				case mainWindowNotification.insertTicket:
+					color = iterBlink ? colors [0] : colors [1];
+					notification = markup.make (Culturize.GetString (18), color, null, "60000", "heavy");
+					break;
+				case mainWindowNotification.readingTicket:
+					color = iterBlink ? colors [2] : colors [3];
+					notification = string.Format ("{0}\n{1}",
+						markup.make (Culturize.GetString (19), color, null, "60000", "heavy"),
+						markup.make (Culturize.GetString (9), colors[2], null, "40000", "heavy"));
+					break;
+				case mainWindowNotification.errReadingTicket:
+					color = iterBlink ? colors [0] : colors [1];
+					notification = markup.make (Culturize.GetString (18), color, null, "60000", "heavy");
+					break;
+				case mainWindowNotification.calculatingAmount:
+					color = iterBlink ? colors [0] : colors [1];
+					notification = string.Format ("{0}\n{1}",
+						markup.make (Culturize.GetString (20), color, null, "60000", "heavy"),
+						markup.make (Culturize.GetString (21), colors[0], null, "40000", "heavy"));
+					break;
+				}
+
+				lblNotification.LabelProp = notification;
+			});
+		}));
+		thrpayProcessTerminated.Start ();
+	}
+
+	private mainWindowNotification notificationState;
+	public mainWindowNotification SetNotification{
 		set {
-			imgNotifications.PixbufAnimation = new Gdk.PixbufAnimation (cnfg.GetGif(value));			 
+			notificationState = value;
+			setNotification (value);
 		}
 	}
 		
@@ -93,6 +154,12 @@ public partial class MainWindow: Gtk.Window
 		this.configureImagesControls ();
 
 		this.Maximize ();
+
+		blink = new System.Windows.Forms.Timer ();
+		blink.Tick += new EventHandler (blink_Tick);
+		blink.Interval = int.Parse(cnfg.getConfiguration("blinkLabelTime"));
+		blink.Enabled = true;
+		blink.Start ();
 
 		this.configureIdiomsButtons ();
 
@@ -201,17 +268,19 @@ public partial class MainWindow: Gtk.Window
 	}
 
 
-	private Timer tmPaySimulation;
+	private System.Windows.Forms.Timer tmPaySimulation;
 	public void configureTimerPaySimulation(){
-		tmPaySimulation = new Timer ();
+		tmPaySimulation = new System.Windows.Forms.Timer ();
 		tmPaySimulation.Tick += new EventHandler (tmPaySimulation_Tick);
-		tmPaySimulation.Interval = 300;
+		tmPaySimulation.Interval = 3000;
 		tmPaySimulation.Enabled = true;
 		tmPaySimulation.Start ();
 	}
 
 	public int SimulationIter = 1;
 	void tmPaySimulation_Tick(object sender, EventArgs e){	
+		Random random = new Random();
+		int randomNumber = 0;
 		switch (SimulationIter) {
 		case 1:
 			payLogic.Status = payLogic.payStatus.readingTicket;
@@ -219,16 +288,17 @@ public partial class MainWindow: Gtk.Window
 		case 2:
 			payLogic.Status = payLogic.payStatus.calculatingAmount;
 			break;
-		case 3:
-			configurePayLogic (decimal.Parse(cnfg.getConfiguration ("toPay").ToString ()));
+		case 3:			
+			randomNumber = random.Next(1,Convert.ToInt32 (cnfg.getConfiguration ("toPay").ToString ()));
+			configurePayLogic (randomNumber);
 			break;
-		case 4:
-			payLogic.PayDeposit = 10;
+		case 4:			
+			randomNumber = random.Next(1,Convert.ToInt32(cnfg.getConfiguration ("moneyInserted").ToString ()));
+			payLogic.PayDeposit = randomNumber;
 			if (payLogic.Payable > 0) SimulationIter--;
 			break;
 		}
 		SimulationIter++;
 	}
-
 
 }

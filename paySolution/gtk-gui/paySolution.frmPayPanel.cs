@@ -172,17 +172,11 @@ namespace paySolution
 		
 		private global::Gtk.Image imghorizontalLine3;
 		
-		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-		
 		private global::Gtk.TreeView treeview1;
 		
 		private global::Gtk.Image imghorizontalLine4;
 		
-		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
-		
 		private global::Gtk.TreeView treeview2;
-		
-		private global::Gtk.ScrolledWindow GtkScrolledWindow2;
 		
 		private global::Gtk.TreeView treeview3;
 		
@@ -281,7 +275,6 @@ namespace paySolution
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.lblfechaData = new global::Gtk.Label ();
 			this.lblfechaData.Name = "lblfechaData";
-			this.lblfechaData.LabelProp = "";
 			this.lblfechaData.UseMarkup = true;
 			this.hbox1.Add (this.lblfechaData);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblfechaData]));
@@ -337,7 +330,6 @@ namespace paySolution
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.lblhoraData = new global::Gtk.Label ();
 			this.lblhoraData.Name = "lblhoraData";
-			this.lblhoraData.LabelProp = "";
 			this.lblhoraData.UseMarkup = true;
 			this.hbox1.Add (this.lblhoraData);
 			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblhoraData]));
@@ -383,7 +375,6 @@ namespace paySolution
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.lblCajeroData = new global::Gtk.Label ();
 			this.lblCajeroData.Name = "lblCajeroData";
-			this.lblCajeroData.LabelProp = "";
 			this.lblCajeroData.UseMarkup = true;
 			this.hbox1.Add (this.lblCajeroData);
 			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblCajeroData]));
@@ -990,55 +981,39 @@ namespace paySolution
 			w81.Expand = false;
 			w81.Fill = false;
 			// Container child vbox6.Gtk.Box+BoxChild
-			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
-			this.GtkScrolledWindow.WidthRequest = 0;
-			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
-			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
 			this.treeview1 = new global::Gtk.TreeView ();
 			this.treeview1.Name = "treeview1";
-			this.GtkScrolledWindow.Add (this.treeview1);
-			this.vbox6.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w83 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.GtkScrolledWindow]));
-			w83.Position = 1;
+			this.vbox6.Add (this.treeview1);
+			global::Gtk.Box.BoxChild w82 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.treeview1]));
+			w82.Position = 1;
 			// Container child vbox6.Gtk.Box+BoxChild
 			this.imghorizontalLine4 = new global::Gtk.Image ();
 			this.imghorizontalLine4.WidthRequest = 100;
 			this.imghorizontalLine4.Name = "imghorizontalLine4";
 			this.vbox6.Add (this.imghorizontalLine4);
-			global::Gtk.Box.BoxChild w84 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.imghorizontalLine4]));
-			w84.Position = 2;
-			w84.Expand = false;
-			w84.Fill = false;
+			global::Gtk.Box.BoxChild w83 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.imghorizontalLine4]));
+			w83.Position = 2;
+			w83.Expand = false;
+			w83.Fill = false;
 			// Container child vbox6.Gtk.Box+BoxChild
-			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
-			this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
-			this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
-			// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
 			this.treeview2 = new global::Gtk.TreeView ();
 			this.treeview2.Name = "treeview2";
-			this.GtkScrolledWindow1.Add (this.treeview2);
-			this.vbox6.Add (this.GtkScrolledWindow1);
-			global::Gtk.Box.BoxChild w86 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.GtkScrolledWindow1]));
-			w86.Position = 3;
+			this.vbox6.Add (this.treeview2);
+			global::Gtk.Box.BoxChild w84 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.treeview2]));
+			w84.Position = 3;
 			this.hbox12.Add (this.vbox6);
-			global::Gtk.Box.BoxChild w87 = ((global::Gtk.Box.BoxChild)(this.hbox12 [this.vbox6]));
-			w87.Position = 0;
+			global::Gtk.Box.BoxChild w85 = ((global::Gtk.Box.BoxChild)(this.hbox12 [this.vbox6]));
+			w85.Position = 0;
 			// Container child hbox12.Gtk.Box+BoxChild
-			this.GtkScrolledWindow2 = new global::Gtk.ScrolledWindow ();
-			this.GtkScrolledWindow2.Name = "GtkScrolledWindow2";
-			this.GtkScrolledWindow2.ShadowType = ((global::Gtk.ShadowType)(1));
-			// Container child GtkScrolledWindow2.Gtk.Container+ContainerChild
 			this.treeview3 = new global::Gtk.TreeView ();
 			this.treeview3.Name = "treeview3";
-			this.GtkScrolledWindow2.Add (this.treeview3);
-			this.hbox12.Add (this.GtkScrolledWindow2);
-			global::Gtk.Box.BoxChild w89 = ((global::Gtk.Box.BoxChild)(this.hbox12 [this.GtkScrolledWindow2]));
-			w89.PackType = ((global::Gtk.PackType)(1));
-			w89.Position = 1;
+			this.hbox12.Add (this.treeview3);
+			global::Gtk.Box.BoxChild w86 = ((global::Gtk.Box.BoxChild)(this.hbox12 [this.treeview3]));
+			w86.PackType = ((global::Gtk.PackType)(1));
+			w86.Position = 1;
 			this.vbox1.Add (this.hbox12);
-			global::Gtk.Box.BoxChild w90 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox12]));
-			w90.Position = 3;
+			global::Gtk.Box.BoxChild w87 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox12]));
+			w87.Position = 3;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbox6 = new global::Gtk.HBox ();
 			this.hbox6.Name = "hbox6";
@@ -1046,41 +1021,40 @@ namespace paySolution
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.lblnotifications = new global::Gtk.Label ();
 			this.lblnotifications.Name = "lblnotifications";
-			this.lblnotifications.LabelProp = "";
 			this.lblnotifications.UseMarkup = true;
 			this.hbox6.Add (this.lblnotifications);
-			global::Gtk.Box.BoxChild w91 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.lblnotifications]));
-			w91.Position = 0;
+			global::Gtk.Box.BoxChild w88 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.lblnotifications]));
+			w88.Position = 0;
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.btnRecibo = new global::Gtk.Button ();
 			this.btnRecibo.CanFocus = true;
 			this.btnRecibo.Name = "btnRecibo";
 			this.btnRecibo.UseUnderline = true;
-			global::Gtk.Image w92 = new global::Gtk.Image ();
-			this.btnRecibo.Image = w92;
+			global::Gtk.Image w89 = new global::Gtk.Image ();
+			this.btnRecibo.Image = w89;
 			this.hbox6.Add (this.btnRecibo);
-			global::Gtk.Box.BoxChild w93 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.btnRecibo]));
-			w93.Position = 1;
-			w93.Expand = false;
-			w93.Fill = false;
+			global::Gtk.Box.BoxChild w90 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.btnRecibo]));
+			w90.Position = 1;
+			w90.Expand = false;
+			w90.Fill = false;
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.btnCancel = new global::Gtk.Button ();
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.UseUnderline = true;
 			this.btnCancel.FocusOnClick = false;
-			global::Gtk.Image w94 = new global::Gtk.Image ();
-			this.btnCancel.Image = w94;
+			global::Gtk.Image w91 = new global::Gtk.Image ();
+			this.btnCancel.Image = w91;
 			this.hbox6.Add (this.btnCancel);
-			global::Gtk.Box.BoxChild w95 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.btnCancel]));
-			w95.PackType = ((global::Gtk.PackType)(1));
-			w95.Position = 2;
-			w95.Expand = false;
-			w95.Fill = false;
+			global::Gtk.Box.BoxChild w92 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.btnCancel]));
+			w92.PackType = ((global::Gtk.PackType)(1));
+			w92.Position = 2;
+			w92.Expand = false;
+			w92.Fill = false;
 			this.vbox1.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w96 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox6]));
-			w96.Position = 5;
-			w96.Expand = false;
-			w96.Fill = false;
+			global::Gtk.Box.BoxChild w93 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox6]));
+			w93.Position = 5;
+			w93.Expand = false;
+			w93.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
