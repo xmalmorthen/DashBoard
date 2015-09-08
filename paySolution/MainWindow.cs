@@ -272,7 +272,7 @@ public partial class MainWindow: Gtk.Window
 	public void configureTimerPaySimulation(){
 		tmPaySimulation = new System.Windows.Forms.Timer ();
 		tmPaySimulation.Tick += new EventHandler (tmPaySimulation_Tick);
-		tmPaySimulation.Interval = 3000;
+		tmPaySimulation.Interval = 5000;
 		tmPaySimulation.Enabled = true;
 		tmPaySimulation.Start ();
 	}
