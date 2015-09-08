@@ -46,8 +46,8 @@ namespace paySolution
 
 					Application.Run ();
 				} else {
-					unloadPanels ();
 					dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un problema al intentar conectar al/los puerto(s) [ {0} ]",messageResponse));
+					unloadPanels ();
 				}
 
 				DataBase.Close ();
