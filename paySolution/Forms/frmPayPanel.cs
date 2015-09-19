@@ -31,7 +31,7 @@ namespace paySolution
 					string color = iterBlink ? colors[0] : colors[2];
 
 					lblnotifications.GdkWindow.ProcessUpdates (true);
-					lblnotifications.LabelProp = markup.make (value, color, null, "40000", "heavy");
+					lblnotifications.LabelProp = markup.make (value, color, null, "30000", "heavy");
 
 				});
 			}));
