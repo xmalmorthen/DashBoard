@@ -184,6 +184,14 @@ public partial class MainWindow: Gtk.Window
 			strData += ((char) b).ToString();
 		}
 		BitacoraModel.addItem ("Cadena recibida",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("Cadena [ {0} ] ",strData));
+
+
+		/*
+		 * CODIGO DE ENVÍO AUTOMATICO DE PULSACIONES A OTRO PUERTO DE MANERA AUTOMÁTICA
+		 */
+		this.senDataToPort ("COM1", //NOMBRE DEL PUERTO
+							"p");	//DATO A ENVIAR 
+
 	}
 
 	void sport_ErrorReceived(object sender, SerialErrorReceivedEventArgs e){
@@ -222,19 +230,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnBtnsendmsgClicked (object sender, EventArgs e)
 	{
-		CnnPort cnnPort;
-		string port = lblPuerto.Text.ToString ();
-		if (cnnPortList.TryGetValue (port, out cnnPort)) {
-			String data = txtsendmsg.Text.ToString ();
-			if (!cnnPort.SendData (data)) {
-				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al enviar el dato al puerto {0} [ {1} ]", port, data));
-				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Ocurrió un error al enviar el dato [ {0} ] al puerto", data),"ERROR");
-			} else {
-				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()),string.Format ("Dato enviado al puerto [ {0} ]", data));
-				txtsendmsg.Text = string.Empty;
-			}
-
-		}
+		this.senDataToPort (lblPuerto.Text.ToString (), txtsendmsg.Text.ToString ());
 	}
 
 	protected void OnYesActionActivated (object sender, EventArgs e)
@@ -318,6 +314,24 @@ public partial class MainWindow: Gtk.Window
 	protected void OnBtnBitacoraHistoricaClicked (object sender, EventArgs e)
 	{
 		throw new NotImplementedException ();
+	}
+
+	private Boolean senDataToPort (string portName, string data){
+		Boolean response = false;
+		CnnPort cnnPort;
+		string port = portName;
+		if (cnnPortList.TryGetValue (port, out cnnPort)) {
+			if (!cnnPort.SendData (data)) {
+				dlg.show (this, DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un error al enviar el dato al puerto {0} [ {1} ]", port, data));
+				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()), string.Format ("Ocurrió un error al enviar el dato [ {0} ] al puerto", data), "ERROR");
+			} else {
+				BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()), string.Format ("Dato enviado al puerto [ {0} ]", data));
+				response = true;
+			}
+		} else {
+			BitacoraModel.addItem ("Enviar dato al puerto", string.Format ("Puerto {0}", port.ToString ()), string.Format ("El puerto [ {0} ] no se encuentra abierto o la comunicación ha sido interrumpida. Dato [ {0} ] no enviado", port,data), "ERROR");
+		}
+		return response;
 	}
 
 }

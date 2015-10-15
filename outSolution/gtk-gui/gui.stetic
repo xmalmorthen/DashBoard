@@ -79,7 +79,7 @@
           <widget class="Gtk.HPaned" id="paned">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">334</property>
+            <property name="Position">1</property>
             <property name="BorderWidth">1</property>
             <child>
               <widget class="Gtk.VBox" id="vbox5">

@@ -172,7 +172,7 @@ public partial class MainWindow
 		this.paned = new global::Gtk.HPaned ();
 		this.paned.CanFocus = true;
 		this.paned.Name = "paned";
-		this.paned.Position = 334;
+		this.paned.Position = 1;
 		this.paned.BorderWidth = ((uint)(1));
 		// Container child paned.Gtk.Paned+PanedChild
 		this.vbox5 = new global::Gtk.VBox ();
