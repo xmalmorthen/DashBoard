@@ -316,7 +316,7 @@ public partial class MainWindow
 		// Container child hbox8.Gtk.Box+BoxChild
 		this.btnconnect = new global::Gtk.Button ();
 		this.btnconnect.CanFocus = true;
-		this.btnconnect.Name = "btnconnect";
+		this.btnconnect.Name = "btnconnectbtnconnect";
 		this.btnconnect.UseUnderline = true;
 		global::Gtk.Image w19 = new global::Gtk.Image ();
 		w19.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-disconnect", global::Gtk.IconSize.Button);

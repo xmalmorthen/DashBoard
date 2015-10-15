@@ -105,6 +105,9 @@ public partial class MainWindow: Gtk.Window
 				conected = true;
 			}
 			selected = true;
+
+			fraCnnConfig.Visible = btnconnect.Visible;
+
 		}
 
 		fraPortDetail.Visible = selected;
@@ -172,10 +175,15 @@ public partial class MainWindow: Gtk.Window
 
 		byte[] buf = new byte[thisPort.BytesToRead];
 		thisPort.Read(buf, 0, buf.Length);
+
+		string strData = string.Empty;
 		foreach (Byte b in buf)
 		{
 			BitacoraModel.addItem ("Leer puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("Dato recibido [ {0} ] ",b));
+
+			strData += ((char) b).ToString();
 		}
+		BitacoraModel.addItem ("Cadena recibida",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("Cadena [ {0} ] ",strData));
 	}
 
 	void sport_ErrorReceived(object sender, SerialErrorReceivedEventArgs e){
