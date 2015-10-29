@@ -10,7 +10,7 @@ namespace paySolution
 {
 	public partial class frmPayPanel : Gtk.Window
 	{
-		System.Windows.Forms.Timer hour;
+		/*System.Windows.Forms.Timer hour;
 
 		System.Windows.Forms.Timer blink;
 		private Boolean iterBlink = false;
@@ -189,16 +189,16 @@ namespace paySolution
 
 		public void changeReciboButtonVisibility(Boolean visible){
 			btnRecibo.Visible = visible;
-		}
+		}*/
 
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
 		{	
-			this.Shown  += new EventHandler (this.OnShown);
+			//this.Shown  += new EventHandler (this.OnShown);
 
 			this.Build ();
 			this.Maximize ();
 
-			this.configureBackgroundForm ();
+			/*this.configureBackgroundForm ();
 
 			blink = new System.Windows.Forms.Timer ();
 			blink.Tick += new EventHandler (blink_Tick);
@@ -220,11 +220,11 @@ namespace paySolution
 			imgfecha.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("date.png"));
 			imghora.Pixbuf = new Gdk.Pixbuf (cnfg.GetBaseImage("clock.png"));
 			btnCancel.Image =  new Gtk.Image (cnfg.GetBaseImage ("cancel.png"));
-			btnRecibo.Image = new Gtk.Image (cnfg.GetBaseImage ("recibo.png"));
+			btnRecibo.Image = new Gtk.Image (cnfg.GetBaseImage ("recibo.png"));*/
 
 		}
 
-		protected void OnShown (object sender, System.EventArgs e) 
+		/*protected void OnShown (object sender, System.EventArgs e) 
 		{ 
 			this.refreshPayLabels ();
 		} 
@@ -241,7 +241,7 @@ namespace paySolution
 			//TODO: IMPLEMENTAR CODIGO PARA IMPRIMIR RECIBO DE PAGO
 
 			payLogic.Status = payLogic.payStatus.recepitPrinted;
-		}
+		}*/
 	}
 }
 

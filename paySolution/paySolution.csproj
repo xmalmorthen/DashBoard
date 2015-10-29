@@ -75,7 +75,6 @@
     <Compile Include="Classes\main.cs" />
     <Compile Include="Classes\CnnPort.cs" />
     <Compile Include="Classes\DataBase.cs" />
-    <Compile Include="Classes\dlg.cs" />
     <Compile Include="Forms\frmPayPanel.cs" />
     <Compile Include="gtk-gui\paySolution.frmPayPanel.cs" />
     <Compile Include="Models\AutoConnectPrtsModel.cs" />
@@ -84,9 +83,10 @@
     <Compile Include="Classes\markup.cs" />
     <Compile Include="Models\Culturize.cs" />
     <Compile Include="Models\payLogic.cs" />
+    <Compile Include="Models\resourseMessages.cs" />
+    <Compile Include="Classes\dlg.cs" />
     <Compile Include="Forms\frmNotificationsWin.cs" />
     <Compile Include="gtk-gui\paySolution.frmNotificationsWin.cs" />
-    <Compile Include="Models\resourseMessages.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

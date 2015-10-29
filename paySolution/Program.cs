@@ -35,15 +35,6 @@ namespace paySolution
 				string messageResponse;
 				if (MainWin.AutoConnectPorts (out messageResponse)){					
 					MainWin.Visible = true;
-
-					/*
-					 * TODO: INICIO DE CODIGO DE SIMULACIÓN - [BOORAR AL IMPLEMENTAR]
-					 */ 
-					MainWin.configureTimerPaySimulation ();
-					/*
-					 * FIN DE CODIGO DE SIMULACIÓN
-					 */ 
-
 					Application.Run ();
 				} else {
 					dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un problema al intentar conectar al/los puerto(s) [ {0} ]",messageResponse));

@@ -47,7 +47,7 @@ namespace paySolution
 				}
 
 				payable = value;
-				MainClass.FrmPayPanel.refreshPayLabels ();
+				//MainClass.FrmPayPanel.refreshPayLabels ();
 			}
 		}
 
@@ -75,7 +75,7 @@ namespace paySolution
 		public static string SetNotification{
 			set { 
 				Application.Invoke (delegate {
-					MainClass.FrmPayPanel.SetNotification = value;
+					//MainClass.FrmPayPanel.SetNotification = value;
 				});
 			}
 		}
@@ -140,18 +140,10 @@ namespace paySolution
 						//MainClass.MainWin.Visible = true;					
 						MainClass.FrmPayPanel.Visible = false;
 
-						/*
-						 * TODO: INICIO DE CODIGO DE SIMULACIÓN - [BOORAR AL IMPLEMENTAR]
-						 */ 
-							MainClass.MainWin.SimulationIter = 1;
-						/*
-						 * FIN DE CODIGO DE SIMULACIÓN
-						 */
-
 						break;
 					case payStatus.waithToMoney: 		//Esperando depósito de dinero
-						MainClass.FrmPayPanel.changeCancelButtonVisibility (true);
-						MainClass.FrmPayPanel.changeReciboButtonVisibility (false);
+						//MainClass.FrmPayPanel.changeCancelButtonVisibility (true);
+						//MainClass.FrmPayPanel.changeReciboButtonVisibility (false);
 
 						MainClass.FrmPayPanel.Visible = true;
 						//MainClass.MainWin.Visible = false;
@@ -162,7 +154,7 @@ namespace paySolution
 					case payStatus.withMoney: 			//Con dinero depositado y esperando más para completar el monto a pagar
 						break;
 					case payStatus.withAmountPayed:		//Depósito de dinero completado
-						MainClass.FrmPayPanel.changeCancelButtonVisibility (false);
+						//MainClass.FrmPayPanel.changeCancelButtonVisibility (false);
 
 						//TODO: INSERTAR LOGICA PARA GUARDAR EN BASE DE DATOS EL PAGO REALIZADO
 
@@ -173,7 +165,7 @@ namespace paySolution
 					case payStatus.ticketProcessed:
 						break;
 					case payStatus.payProcessTerminated:
-						MainClass.FrmPayPanel.changeReciboButtonVisibility (true);
+						//MainClass.FrmPayPanel.changeReciboButtonVisibility (true);
 
 						dlg.show (MainClass.FrmPayPanel, Gtk.MessageType.Info, resourseMessages.exitMessage, 
 							new EventHandler( delegate(object o, EventArgs args) {
@@ -184,7 +176,7 @@ namespace paySolution
 						);
 						break;
 					case payStatus.printingRecepit:		//Impresión de recibo de pago
-						MainClass.FrmPayPanel.changeReciboButtonVisibility (false);
+						//MainClass.FrmPayPanel.changeReciboButtonVisibility (false);
 						break;	
 					case payStatus.recepitPrinted:		//Recibo impreso
 						dlg.show (MainClass.FrmPayPanel, Gtk.MessageType.Info, resourseMessages.printingReceiptMessage,
