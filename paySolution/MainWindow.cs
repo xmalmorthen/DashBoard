@@ -9,44 +9,27 @@ using System.Threading;
 
 public partial class MainWindow: Gtk.Window
 {
-	public enum mainWindowNotification
-	{
-		insertTicket,
-		readingTicket,
-		errReadingTicket,
-		calculatingAmount
-	}
-
-	string[] colors = new string[] {"white",
-									"black", 
-									"#fffc00", 	//amarillo
-									"#ff0000",	//rojo
-									"#6f0000"	//marron
-	};
-
-	private void setNotification(mainWindowNotification notificationType){
+	private void setNotification(paySolution.payLogic.payStatus notificationType){
 		Thread thrpayProcessTerminated = new Thread (new ThreadStart (delegate {
 			Gtk.Application.Invoke( delegate {
 
 				string notification = string.Empty;
-				string color = colors [0];
+				string color = "#fff";
 
 				switch (notificationType) {
-				case mainWindowNotification.insertTicket:					
+				case paySolution.payLogic.payStatus.insertTicket:					
 					notification = markup.make (Culturize.GetString (18), color, null, "60000", "heavy");
 					break;
-				case mainWindowNotification.readingTicket:
-					notification = string.Format ("{0}\n{1}",
-						markup.make (Culturize.GetString (19), color, null, "60000", "heavy"),
-						markup.make (Culturize.GetString (9), colors[2], null, "40000", "heavy"));
+				case paySolution.payLogic.payStatus.readingTicket:
+					
 					break;
-				case mainWindowNotification.errReadingTicket:
+				case paySolution.payLogic.payStatus.errorReadingTicket:
 					notification = markup.make (Culturize.GetString (18), color, null, "60000", "heavy");
 					break;
-				case mainWindowNotification.calculatingAmount:
+				case paySolution.payLogic.payStatus.calculatingAmount:
 					notification = string.Format ("{0}\n{1}",
 						markup.make (Culturize.GetString (20), color, null, "60000", "heavy"),
-						markup.make (Culturize.GetString (21), colors[0], null, "40000", "heavy"));
+						markup.make (Culturize.GetString (21), color, null, "40000", "heavy"));
 					break;
 				}
 
@@ -56,8 +39,8 @@ public partial class MainWindow: Gtk.Window
 		thrpayProcessTerminated.Start ();
 	}
 
-	private mainWindowNotification notificationState;
-	public mainWindowNotification SetNotification{
+	private paySolution.payLogic.payStatus notificationState;
+	public paySolution.payLogic.payStatus SetNotification{
 		set {
 			notificationState = value;
 			setNotification (value);
@@ -78,9 +61,11 @@ public partial class MainWindow: Gtk.Window
 		this.configureBackgroundForm ();
 		this.configureImagesControls ();
 
-		this.Maximize ();
-
-		imgLogo.Pixbuf = new Gdk.Pixbuf (cnfg.GetLogoImage);
+		#if !DEBUG
+			this.Maximize ();
+		#endif
+			
+		imgLogo.Pixbuf = new Gdk.Pixbuf (cnfg.GetLogoImage);	
 	} 
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -170,11 +155,32 @@ public partial class MainWindow: Gtk.Window
 		BitacoraModel.addItem ("Error de resepción de puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("{0}",err.ToString()),"ERROR");
 	}
 
-	private void configurePayLogic(decimal toPay){
-		payLogic.ToPay = toPay;
-		payLogic.Payable = payLogic.ToPay;
-		payLogic.ToReturn = 0.00m;
-		payLogic.Status = payLogic.payStatus.waithToMoney;
+	/* Inicio
+	 * Implementación de simulación
+	 * Eliminar al terminar
+	 */ 
+	Int16 pasos = 1; //Equivalente a Insertar ticket
+	protected void OnButton1Clicked (object sender, EventArgs e)
+	{
+		pasos++;
+		switch (pasos) {
+		case 1:
+			payLogic.Status = payLogic.payStatus.insertTicket;
+			break;
+		case 2:
+			payLogic.Status = payLogic.payStatus.readingTicket;
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		}
 	}
-
+	/* Fin
+	 * Implementación de simulación
+	 */ 
 }

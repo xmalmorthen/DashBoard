@@ -48,20 +48,26 @@ namespace paySolution
 
 		public static MainWindow MainWin;
 		public static frmPayPanel FrmPayPanel;
+		public static frmPublicity FrmPublicity;
 
 		private static void loadPanels(){
+			FrmPublicity = new frmPublicity ();
+			FrmPublicity.Visible = false;
+
 			FrmPayPanel = new frmPayPanel ();
 			FrmPayPanel.Visible = false;
+
 			MainWin = new MainWindow ();
-			payLogic.Status = payLogic.payStatus.insertTicket;
 			MainWin.Visible = false;
+
+			payLogic.Status = payLogic.payStatus.insertTicket;
 		}
 
 		private static void unloadPanels(){
+			FrmPublicity.Destroy ();
 			FrmPayPanel.Destroy ();
 			MainWin.Destroy ();
 		}
-
-
+			
 	}
 }

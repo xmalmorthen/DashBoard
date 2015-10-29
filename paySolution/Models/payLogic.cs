@@ -8,6 +8,7 @@ namespace paySolution
 	{
 		public enum payStatus
 		{
+			init,							//Sin estatus
 			insertTicket, 					//En espera de ticket
 			readingTicket,					//Leyendo el ticket
 			errorReadingTicket,				//Error al leer el ticket
@@ -43,11 +44,8 @@ namespace paySolution
 				if (value < 0) {
 					ToReturn = value * -1;
 					value = 0m;
-					paymentFlow ();
 				}
-
 				payable = value;
-				//MainClass.FrmPayPanel.refreshPayLabels ();
 			}
 		}
 
@@ -72,60 +70,6 @@ namespace paySolution
 			}
 		}
 			
-		public static string SetNotification{
-			set { 
-				Application.Invoke (delegate {
-					//MainClass.FrmPayPanel.SetNotification = value;
-				});
-			}
-		}
-
-		public static void RefreshNotification(payStatus status){
-			try {
-				switch (status) {
-				case payStatus.insertTicket: 		//En espera de ticket
-					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.insertTicket;
-					break;
-				case payStatus.readingTicket:		//Leyendo el ticket
-					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.readingTicket;
-					break;
-				case payStatus.errorReadingTicket:	//Error al leer el ticket
-					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.errReadingTicket;
-					break;
-				case payStatus.calculatingAmount:	//Calculando monto a pagar
-					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.calculatingAmount;
-					break;
-				case payStatus.waithToMoney: 		//Esperando depósito de dinero
-					payLogic.SetNotification = Culturize.GetString (7);
-					break;
-				case payStatus.cancelPay: 			//Proceso de pago cancelado
-					MainClass.MainWin.SetNotification = MainWindow.mainWindowNotification.insertTicket;
-					break;
-				case payStatus.withMoney: 			//Con dinero depositado y esperando más para completar el monto a pagar
-					break;
-				case payStatus.withAmountPayed:		//Depósito de dinero completado
-					payLogic.SetNotification = string.Format ("{0}, {1}...",Culturize.GetString (8),Culturize.GetString (9));
-					break;
-				case payStatus.withAmountPayedandReturnMoney:
-					payLogic.SetNotification = Culturize.GetString (10);
-					break;
-				case payStatus.ticketProcessed:
-						payLogic.SetNotification = Culturize.GetString (11);
-					break;
-				case payStatus.payProcessTerminated:
-					payLogic.SetNotification = Culturize.GetString (12);
-					break;
-				case payStatus.printingRecepit:		//Impresión de recibo de pago
-					payLogic.SetNotification =  string.Format ("{0}, {1}...",Culturize.GetString (13),Culturize.GetString (9));
-					break;
-				case payStatus.recepitPrinted:		//Recibo impreso
-					payLogic.SetNotification = resourseMessages.printingReceiptMessage;
-					break;
-				}	
-			} catch (Exception) {}
-
-		}
-
 		private static payStatus status;
 		public static payStatus Status{
 			get {
@@ -133,20 +77,21 @@ namespace paySolution
 			}
 			set {
 				if (Status != value) {
-					RefreshNotification (value);
+
+					MainClass.MainWin.Visible = value == payStatus.insertTicket;
+					MainClass.FrmPublicity.Visible = value == payStatus.readingTicket || value == payStatus.calculatingAmount;
+					MainClass.FrmPayPanel.Visible = !MainClass.MainWin.Visible && !MainClass.FrmPublicity.Visible;
 
 					switch (value) {
 					case payStatus.insertTicket: 		//En espera de ticket
-						//MainClass.MainWin.Visible = true;					
-						MainClass.FrmPayPanel.Visible = false;
-
+						MainClass.MainWin.SetNotification = payStatus.insertTicket;
+						break;
+					case payStatus.readingTicket:
+						break;
+					case payStatus.errorReadingTicket:	//Error al leer ticket
+						MainClass.MainWin.SetNotification = payStatus.errorReadingTicket;
 						break;
 					case payStatus.waithToMoney: 		//Esperando depósito de dinero
-						//MainClass.FrmPayPanel.changeCancelButtonVisibility (true);
-						//MainClass.FrmPayPanel.changeReciboButtonVisibility (false);
-
-						MainClass.FrmPayPanel.Visible = true;
-						//MainClass.MainWin.Visible = false;
 						break;
 					case payStatus.cancelPay: 			//Proceso de pago cancelado
 						Status = payStatus.insertTicket;
@@ -154,64 +99,21 @@ namespace paySolution
 					case payStatus.withMoney: 			//Con dinero depositado y esperando más para completar el monto a pagar
 						break;
 					case payStatus.withAmountPayed:		//Depósito de dinero completado
-						//MainClass.FrmPayPanel.changeCancelButtonVisibility (false);
-
-						//TODO: INSERTAR LOGICA PARA GUARDAR EN BASE DE DATOS EL PAGO REALIZADO
-
 						break;
 					case payStatus.withAmountPayedandReturnMoney:
-						
 						break;
 					case payStatus.ticketProcessed:
 						break;
 					case payStatus.payProcessTerminated:
-						//MainClass.FrmPayPanel.changeReciboButtonVisibility (true);
-
-						dlg.show (MainClass.FrmPayPanel, Gtk.MessageType.Info, resourseMessages.exitMessage, 
-							new EventHandler( delegate(object o, EventArgs args) {
-								if (Status == payStatus.payProcessTerminated) {
-									payLogic.Status = payLogic.payStatus.insertTicket;
-								}
-							})
-						);
 						break;
 					case payStatus.printingRecepit:		//Impresión de recibo de pago
-						//MainClass.FrmPayPanel.changeReciboButtonVisibility (false);
 						break;	
 					case payStatus.recepitPrinted:		//Recibo impreso
-						dlg.show (MainClass.FrmPayPanel, Gtk.MessageType.Info, resourseMessages.printingReceiptMessage,
-							new EventHandler( delegate(object o, EventArgs args) {
-								payLogic.Status = payLogic.payStatus.insertTicket;
-							})
-						);
 						break;
 					}
 					status = value;
 				}
 			}
-		}
-
-		private static void paymentFlow(){
-			Status = payStatus.withAmountPayed;
-			if (ToReturn > 0) {
-				Status = payStatus.withAmountPayedandReturnMoney;
-			}
-
-			Thread thrTicketProccessed = new Thread (new ThreadStart (delegate {
-				System.Threading.Thread.Sleep (int.Parse(cnfg.getConfiguration("sleepTime")));
-				Application.Invoke( delegate {
-					payLogic.Status = payStatus.ticketProcessed;
-					System.Threading.Thread.Sleep (int.Parse(cnfg.getConfiguration("sleepTime")));
-					Thread thrpayProcessTerminated = new Thread (new ThreadStart (delegate {
-						System.Threading.Thread.Sleep (int.Parse(cnfg.getConfiguration("sleepTime")));
-						Application.Invoke( delegate {
-							payLogic.Status = payStatus.payProcessTerminated;
-						});
-					}));
-					thrpayProcessTerminated.Start ();
-				});
-			}));
-			thrTicketProccessed.Start ();
 		}
 
 	}

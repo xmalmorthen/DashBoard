@@ -37,11 +37,6 @@ namespace paySolution
 			return DataBase.CallSp ("pa_get_Idioms",false);
 		}
 
-		public static void changeLenguaje(string siglas){
-			MainClass.Languaje = siglas;
-			payLogic.RefreshNotification (payLogic.Status);
-		}
-
 		public static string GetParameter(string parameter){
 			string response = string.Empty;
 			try {

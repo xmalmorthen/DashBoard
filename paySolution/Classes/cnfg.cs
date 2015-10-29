@@ -97,6 +97,12 @@ namespace paySolution
 			return System.IO.Path.Combine (baseDirectory,ImagesPath,getConfiguration("baseImagesPath"),imageName);
 		}
 
+		public static string GetPublicityImage{
+			get {
+				return System.IO.Path.Combine (baseDirectory, ImagesPath, getConfiguration ("PublicityImagesPath"), getConfiguration ("PublicityImageDefault"));
+			}
+		}
+
 		public static string GetCheckerName(int id){
 			string response = string.Empty;
 			try {

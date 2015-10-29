@@ -196,7 +196,10 @@ namespace paySolution
 			//this.Shown  += new EventHandler (this.OnShown);
 
 			this.Build ();
-			this.Maximize ();
+
+			#if !DEBUG
+				this.Maximize ();
+			#endif
 
 			/*this.configureBackgroundForm ();
 

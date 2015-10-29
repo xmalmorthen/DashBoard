@@ -87,6 +87,8 @@
     <Compile Include="Classes\dlg.cs" />
     <Compile Include="Forms\frmNotificationsWin.cs" />
     <Compile Include="gtk-gui\paySolution.frmNotificationsWin.cs" />
+    <Compile Include="Forms\frmPublicity.cs" />
+    <Compile Include="gtk-gui\paySolution.frmPublicity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -145,6 +147,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Assets\images\main\borderVertical.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\publicity\publicity.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
