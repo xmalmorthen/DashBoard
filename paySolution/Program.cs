@@ -32,14 +32,18 @@ namespace paySolution
 
 				loadPanels ();
 
-				string messageResponse;
+				FrmWellcomePension = new frmWellcomePension ();
+				FrmWellcomePension.Visible = true;
+				Application.Run ();
+
+				/*string messageResponse;
 				if (MainWin.AutoConnectPorts (out messageResponse)){					
 					MainWin.Visible = true;
 					Application.Run ();
 				} else {
 					dlg.show (null,DialogFlags.DestroyWithParent, MessageType.Error, ButtonsType.Ok, string.Format ("Ocurrió un problema al intentar conectar al/los puerto(s) [ {0} ]",messageResponse));
 					unloadPanels ();
-				}
+				}*/
 
 				DataBase.Close ();
 			}
@@ -49,10 +53,18 @@ namespace paySolution
 		public static MainWindow MainWin;
 		public static frmPayPanel FrmPayPanel;
 		public static frmPublicity FrmPublicity;
+		public static frmRenovation FrmRenovation;
+		public static frmWellcomePension FrmWellcomePension;
 
 		private static void loadPanels(){
 			FrmPublicity = new frmPublicity ();
 			FrmPublicity.Visible = false;
+
+			FrmRenovation = new frmRenovation ();
+			FrmRenovation.Visible = false;
+
+			FrmWellcomePension = new frmWellcomePension ();
+			FrmWellcomePension.Visible = false;
 
 			FrmPayPanel = new frmPayPanel ();
 			FrmPayPanel.Visible = false;
@@ -65,6 +77,7 @@ namespace paySolution
 
 		private static void unloadPanels(){
 			FrmPublicity.Destroy ();
+			FrmRenovation.Destroy ();
 			FrmPayPanel.Destroy ();
 			MainWin.Destroy ();
 		}

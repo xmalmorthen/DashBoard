@@ -83,6 +83,9 @@ namespace paySolution
 							case "q": 			//Lectura de ticket
 								readTicket (dataInput);								
 							break;
+							case "w": 			//Lectura de ticket
+								readTicket (dataInput);								
+							break;
 						}
 					break;
 					case "com2":

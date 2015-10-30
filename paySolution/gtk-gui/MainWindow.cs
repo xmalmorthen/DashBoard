@@ -18,6 +18,8 @@ public partial class MainWindow
 	private global::Gtk.Alignment alignment2;
 	
 	private global::Gtk.Button button1;
+	
+	private global::Gtk.Button button2;
 
 	protected virtual void Build ()
 	{
@@ -93,12 +95,23 @@ public partial class MainWindow
 		w6.Position = 1;
 		w6.Expand = false;
 		w6.Fill = false;
-		this.vbox2.Add (this.hbox1);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox1]));
-		w7.PackType = ((global::Gtk.PackType)(1));
-		w7.Position = 4;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.button2 = new global::Gtk.Button ();
+		this.button2.CanFocus = true;
+		this.button2.Name = "button2";
+		this.button2.UseUnderline = true;
+		this.button2.Label = global::Mono.Unix.Catalog.GetString ("...");
+		this.hbox1.Add (this.button2);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.button2]));
+		w7.Position = 2;
 		w7.Expand = false;
 		w7.Fill = false;
+		this.vbox2.Add (this.hbox1);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox1]));
+		w8.PackType = ((global::Gtk.PackType)(1));
+		w8.Position = 4;
+		w8.Expand = false;
+		w8.Fill = false;
 		this.Add (this.vbox2);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -108,5 +121,6 @@ public partial class MainWindow
 		this.Hide ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
+		this.button2.Clicked += new global::System.EventHandler (this.OnButton2Clicked);
 	}
 }
