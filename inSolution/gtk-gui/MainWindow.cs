@@ -172,7 +172,7 @@ public partial class MainWindow
 		this.paned = new global::Gtk.HPaned ();
 		this.paned.CanFocus = true;
 		this.paned.Name = "paned";
-		this.paned.Position = 382;
+		this.paned.Position = 441;
 		this.paned.BorderWidth = ((uint)(1));
 		// Container child paned.Gtk.Paned+PanedChild
 		this.vbox5 = new global::Gtk.VBox ();
@@ -316,7 +316,7 @@ public partial class MainWindow
 		// Container child hbox8.Gtk.Box+BoxChild
 		this.btnconnect = new global::Gtk.Button ();
 		this.btnconnect.CanFocus = true;
-		this.btnconnect.Name = "btnconnectbtnconnect";
+		this.btnconnect.Name = "btnconnect";
 		this.btnconnect.UseUnderline = true;
 		global::Gtk.Image w19 = new global::Gtk.Image ();
 		w19.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-disconnect", global::Gtk.IconSize.Button);

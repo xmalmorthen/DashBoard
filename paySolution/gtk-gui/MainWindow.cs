@@ -60,6 +60,7 @@ public partial class MainWindow
 		this.lblNotification.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"#fff\" size=\"60000\" weight=\"normal\" style=\"normal\">¡¡¡Área de no" +
 		"tificaciones!!!</span>");
 		this.lblNotification.UseMarkup = true;
+		this.lblNotification.Justify = ((global::Gtk.Justification)(2));
 		this.vbox2.Add (this.lblNotification);
 		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.lblNotification]));
 		w3.Position = 2;

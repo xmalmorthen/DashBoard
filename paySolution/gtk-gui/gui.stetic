@@ -55,6 +55,7 @@
             <property name="HeightRequest">0</property>
             <property name="LabelProp" translatable="yes">&lt;span foreground="#fff" size="60000" weight="normal" style="normal"&gt;¡¡¡Área de notificaciones!!!&lt;/span&gt;</property>
             <property name="UseMarkup">True</property>
+            <property name="Justify">Center</property>
           </widget>
           <packing>
             <property name="Position">2</property>
@@ -99,6 +100,22 @@
               </widget>
               <packing>
                 <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="button2">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">...</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnButton2Clicked" />
+              </widget>
+              <packing>
+                <property name="Position">2</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>

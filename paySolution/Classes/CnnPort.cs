@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO.Ports;
 using NLog;
+using System.Collections.Generic;
 
 namespace paySolution
 {

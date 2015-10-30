@@ -6,6 +6,7 @@ using NLog;
 using System.IO.Ports;
 using MySql.Data.MySqlClient;
 using System.Threading;
+using System.Collections.Generic;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -14,22 +15,25 @@ public partial class MainWindow: Gtk.Window
 			Gtk.Application.Invoke( delegate {
 
 				string notification = string.Empty;
-				string color = "#fff";
+				string[] color = new string[] { 
+					"#fff",
+					"#ff0000" 
+				};
 
 				switch (notificationType) {
 				case paySolution.payLogic.payStatus.insertTicket:					
-					notification = markup.make (Culturize.GetString (18), color, null, "60000", "heavy");
+					notification = markup.make (Culturize.GetString (18), color[0], null, "60000", "heavy");
 					break;
 				case paySolution.payLogic.payStatus.readingTicket:
 					
 					break;
 				case paySolution.payLogic.payStatus.errorReadingTicket:
-					notification = markup.make (Culturize.GetString (18), color, null, "60000", "heavy");
+					notification = markup.make (Culturize.GetString (22), color[1], null, "60000", "heavy");
 					break;
-				case paySolution.payLogic.payStatus.calculatingAmount:
+				case paySolution.payLogic.payStatus.errorGeneral:
 					notification = string.Format ("{0}\n{1}",
-						markup.make (Culturize.GetString (20), color, null, "60000", "heavy"),
-						markup.make (Culturize.GetString (21), color, null, "40000", "heavy"));
+						markup.make (Culturize.GetString (23), color[1], null, "60000", "heavy"),
+						markup.make (Culturize.GetString (24), color[1], null, "40000", "heavy"));
 					break;
 				}
 
@@ -113,6 +117,7 @@ public partial class MainWindow: Gtk.Window
 		return result;
 	}
 
+	public Dictionary<string,CnnPort> cnnPortList = new Dictionary<string,CnnPort>();
 	private Boolean connectToPort(  string port,
 		int baudRate,
 		Parity parity,
@@ -130,8 +135,10 @@ public partial class MainWindow: Gtk.Window
 			new SerialDataReceivedEventHandler(sport_DataReceived),
 			new SerialErrorReceivedEventHandler(sport_ErrorReceived));		
 		if (cnnPort.Open (out messageResponse)) {			
+			cnnPortList.Add (port, cnnPort);
 			response = true;
 		}
+
 		return response;
 	}
 
@@ -143,10 +150,10 @@ public partial class MainWindow: Gtk.Window
 
 		byte[] buf = new byte[thisPort.BytesToRead];
 		thisPort.Read(buf, 0, buf.Length);
-		foreach (Byte b in buf)
-		{
-			BitacoraModel.addItem ("Leer puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("Dato recibido [ {0} ] ",b));
-		}
+
+		string dataReceived = System.Text.Encoding.UTF8.GetString (buf);
+		BitacoraModel.addItem ("Cadena recibida",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("Cadena [ {0} ] ",dataReceived));
+		payLogic.LogicFlow (thisPort.PortName,dataReceived);
 	}
 
 	void sport_ErrorReceived(object sender, SerialErrorReceivedEventArgs e){
@@ -155,31 +162,22 @@ public partial class MainWindow: Gtk.Window
 		BitacoraModel.addItem ("Error de resepción de puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("{0}",err.ToString()),"ERROR");
 	}
 
-	/* Inicio
+	/* TODO: Inicio
 	 * Implementación de simulación
 	 * Eliminar al terminar
 	 */ 
-	Int16 pasos = 1; //Equivalente a Insertar ticket
 	protected void OnButton1Clicked (object sender, EventArgs e)
 	{
-		pasos++;
-		switch (pasos) {
-		case 1:
-			payLogic.Status = payLogic.payStatus.insertTicket;
-			break;
-		case 2:
-			payLogic.Status = payLogic.payStatus.readingTicket;
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		}
+		string dataReceived = "q";
+		payLogic.LogicFlow ("COM1", dataReceived);
 	}
+
+	protected void OnButton2Clicked (object sender, EventArgs e)
+	{
+		string dataReceived = "w";
+		payLogic.LogicFlow ("COM1", dataReceived);
+	}
+
 	/* Fin
 	 * Implementación de simulación
 	 */ 
