@@ -42,3 +42,4 @@ Thumbs.db
 #errorlog
 /logs
 NLog.config
+~$*.docx
