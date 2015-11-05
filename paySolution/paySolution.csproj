@@ -164,6 +164,9 @@
     <None Include="Assets\images\backgrounds\backGround3.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Assets\images\backgrounds\backGround4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\images\gifs\ticket.png">

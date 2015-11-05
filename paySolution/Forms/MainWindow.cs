@@ -69,8 +69,12 @@ public partial class MainWindow: Gtk.Window
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{	
+		this.FocusInEvent += new FocusInEventHandler (delegate(object o, FocusInEventArgs args) {
+			this.configureBackgroundForm ();
+		});
+
 		Build ();
-		this.configureBackgroundForm ();
+
 		this.configureImagesControls ();
 
 		#if !DEBUG

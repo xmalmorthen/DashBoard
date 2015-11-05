@@ -8,7 +8,7 @@ namespace paySolution
 	{
 
 		private void configureBackgroundForm(){
-			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage(cnfg.getConfiguration("formPensionRenovationBackground"))));
+			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage(cnfg.getConfiguration("formMainBackground"))));
 		}
 
 		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -90,9 +90,11 @@ namespace paySolution
 		public frmRenovation () :
 			base (Gtk.WindowType.Toplevel)
 		{
-			this.Build ();
+			this.FocusInEvent += new FocusInEventHandler (delegate(object o, FocusInEventArgs args) {
+				this.configureBackgroundForm ();
+			});
 
-			this.configureBackgroundForm ();
+			this.Build ();
 
 			#if !DEBUG
 			this.Maximize ();

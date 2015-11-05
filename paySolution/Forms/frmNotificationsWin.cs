@@ -17,11 +17,14 @@ namespace paySolution
 		{
 			string imagePath = cnfg.GetBaseImage ("view");
 
+			this.FocusInEvent += new FocusInEventHandler (delegate(object o, FocusInEventArgs args) {
+				this.configureBackgroundForm ();
+			});
+
+
 			this.Build ();
 
 			this.Destroyed += OnDestroyedEvent;
-
-			this.configureBackgroundForm ();
 
 			this.KeepAbove = true;
 			this.TypeHint = Gdk.WindowTypeHint.Dialog;
