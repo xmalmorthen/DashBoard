@@ -22,6 +22,7 @@ namespace paySolution
 			this.DefaultWidth = 1280;
 			this.DefaultHeight = 768;
 			this.Show ();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		}
 	}
 }

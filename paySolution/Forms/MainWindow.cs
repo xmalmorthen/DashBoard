@@ -7,6 +7,7 @@ using System.IO.Ports;
 using MySql.Data.MySqlClient;
 using System.Threading;
 using System.Collections.Generic;
+using Pango;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -27,7 +28,7 @@ public partial class MainWindow: Gtk.Window
 				case paySolution.payLogic.payStatus.readingTicket:
 					
 					break;
-				case paySolution.payLogic.payStatus.errorReadingTicket:
+				case paySolution.payLogic.payStatus.errorReadingTicketorRFID:
 					notification = markup.make (Culturize.GetString (22), color[1], null, "60000", "heavy");
 					break;
 				case paySolution.payLogic.payStatus.errorGeneral:
@@ -36,6 +37,13 @@ public partial class MainWindow: Gtk.Window
 						markup.make (Culturize.GetString (24), color[1], null, "40000", "heavy"));
 					break;
 				}
+
+				string[] fontType = new string[] { 
+					"HelvLight",
+					"Letter Gothic Std" 
+				};
+
+				lblNotification.ModifyFont (FontDescription.FromString (fontType[1]));
 
 				lblNotification.LabelProp = notification;
 			});
@@ -52,7 +60,7 @@ public partial class MainWindow: Gtk.Window
 	}
 		
 	private void configureBackgroundForm(){
-		mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
+		mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage(cnfg.getConfiguration("formMainBackground"))));
 	}
 
 	private void configureImagesControls(){

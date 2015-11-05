@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="MainWindow.cs" />
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,10 +88,10 @@
     <Compile Include="gtk-gui\paySolution.frmNotificationsWin.cs" />
     <Compile Include="Forms\frmPublicity.cs" />
     <Compile Include="gtk-gui\paySolution.frmPublicity.cs" />
-    <Compile Include="frmRenovation.cs" />
     <Compile Include="gtk-gui\paySolution.frmRenovation.cs" />
-    <Compile Include="frmWellcomePension.cs" />
-    <Compile Include="gtk-gui\paySolution.frmWellcomePension.cs" />
+    <Compile Include="Forms\frmRenovation.cs" />
+    <Compile Include="Forms\MainWindow.cs" />
+    <Compile Include="Models\renewBoard.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -157,6 +156,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Assets\images\main\major.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\backgrounds\backGround2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\backgrounds\backGround3.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

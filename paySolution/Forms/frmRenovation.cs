@@ -8,7 +8,7 @@ namespace paySolution
 	{
 
 		private void configureBackgroundForm(){
-			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
+			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage(cnfg.getConfiguration("formPensionRenovationBackground"))));
 		}
 
 		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -61,27 +61,11 @@ namespace paySolution
 			lblVencera.LabelProp = markup.make (Culturize.GetString (30), color[0], null, "30000", "heavy");
 		}
 
-		private void populateDataLabels(){
-			string DataVence,
-			DataRenovar,
-			DataTotalPago,
-			DataPensionVencera;
-
-			/*
-			 * TODO: Logica para obtener la información
-			 */ 
-			DataVence = "DD/MM/YYYY";
-			DataRenovar = "0";
-			DataTotalPago = "000.00";
-			DataPensionVencera = "DD/MM/YYYY";
-			/*
-			 *
-			 */
-
-			lblDataVence.LabelProp = markup.make (DataVence, color[0], null, "30000", "heavy");
-			lblDataRenovar.LabelProp = markup.make (DataRenovar, color[0], null, "30000", "heavy");
-			lblDataTotalPago.LabelProp = markup.make (string.Format("$ {0}",DataTotalPago), color[0], null, "30000", "heavy");
-			lblDataPensionVencera.LabelProp = markup.make (DataPensionVencera, color[0], null, "30000", "heavy");
+		public void populateDataLabels(){
+			lblDataVence.LabelProp = markup.make (renewBoard.PensionExpires.ToShortDateString (), color[0], null, "30000", "heavy");
+			lblDataRenovar.LabelProp = markup.make (renewBoard.RenovateMonths.ToString(), color[0], null, "30000", "heavy");
+			lblDataTotalPago.LabelProp = markup.make (string.Format("$ {0}",renewBoard.TotalPay.ToString()), color[0], null, "30000", "heavy");
+			lblDataPensionVencera.LabelProp = markup.make (renewBoard.PensionWillExpires.ToShortDateString(), color[0], null, "30000", "heavy");
 		}
 
 		private void putLabelBorders(){
@@ -119,6 +103,24 @@ namespace paySolution
 			this.putLabels ();
 			this.populateDataLabels ();
 			this.putLabelBorders ();
+		}
+
+		protected void OnButton1Clicked (object sender, EventArgs e)
+		{
+			string dataReceived = "+";
+			payLogic.LogicFlow ("COM1", dataReceived);
+		}
+
+		protected void OnButton3Clicked (object sender, EventArgs e)
+		{
+			string dataReceived = "A";
+			payLogic.LogicFlow ("COM1", dataReceived);
+		}
+
+		protected void OnButton4Clicked (object sender, EventArgs e)
+		{
+			string dataReceived = "C";
+			payLogic.LogicFlow ("COM1", dataReceived);
 		}
 	}
 }

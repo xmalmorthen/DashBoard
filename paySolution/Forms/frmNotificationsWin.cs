@@ -9,7 +9,7 @@ namespace paySolution
 		Timer close,languaje;
 
 		private void configureBackgroundForm(){
-			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
+			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage("formBackground")));
 		}
 			
 		public frmNotificationsWin (Window parent_window, MessageType messageType,string  message, EventHandler OnDestroyedEvent = null, int? closeInterval = null) :

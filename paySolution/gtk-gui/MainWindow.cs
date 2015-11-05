@@ -89,7 +89,7 @@ public partial class MainWindow
 		this.button1.CanFocus = true;
 		this.button1.Name = "button1";
 		this.button1.UseUnderline = true;
-		this.button1.Label = global::Mono.Unix.Catalog.GetString ("...");
+		this.button1.Label = global::Mono.Unix.Catalog.GetString ("Ticket");
 		this.hbox1.Add (this.button1);
 		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.button1]));
 		w6.Position = 1;
@@ -100,7 +100,7 @@ public partial class MainWindow
 		this.button2.CanFocus = true;
 		this.button2.Name = "button2";
 		this.button2.UseUnderline = true;
-		this.button2.Label = global::Mono.Unix.Catalog.GetString ("...");
+		this.button2.Label = global::Mono.Unix.Catalog.GetString ("RFID");
 		this.hbox1.Add (this.button2);
 		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.button2]));
 		w7.Position = 2;

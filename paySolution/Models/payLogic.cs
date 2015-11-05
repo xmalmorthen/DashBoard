@@ -13,8 +13,10 @@ namespace paySolution
 			init,							//Sin estatus
 			insertTicket, 					//En espera de ticket
 			readingTicket,					//Leyendo el ticket
-			errorReadingTicket,				//Error al leer el ticket
+			readingRFID,					//Leyendo RFID
+			errorReadingTicketorRFID,		//Error al leer el ticket o RFID
 			calculatingAmount,				//Calculando monto a pagar
+			waithToRenewBoard,				//Esperando acción de renovación de pensión
 			waithToMoney,					//Esperando depósito de dinero
 			cancelPay, 						//Proceso de pago cancelado
 			withMoney, 						//Con dinero depositado y esperando más para completar el monto a pagar
@@ -83,15 +85,27 @@ namespace paySolution
 							case "q": 			//Lectura de ticket
 								readTicket (dataInput);								
 							break;
-							case "w": 			//Lectura de ticket
-								readTicket (dataInput);								
+							case "w": 			//Lectura de RFID
+								readRFID (dataInput);
+							break;
+							case "+":			//agregar mes a la renovación de la pensión
+								renewBoard.RenovateMonths = renewBoard.RenovateMonths < 5 ? renewBoard.RenovateMonths + 1 : 0;
+								MainClass.FrmRenovation.populateDataLabels();
+							break;
+							case "a":			//aceptar renovación de pensión
+								payLogic.Status = payLogic.payStatus.readingTicket;
+								changeStatusAfterSleepTime(payLogic.payStatus.waithToMoney,true);	//tiempo de espera para mostrar publicidad
+							break;
+							case "c":			//cancelar renovación de pensión
+								MainClass.FrmPublicity.Visible = true;
+								MainClass.FrmRenovation.Visible = false;
+								changeStatusAfterSleepTime(payLogic.payStatus.insertTicket,true);
 							break;
 						}
 					break;
 					case "com2":
 						switch (dataInput.Trim().ToLower()) {
-							case "q": 			//Lectura de ticket
-								payLogic.Status = payLogic.payStatus.readingTicket;
+							case "q":
 							break;
 						}
 					break;			
@@ -100,7 +114,7 @@ namespace paySolution
 				Logger logger = LogManager.GetCurrentClassLogger();
 				logger.Error(ex,ex.Message);
 				if (ex.GetType () == typeof(FieldAccessException)) {
-					payLogic.Status = payLogic.payStatus.errorReadingTicket;
+					payLogic.Status = payLogic.payStatus.errorReadingTicketorRFID;
 				}else{
 					MainClass.MainWin.SetNotification = payStatus.errorGeneral;
 					changeStatusAfterSleepTime(payLogic.payStatus.insertTicket);
@@ -122,6 +136,16 @@ namespace paySolution
 			payLogic.ToPay = 50.15m;	//valor simulado
 
 			changeStatusAfterSleepTime(payLogic.payStatus.waithToMoney,true);	//tiempo de espera para mostrar publicidad
+		}
+
+		private static void readRFID(string dataInput){
+			payLogic.Status = payLogic.payStatus.readingRFID;
+
+			renewBoard.PensionExpires = renewBoard.getPensionExpires (dataInput);;
+			renewBoard.RenovateMonths = 1;
+
+			MainClass.FrmRenovation.populateDataLabels();
+			payLogic.Status = payLogic.payStatus.waithToRenewBoard;
 		}
 
 		private static Boolean senDataToPort (string portName, string data){
@@ -148,16 +172,17 @@ namespace paySolution
 			}
 			set {
 				if (Status != value) {					
-					MainClass.MainWin.Visible = value == payStatus.insertTicket || value == payStatus.errorReadingTicket || value == payStatus.errorGeneral;
+					MainClass.MainWin.Visible = value == payStatus.insertTicket || value == payStatus.errorReadingTicketorRFID || value == payStatus.errorGeneral;
+					MainClass.FrmRenovation.Visible = value == payStatus.waithToRenewBoard;
 					MainClass.FrmPublicity.Visible = value == payStatus.readingTicket || value == payStatus.calculatingAmount;
-					MainClass.FrmPayPanel.Visible = !MainClass.MainWin.Visible && !MainClass.FrmPublicity.Visible;
+					MainClass.FrmPayPanel.Visible = !MainClass.MainWin.Visible && !MainClass.FrmPublicity.Visible && !MainClass.FrmRenovation.Visible;
 
 					switch (value) {
 						case payStatus.insertTicket: 		//En espera de ticket
 							MainClass.MainWin.SetNotification = payStatus.insertTicket;
 						break;
-						case payStatus.errorReadingTicket:	//Error al leer ticket
-							MainClass.MainWin.SetNotification = payStatus.errorReadingTicket;
+						case payStatus.errorReadingTicketorRFID:	//Error al leer ticket
+							MainClass.MainWin.SetNotification = payStatus.errorReadingTicketorRFID;
 							changeStatusAfterSleepTime (payLogic.payStatus.insertTicket);
 						break;
 					}
@@ -172,7 +197,7 @@ namespace paySolution
 				Application.Invoke( delegate {
 					switch (_status) {
 						case payStatus.insertTicket:
-						case payStatus.errorReadingTicket:
+						case payStatus.errorReadingTicketorRFID:
 						case payStatus.errorGeneral:
 							MainClass.MainWin.SetNotification = _status;
 						break;

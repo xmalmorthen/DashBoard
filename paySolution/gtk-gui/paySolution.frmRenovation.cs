@@ -106,6 +106,14 @@ namespace paySolution
 		
 		private global::Gtk.Image imgMajor2;
 		
+		private global::Gtk.HBox hbox13;
+		
+		private global::Gtk.Button button1;
+		
+		private global::Gtk.Button button3;
+		
+		private global::Gtk.Button button4;
+		
 		private global::Gtk.Alignment alignment1;
 
 		protected virtual void Build ()
@@ -505,6 +513,9 @@ namespace paySolution
 			w41.Position = 0;
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.imgMajor = new global::Gtk.Image ();
+			this.imgMajor.CanFocus = true;
+			this.imgMajor.Events = ((global::Gdk.EventMask)(512));
+			this.imgMajor.ExtensionEvents = ((global::Gdk.ExtensionMode)(1));
 			this.imgMajor.Name = "imgMajor";
 			this.hbox6.Add (this.imgMajor);
 			global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.imgMajor]));
@@ -574,22 +585,64 @@ namespace paySolution
 			w49.Position = 4;
 			w49.Expand = false;
 			w49.Fill = false;
-			this.hbox1.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w50 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
-			w50.PackType = ((global::Gtk.PackType)(1));
-			w50.Position = 1;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.hbox13 = new global::Gtk.HBox ();
+			this.hbox13.Name = "hbox13";
+			this.hbox13.Spacing = 6;
+			// Container child hbox13.Gtk.Box+BoxChild
+			this.button1 = new global::Gtk.Button ();
+			this.button1.CanFocus = true;
+			this.button1.Name = "button1";
+			this.button1.UseUnderline = true;
+			this.button1.Label = global::Mono.Unix.Catalog.GetString ("+");
+			this.hbox13.Add (this.button1);
+			global::Gtk.Box.BoxChild w50 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.button1]));
+			w50.Position = 0;
 			w50.Expand = false;
 			w50.Fill = false;
+			// Container child hbox13.Gtk.Box+BoxChild
+			this.button3 = new global::Gtk.Button ();
+			this.button3.CanFocus = true;
+			this.button3.Name = "button3";
+			this.button3.UseUnderline = true;
+			this.button3.Label = global::Mono.Unix.Catalog.GetString ("Aceptar");
+			this.hbox13.Add (this.button3);
+			global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.button3]));
+			w51.Position = 1;
+			w51.Expand = false;
+			w51.Fill = false;
+			// Container child hbox13.Gtk.Box+BoxChild
+			this.button4 = new global::Gtk.Button ();
+			this.button4.CanFocus = true;
+			this.button4.Name = "button4";
+			this.button4.UseUnderline = true;
+			this.button4.Label = global::Mono.Unix.Catalog.GetString ("Cancelar");
+			this.hbox13.Add (this.button4);
+			global::Gtk.Box.BoxChild w52 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.button4]));
+			w52.Position = 2;
+			w52.Expand = false;
+			w52.Fill = false;
+			this.vbox1.Add (this.hbox13);
+			global::Gtk.Box.BoxChild w53 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox13]));
+			w53.Position = 5;
+			w53.Expand = false;
+			w53.Fill = false;
+			this.hbox1.Add (this.vbox1);
+			global::Gtk.Box.BoxChild w54 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
+			w54.PackType = ((global::Gtk.PackType)(1));
+			w54.Position = 1;
+			w54.Expand = false;
+			w54.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment1.WidthRequest = 25;
 			this.alignment1.Name = "alignment1";
 			this.hbox1.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment1]));
-			w51.PackType = ((global::Gtk.PackType)(1));
-			w51.Position = 2;
-			w51.Expand = false;
-			w51.Fill = false;
+			global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment1]));
+			w55.PackType = ((global::Gtk.PackType)(1));
+			w55.Position = 2;
+			w55.Expand = false;
+			w55.Fill = false;
 			this.Add (this.hbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -598,6 +651,8 @@ namespace paySolution
 			this.DefaultHeight = 768;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.button3.Clicked += new global::System.EventHandler (this.OnButton3Clicked);
+			this.button4.Clicked += new global::System.EventHandler (this.OnButton4Clicked);
 		}
 	}
 }

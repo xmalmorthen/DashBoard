@@ -45,10 +45,6 @@ namespace paySolution
 			}
 		}
 
-		private void configureBackgroundForm(){
-			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage));
-		}
-
 		private void putDateTimeinLanguaje(){
 			string fecha = Culturize.GetParameter ("fecha");
 			fecha = !string.IsNullOrEmpty (fecha) ? fecha : "{0:dd/MM/yyyy}";
@@ -191,6 +187,16 @@ namespace paySolution
 			btnRecibo.Visible = visible;
 		}*/
 
+		private void configureBackgroundForm(){
+			mainWindow.setBackgroundImage (this, new Gdk.Pixbuf (cnfg.GetFormBackgroundImage(cnfg.getConfiguration("formMainBackground"))));
+		}
+
+		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
+		{
+			Gtk.Application.Quit ();
+			a.RetVal = true;
+		}
+
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
 		{	
 			//this.Shown  += new EventHandler (this.OnShown);
@@ -201,7 +207,9 @@ namespace paySolution
 				this.Maximize ();
 			#endif
 
-			/*this.configureBackgroundForm ();
+			this.configureBackgroundForm ();
+
+			/*
 
 			blink = new System.Windows.Forms.Timer ();
 			blink.Tick += new EventHandler (blink_Tick);

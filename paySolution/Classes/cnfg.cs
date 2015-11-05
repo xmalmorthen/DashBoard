@@ -71,10 +71,8 @@ namespace paySolution
 			}
 		}
 
-		public static string GetFormBackgroundImage{
-			get { 
-				return System.IO.Path.Combine (baseDirectory,ImagesPath,getConfiguration("backgroundsImages"),getConfiguration("formBackground"));
-			}
+		public static string GetFormBackgroundImage(string imageName){
+			return System.IO.Path.Combine (baseDirectory,ImagesPath,getConfiguration("backgroundsImages"),imageName);
 		}
 
 		public static string GetLogoImage{
