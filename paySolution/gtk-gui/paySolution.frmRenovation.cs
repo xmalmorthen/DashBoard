@@ -651,6 +651,7 @@ namespace paySolution
 			this.DefaultHeight = 768;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
 			this.button3.Clicked += new global::System.EventHandler (this.OnButton3Clicked);
 			this.button4.Clicked += new global::System.EventHandler (this.OnButton4Clicked);
 		}

@@ -1415,6 +1415,7 @@
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">+</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnButton1Clicked" />
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1484,6 +1485,79 @@
             <property name="PackType">End</property>
             <property name="Position">2</property>
             <property name="AutoSize">False</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="paySolution.frmChangeScreen" design-size="1280 768">
+    <property name="MemberName" />
+    <property name="WidthRequest">1280</property>
+    <property name="HeightRequest">768</property>
+    <property name="Title" translatable="yes" />
+    <property name="TypeHint">Splashscreen</property>
+    <property name="WindowPosition">CenterAlways</property>
+    <property name="Resizable">False</property>
+    <property name="Decorated">False</property>
+    <property name="Gravity">Static</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <child>
+      <widget class="Gtk.VBox" id="vbox7">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <property name="BorderWidth">6</property>
+        <child>
+          <widget class="Gtk.Label" id="lblNotification">
+            <property name="MemberName" />
+            <property name="HeightRequest">150</property>
+            <property name="LabelProp" translatable="yes">&lt;span foreground="#fff" size="40000" weight="normal" style="normal"&gt;¡¡¡Área de notificaciones!!!&lt;/span&gt;</property>
+            <property name="UseMarkup">True</property>
+            <property name="Justify">Center</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox8">
+            <property name="MemberName" />
+            <property name="HeightRequest">236</property>
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="lblPrint">
+                <property name="MemberName" />
+                <property name="Xalign">1</property>
+                <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="40000"&gt;IMPRIMIR RECIBO&lt;/span&gt;</property>
+                <property name="UseMarkup">True</property>
+                <property name="Justify">Right</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Image" id="imgMajor">
+                <property name="MemberName" />
+              </widget>
+              <packing>
+                <property name="PackType">End</property>
+                <property name="Position">1</property>
+                <property name="AutoSize">False</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="PackType">End</property>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

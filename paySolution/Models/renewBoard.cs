@@ -4,6 +4,16 @@ namespace paySolution
 {
 	public static class renewBoard
 	{
+		private static string pensionID;
+		public static string PensionID {
+			get {
+				return pensionID;
+			}
+			set {
+				pensionID = value;
+			}
+		}
+
 		private static DateTime pensionExpires;
 		public static DateTime PensionExpires {
 			get {

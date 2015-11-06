@@ -92,6 +92,8 @@
     <Compile Include="Forms\frmRenovation.cs" />
     <Compile Include="Forms\MainWindow.cs" />
     <Compile Include="Models\renewBoard.cs" />
+    <Compile Include="Forms\frmChangeScreen.cs" />
+    <Compile Include="gtk-gui\paySolution.frmChangeScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -165,6 +167,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Assets\images\backgrounds\backGround4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\images\publicity\publicity2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

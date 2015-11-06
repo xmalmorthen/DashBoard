@@ -50,6 +50,7 @@ namespace paySolution
 		public static frmPayPanel FrmPayPanel;
 		public static frmPublicity FrmPublicity;
 		public static frmRenovation FrmRenovation;
+		public static frmChangeScreen FrmChangeScreen;
 
 		private static void loadPanels(){
 			FrmPublicity = new frmPublicity ();
@@ -57,6 +58,9 @@ namespace paySolution
 
 			FrmRenovation = new frmRenovation ();
 			FrmRenovation.Visible = false;
+
+			FrmChangeScreen = new frmChangeScreen ();
+			FrmChangeScreen.Visible = false;
 
 			FrmPayPanel = new frmPayPanel ();
 			FrmPayPanel.Visible = false;
@@ -70,6 +74,7 @@ namespace paySolution
 		private static void unloadPanels(){
 			FrmPublicity.Destroy ();
 			FrmRenovation.Destroy ();
+			FrmChangeScreen.Destroy ();
 			FrmPayPanel.Destroy ();
 			MainWin.Destroy ();
 		}

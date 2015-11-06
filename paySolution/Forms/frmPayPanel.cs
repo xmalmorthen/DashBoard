@@ -39,20 +39,7 @@ namespace paySolution
 			};
 
 			lblCancel.ModifyFont (FontDescription.FromString (fontType[1]));
-
-			/*lblVence.ModifyFont (FontDescription.FromString (fontType[0]));
-			lblRenovar.ModifyFont (FontDescription.FromString (fontType[0]));
-			lblTotalPagar.ModifyFont (FontDescription.FromString (fontType[0]));
-			lblVencera.ModifyFont (FontDescription.FromString (fontType[0]));
-
-			lblDataVence.ModifyFont (FontDescription.FromString (fontType[0]));
-			lblDataRenovar.ModifyFont (FontDescription.FromString (fontType[0]));
-			lblDataTotalPago.ModifyFont (FontDescription.FromString (fontType[0]));
-			lblDataPensionVencera.ModifyFont (FontDescription.FromString (fontType[0]));
-
-			lblPlus.ModifyFont (FontDescription.FromString (fontType[1]));
-			lblAcept.ModifyFont (FontDescription.FromString (fontType[1]));
-			*/
+			lblRef.ModifyFont (FontDescription.FromString (fontType[1]));
 		}
 
 		private string[] color = new string[] { 
@@ -61,20 +48,11 @@ namespace paySolution
 		};
 		private void putLabels(){
 			lblCancel.LabelProp = markup.make (Culturize.GetString (26), color[0], null, "30000", "heavy");
-
-			/*lblVence.LabelProp = markup.make (Culturize.GetString (27), color[0], null, "30000", "heavy");
-			lblRenovar.LabelProp = markup.make (Culturize.GetString (28), color[0], null, "30000", "heavy");
-			lblTotalPagar.LabelProp = markup.make (Culturize.GetString (29), color[0], null, "30000", "heavy");
-			lblVencera.LabelProp = markup.make (Culturize.GetString (30), color[0], null, "30000", "heavy");*/
 		}
 
 		public void populateDataLabels(){
-			/*lblDataVence.LabelProp = markup.make (renewBoard.PensionExpires.ToShortDateString (), color[0], null, "30000", "heavy");
-			lblDataRenovar.LabelProp = markup.make (renewBoard.RenovateMonths.ToString(), color[0], null, "30000", "heavy");
-			lblDataTotalPago.LabelProp = markup.make (string.Format("$ {0}",renewBoard.TotalPay.ToString()), color[0], null, "30000", "heavy");
-			lblDataPensionVencera.LabelProp = markup.make (renewBoard.PensionWillExpires.ToShortDateString(), color[0], null, "30000", "heavy");*/
+			
 		}
-
 
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
 		{	
@@ -92,6 +70,16 @@ namespace paySolution
 			this.putLabelBorders ();
 			this.changeFontType ();
 			this.putLabels ();
+		}
+
+		public enum payType
+		{
+			ticket,
+			pension
+		}
+
+		public void setIdPay(payType type, string data){			
+			lblRef.LabelProp = markup.make (string.Format("{0} - {1}", (type == payType.pension ? Culturize.GetString (36) : Culturize.GetString (37)) ,data.Trim()), color[0], null, "20000", "heavy");
 		}
 
 	}

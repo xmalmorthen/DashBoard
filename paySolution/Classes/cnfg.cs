@@ -101,6 +101,13 @@ namespace paySolution
 			}
 		}
 
+		public static string GetChangeImage{
+			get {
+				return System.IO.Path.Combine (baseDirectory, ImagesPath, getConfiguration ("PublicityImagesPath"), getConfiguration ("ChangeImageDefault"));
+			}
+		}
+
+
 		public static string GetCheckerName(int id){
 			string response = string.Empty;
 			try {

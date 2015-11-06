@@ -1,6 +1,5 @@
 ﻿using System;
 using Gtk;
-using System.Threading;
 
 namespace paySolution
 {

@@ -94,6 +94,9 @@ namespace paySolution
 							break;
 							case "a":			//aceptar renovación de pensión
 								payLogic.Status = payLogic.payStatus.readingTicket;
+								
+								MainClass.FrmPayPanel.setIdPay(frmPayPanel.payType.pension,renewBoard.PensionID);
+
 								changeStatusAfterSleepTime(payLogic.payStatus.waithToMoney,true);	//tiempo de espera para mostrar publicidad
 							break;
 							case "c":			//cancelar renovación de pensión
@@ -141,6 +144,7 @@ namespace paySolution
 		private static void readRFID(string dataInput){
 			payLogic.Status = payLogic.payStatus.readingRFID;
 
+			renewBoard.PensionID = dataInput;
 			renewBoard.PensionExpires = renewBoard.getPensionExpires (dataInput);;
 			renewBoard.RenovateMonths = 1;
 
