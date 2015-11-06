@@ -44,6 +44,8 @@ namespace paySolution
 		{
 			this.FocusInEvent += new FocusInEventHandler (delegate(object o, FocusInEventArgs args) {
 				this.configureBackgroundForm ();
+
+				lblNotification.Visible = payLogic.Status == payLogic.payStatus.withAmountPayedandReturnMoney;
 			});
 
 			this.Build ();

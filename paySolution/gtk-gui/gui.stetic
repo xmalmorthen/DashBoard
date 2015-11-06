@@ -167,18 +167,19 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.VBox" id="vbox7">
+              <widget class="Gtk.HBox" id="hbox10">
                 <property name="MemberName" />
-                <property name="Spacing">-10</property>
-                <property name="BorderWidth">53</property>
+                <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Label" id="lblRef14">
+                  <widget class="Gtk.Button" id="button1">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="35000"&gt;00:00:00&lt;/span&gt;</property>
-                    <property name="UseMarkup">True</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Abonar</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnButton1Clicked" />
                   </widget>
                   <packing>
-                    <property name="PackType">End</property>
                     <property name="Position">0</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
@@ -186,13 +187,15 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="lblRef13">
+                  <widget class="Gtk.Button" id="button2">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="25000"&gt;Viernes 00 de Septiembre&lt;/span&gt;</property>
-                    <property name="UseMarkup">True</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Cancelar</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnButton2Clicked" />
                   </widget>
                   <packing>
-                    <property name="PackType">End</property>
                     <property name="Position">1</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
@@ -209,13 +212,54 @@
               </packing>
             </child>
             <child>
+              <widget class="Gtk.VBox" id="vbox7">
+                <property name="MemberName" />
+                <property name="Spacing">-2</property>
+                <property name="BorderWidth">47</property>
+                <child>
+                  <widget class="Gtk.Label" id="lblTime">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="35000"&gt;00:00:00&lt;/span&gt;</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="lblDate">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="25000"&gt;Viernes 00 de Septiembre&lt;/span&gt;</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="PackType">End</property>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.VBox" id="vbox5">
                 <property name="MemberName" />
-                <property name="Spacing">6</property>
                 <child>
                   <widget class="Gtk.Image" id="imghborder">
                     <property name="MemberName" />
-                    <property name="HeightRequest">82</property>
+                    <property name="HeightRequest">40</property>
                     <property name="Xalign">0</property>
                   </widget>
                   <packing>
@@ -228,7 +272,6 @@
                 <child>
                   <widget class="Gtk.VBox" id="vbox6">
                     <property name="MemberName" />
-                    <property name="Spacing">6</property>
                     <child>
                       <widget class="Gtk.HBox" id="hbox6">
                         <property name="MemberName" />
@@ -249,7 +292,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Label" id="lblRef8">
+                          <widget class="Gtk.Label" id="lblIngreso">
                             <property name="MemberName" />
                             <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="30000"&gt;00:00 a.m.&lt;/span&gt;</property>
                             <property name="UseMarkup">True</property>
@@ -287,7 +330,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Label" id="lblRef10">
+                          <widget class="Gtk.Label" id="lblSalida">
                             <property name="MemberName" />
                             <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="20000"&gt;00:00 a.m.&lt;/span&gt;</property>
                             <property name="UseMarkup">True</property>
@@ -325,7 +368,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Label" id="lblRef12">
+                          <widget class="Gtk.Label" id="lblEstancia">
                             <property name="MemberName" />
                             <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="30000"&gt;1 hra.&lt;/span&gt;</property>
                             <property name="UseMarkup">True</property>
@@ -354,7 +397,7 @@
               </widget>
               <packing>
                 <property name="PackType">End</property>
-                <property name="Position">2</property>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -364,7 +407,6 @@
               <widget class="Gtk.VBox" id="vbox4">
                 <property name="MemberName" />
                 <property name="Homogeneous">True</property>
-                <property name="Spacing">6</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox3">
                     <property name="MemberName" />
@@ -385,7 +427,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="lblRef4">
+                      <widget class="Gtk.Label" id="lblTotal">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="30000"&gt;$ 000.00&lt;/span&gt;</property>
                         <property name="UseMarkup">True</property>
@@ -423,7 +465,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="lblRef5">
+                      <widget class="Gtk.Label" id="lblPagado">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="30000"&gt;$ 000.00&lt;/span&gt;</property>
                         <property name="UseMarkup">True</property>
@@ -461,7 +503,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="lblRef6">
+                      <widget class="Gtk.Label" id="lblChange">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="30000"&gt;$ 000.00&lt;/span&gt;</property>
                         <property name="UseMarkup">True</property>
@@ -482,7 +524,7 @@
               </widget>
               <packing>
                 <property name="PackType">End</property>
-                <property name="Position">3</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -497,6 +539,7 @@
         <child>
           <widget class="Gtk.VBox" id="vbox1">
             <property name="MemberName" />
+            <property name="WidthRequest">434</property>
             <property name="Spacing">6</property>
             <child>
               <widget class="Gtk.Image" id="imgLogo">
@@ -525,13 +568,12 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Label" id="lblAcept">
+              <widget class="Gtk.Label" id="lblTotalPlus">
                 <property name="MemberName" />
                 <property name="HeightRequest">214</property>
-                <property name="Xalign">1</property>
                 <property name="LabelProp" translatable="yes">&lt;span foreground="white" size="90000"&gt;$ 000.00&lt;/span&gt;</property>
                 <property name="UseMarkup">True</property>
-                <property name="Justify">Right</property>
+                <property name="Justify">Center</property>
               </widget>
               <packing>
                 <property name="Position">2</property>

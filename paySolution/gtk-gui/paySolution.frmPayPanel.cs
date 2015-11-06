@@ -10,11 +10,17 @@ namespace paySolution
 		
 		private global::Gtk.Label lblRef;
 		
+		private global::Gtk.HBox hbox10;
+		
+		private global::Gtk.Button button1;
+		
+		private global::Gtk.Button button2;
+		
 		private global::Gtk.VBox vbox7;
 		
-		private global::Gtk.Label lblRef14;
+		private global::Gtk.Label lblTime;
 		
-		private global::Gtk.Label lblRef13;
+		private global::Gtk.Label lblDate;
 		
 		private global::Gtk.VBox vbox5;
 		
@@ -26,19 +32,19 @@ namespace paySolution
 		
 		private global::Gtk.Label lblRef7;
 		
-		private global::Gtk.Label lblRef8;
+		private global::Gtk.Label lblIngreso;
 		
 		private global::Gtk.HBox hbox7;
 		
 		private global::Gtk.Label lblRef9;
 		
-		private global::Gtk.Label lblRef10;
+		private global::Gtk.Label lblSalida;
 		
 		private global::Gtk.HBox hbox9;
 		
 		private global::Gtk.Label lblRef11;
 		
-		private global::Gtk.Label lblRef12;
+		private global::Gtk.Label lblEstancia;
 		
 		private global::Gtk.VBox vbox4;
 		
@@ -46,19 +52,19 @@ namespace paySolution
 		
 		private global::Gtk.Label lblRef1;
 		
-		private global::Gtk.Label lblRef4;
+		private global::Gtk.Label lblTotal;
 		
 		private global::Gtk.HBox hbox4;
 		
 		private global::Gtk.Label lblRef2;
 		
-		private global::Gtk.Label lblRef5;
+		private global::Gtk.Label lblPagado;
 		
 		private global::Gtk.HBox hbox5;
 		
 		private global::Gtk.Label lblRef3;
 		
-		private global::Gtk.Label lblRef6;
+		private global::Gtk.Label lblChange;
 		
 		private global::Gtk.VBox vbox1;
 		
@@ -66,7 +72,7 @@ namespace paySolution
 		
 		private global::Gtk.Alignment alignment1;
 		
-		private global::Gtk.Label lblAcept;
+		private global::Gtk.Label lblTotalPlus;
 		
 		private global::Gtk.HBox hbox8;
 		
@@ -109,56 +115,86 @@ namespace paySolution
 			w1.Expand = false;
 			w1.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
-			this.vbox7 = new global::Gtk.VBox ();
-			this.vbox7.Name = "vbox7";
-			this.vbox7.Spacing = -10;
-			this.vbox7.BorderWidth = ((uint)(53));
-			// Container child vbox7.Gtk.Box+BoxChild
-			this.lblRef14 = new global::Gtk.Label ();
-			this.lblRef14.Name = "lblRef14";
-			this.lblRef14.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"35000\">00:00:00</span>");
-			this.lblRef14.UseMarkup = true;
-			this.vbox7.Add (this.lblRef14);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.lblRef14]));
-			w2.PackType = ((global::Gtk.PackType)(1));
+			this.hbox10 = new global::Gtk.HBox ();
+			this.hbox10.Name = "hbox10";
+			this.hbox10.Spacing = 6;
+			// Container child hbox10.Gtk.Box+BoxChild
+			this.button1 = new global::Gtk.Button ();
+			this.button1.CanFocus = true;
+			this.button1.Name = "button1";
+			this.button1.UseUnderline = true;
+			this.button1.Label = global::Mono.Unix.Catalog.GetString ("Abonar");
+			this.hbox10.Add (this.button1);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.button1]));
 			w2.Position = 0;
 			w2.Expand = false;
 			w2.Fill = false;
-			// Container child vbox7.Gtk.Box+BoxChild
-			this.lblRef13 = new global::Gtk.Label ();
-			this.lblRef13.Name = "lblRef13";
-			this.lblRef13.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"25000\">Viernes 00 de Septiembre</span>");
-			this.lblRef13.UseMarkup = true;
-			this.vbox7.Add (this.lblRef13);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.lblRef13]));
-			w3.PackType = ((global::Gtk.PackType)(1));
+			// Container child hbox10.Gtk.Box+BoxChild
+			this.button2 = new global::Gtk.Button ();
+			this.button2.CanFocus = true;
+			this.button2.Name = "button2";
+			this.button2.UseUnderline = true;
+			this.button2.Label = global::Mono.Unix.Catalog.GetString ("Cancelar");
+			this.hbox10.Add (this.button2);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.button2]));
 			w3.Position = 1;
 			w3.Expand = false;
 			w3.Fill = false;
-			this.vbox3.Add (this.vbox7);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox7]));
+			this.vbox3.Add (this.hbox10);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox10]));
 			w4.PackType = ((global::Gtk.PackType)(1));
 			w4.Position = 1;
 			w4.Expand = false;
 			w4.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
-			this.vbox5 = new global::Gtk.VBox ();
-			this.vbox5.Name = "vbox5";
-			this.vbox5.Spacing = 6;
-			// Container child vbox5.Gtk.Box+BoxChild
-			this.imghborder = new global::Gtk.Image ();
-			this.imghborder.HeightRequest = 82;
-			this.imghborder.Name = "imghborder";
-			this.imghborder.Xalign = 0F;
-			this.vbox5.Add (this.imghborder);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.imghborder]));
+			this.vbox7 = new global::Gtk.VBox ();
+			this.vbox7.Name = "vbox7";
+			this.vbox7.Spacing = -2;
+			this.vbox7.BorderWidth = ((uint)(47));
+			// Container child vbox7.Gtk.Box+BoxChild
+			this.lblTime = new global::Gtk.Label ();
+			this.lblTime.Name = "lblTime";
+			this.lblTime.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"35000\">00:00:00</span>");
+			this.lblTime.UseMarkup = true;
+			this.vbox7.Add (this.lblTime);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.lblTime]));
+			w5.PackType = ((global::Gtk.PackType)(1));
 			w5.Position = 0;
 			w5.Expand = false;
 			w5.Fill = false;
+			// Container child vbox7.Gtk.Box+BoxChild
+			this.lblDate = new global::Gtk.Label ();
+			this.lblDate.Name = "lblDate";
+			this.lblDate.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"25000\">Viernes 00 de Septiembre</span>");
+			this.lblDate.UseMarkup = true;
+			this.vbox7.Add (this.lblDate);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.lblDate]));
+			w6.PackType = ((global::Gtk.PackType)(1));
+			w6.Position = 1;
+			w6.Expand = false;
+			w6.Fill = false;
+			this.vbox3.Add (this.vbox7);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox7]));
+			w7.PackType = ((global::Gtk.PackType)(1));
+			w7.Position = 2;
+			w7.Expand = false;
+			w7.Fill = false;
+			// Container child vbox3.Gtk.Box+BoxChild
+			this.vbox5 = new global::Gtk.VBox ();
+			this.vbox5.Name = "vbox5";
+			// Container child vbox5.Gtk.Box+BoxChild
+			this.imghborder = new global::Gtk.Image ();
+			this.imghborder.HeightRequest = 40;
+			this.imghborder.Name = "imghborder";
+			this.imghborder.Xalign = 0F;
+			this.vbox5.Add (this.imghborder);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.imghborder]));
+			w8.Position = 0;
+			w8.Expand = false;
+			w8.Fill = false;
 			// Container child vbox5.Gtk.Box+BoxChild
 			this.vbox6 = new global::Gtk.VBox ();
 			this.vbox6.Name = "vbox6";
-			this.vbox6.Spacing = 6;
 			// Container child vbox6.Gtk.Box+BoxChild
 			this.hbox6 = new global::Gtk.HBox ();
 			this.hbox6.Name = "hbox6";
@@ -171,23 +207,23 @@ namespace paySolution
 			this.lblRef7.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"20000\">INGRESO</span>");
 			this.lblRef7.UseMarkup = true;
 			this.hbox6.Add (this.lblRef7);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.lblRef7]));
-			w6.Position = 0;
-			w6.Expand = false;
-			w6.Fill = false;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.lblRef7]));
+			w9.Position = 0;
+			w9.Expand = false;
+			w9.Fill = false;
 			// Container child hbox6.Gtk.Box+BoxChild
-			this.lblRef8 = new global::Gtk.Label ();
-			this.lblRef8.Name = "lblRef8";
-			this.lblRef8.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">00:00 a.m.</span>");
-			this.lblRef8.UseMarkup = true;
-			this.hbox6.Add (this.lblRef8);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.lblRef8]));
-			w7.Position = 1;
+			this.lblIngreso = new global::Gtk.Label ();
+			this.lblIngreso.Name = "lblIngreso";
+			this.lblIngreso.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">00:00 a.m.</span>");
+			this.lblIngreso.UseMarkup = true;
+			this.hbox6.Add (this.lblIngreso);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.lblIngreso]));
+			w10.Position = 1;
 			this.vbox6.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox6]));
-			w8.Position = 0;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox6]));
+			w11.Position = 0;
+			w11.Expand = false;
+			w11.Fill = false;
 			// Container child vbox6.Gtk.Box+BoxChild
 			this.hbox7 = new global::Gtk.HBox ();
 			this.hbox7.Name = "hbox7";
@@ -200,23 +236,23 @@ namespace paySolution
 			this.lblRef9.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"20000\">SALIDA</span>");
 			this.lblRef9.UseMarkup = true;
 			this.hbox7.Add (this.lblRef9);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.lblRef9]));
-			w9.Position = 0;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.lblRef9]));
+			w12.Position = 0;
+			w12.Expand = false;
+			w12.Fill = false;
 			// Container child hbox7.Gtk.Box+BoxChild
-			this.lblRef10 = new global::Gtk.Label ();
-			this.lblRef10.Name = "lblRef10";
-			this.lblRef10.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"20000\">00:00 a.m.</span>");
-			this.lblRef10.UseMarkup = true;
-			this.hbox7.Add (this.lblRef10);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.lblRef10]));
-			w10.Position = 1;
+			this.lblSalida = new global::Gtk.Label ();
+			this.lblSalida.Name = "lblSalida";
+			this.lblSalida.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"20000\">00:00 a.m.</span>");
+			this.lblSalida.UseMarkup = true;
+			this.hbox7.Add (this.lblSalida);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.lblSalida]));
+			w13.Position = 1;
 			this.vbox6.Add (this.hbox7);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox7]));
-			w11.Position = 1;
-			w11.Expand = false;
-			w11.Fill = false;
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox7]));
+			w14.Position = 1;
+			w14.Expand = false;
+			w14.Fill = false;
 			// Container child vbox6.Gtk.Box+BoxChild
 			this.hbox9 = new global::Gtk.HBox ();
 			this.hbox9.Name = "hbox9";
@@ -229,39 +265,38 @@ namespace paySolution
 			this.lblRef11.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"20000\">ESTANCIA</span>");
 			this.lblRef11.UseMarkup = true;
 			this.hbox9.Add (this.lblRef11);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.lblRef11]));
-			w12.Position = 0;
-			w12.Expand = false;
-			w12.Fill = false;
-			// Container child hbox9.Gtk.Box+BoxChild
-			this.lblRef12 = new global::Gtk.Label ();
-			this.lblRef12.Name = "lblRef12";
-			this.lblRef12.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">1 hra.</span>");
-			this.lblRef12.UseMarkup = true;
-			this.hbox9.Add (this.lblRef12);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.lblRef12]));
-			w13.Position = 1;
-			this.vbox6.Add (this.hbox9);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox9]));
-			w14.Position = 2;
-			w14.Expand = false;
-			w14.Fill = false;
-			this.vbox5.Add (this.vbox6);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.vbox6]));
-			w15.Position = 1;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.lblRef11]));
+			w15.Position = 0;
 			w15.Expand = false;
 			w15.Fill = false;
+			// Container child hbox9.Gtk.Box+BoxChild
+			this.lblEstancia = new global::Gtk.Label ();
+			this.lblEstancia.Name = "lblEstancia";
+			this.lblEstancia.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">1 hra.</span>");
+			this.lblEstancia.UseMarkup = true;
+			this.hbox9.Add (this.lblEstancia);
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.lblEstancia]));
+			w16.Position = 1;
+			this.vbox6.Add (this.hbox9);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox9]));
+			w17.Position = 2;
+			w17.Expand = false;
+			w17.Fill = false;
+			this.vbox5.Add (this.vbox6);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.vbox6]));
+			w18.Position = 1;
+			w18.Expand = false;
+			w18.Fill = false;
 			this.vbox3.Add (this.vbox5);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox5]));
-			w16.PackType = ((global::Gtk.PackType)(1));
-			w16.Position = 2;
-			w16.Expand = false;
-			w16.Fill = false;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox5]));
+			w19.PackType = ((global::Gtk.PackType)(1));
+			w19.Position = 3;
+			w19.Expand = false;
+			w19.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.vbox4 = new global::Gtk.VBox ();
 			this.vbox4.Name = "vbox4";
 			this.vbox4.Homogeneous = true;
-			this.vbox4.Spacing = 6;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.hbox3 = new global::Gtk.HBox ();
 			this.hbox3.Name = "hbox3";
@@ -274,23 +309,23 @@ namespace paySolution
 			this.lblRef1.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"20000\">TOTAL</span>");
 			this.lblRef1.UseMarkup = true;
 			this.hbox3.Add (this.lblRef1);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.lblRef1]));
-			w17.Position = 0;
-			w17.Expand = false;
-			w17.Fill = false;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.lblRef1]));
+			w20.Position = 0;
+			w20.Expand = false;
+			w20.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
-			this.lblRef4 = new global::Gtk.Label ();
-			this.lblRef4.Name = "lblRef4";
-			this.lblRef4.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">$ 000.00</span>");
-			this.lblRef4.UseMarkup = true;
-			this.hbox3.Add (this.lblRef4);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.lblRef4]));
-			w18.Position = 1;
+			this.lblTotal = new global::Gtk.Label ();
+			this.lblTotal.Name = "lblTotal";
+			this.lblTotal.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">$ 000.00</span>");
+			this.lblTotal.UseMarkup = true;
+			this.hbox3.Add (this.lblTotal);
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.lblTotal]));
+			w21.Position = 1;
 			this.vbox4.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox3]));
-			w19.Position = 0;
-			w19.Expand = false;
-			w19.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox3]));
+			w22.Position = 0;
+			w22.Expand = false;
+			w22.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.hbox4 = new global::Gtk.HBox ();
 			this.hbox4.Name = "hbox4";
@@ -303,23 +338,23 @@ namespace paySolution
 			this.lblRef2.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"20000\">PAGADO</span>");
 			this.lblRef2.UseMarkup = true;
 			this.hbox4.Add (this.lblRef2);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.lblRef2]));
-			w20.Position = 0;
-			w20.Expand = false;
-			w20.Fill = false;
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.lblRef2]));
+			w23.Position = 0;
+			w23.Expand = false;
+			w23.Fill = false;
 			// Container child hbox4.Gtk.Box+BoxChild
-			this.lblRef5 = new global::Gtk.Label ();
-			this.lblRef5.Name = "lblRef5";
-			this.lblRef5.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">$ 000.00</span>");
-			this.lblRef5.UseMarkup = true;
-			this.hbox4.Add (this.lblRef5);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.lblRef5]));
-			w21.Position = 1;
+			this.lblPagado = new global::Gtk.Label ();
+			this.lblPagado.Name = "lblPagado";
+			this.lblPagado.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">$ 000.00</span>");
+			this.lblPagado.UseMarkup = true;
+			this.hbox4.Add (this.lblPagado);
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.lblPagado]));
+			w24.Position = 1;
 			this.vbox4.Add (this.hbox4);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox4]));
-			w22.Position = 1;
-			w22.Expand = false;
-			w22.Fill = false;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox4]));
+			w25.Position = 1;
+			w25.Expand = false;
+			w25.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.hbox5 = new global::Gtk.HBox ();
 			this.hbox5.Name = "hbox5";
@@ -332,34 +367,35 @@ namespace paySolution
 			this.lblRef3.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"20000\">CAMBIO</span>");
 			this.lblRef3.UseMarkup = true;
 			this.hbox5.Add (this.lblRef3);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblRef3]));
-			w23.Position = 0;
-			w23.Expand = false;
-			w23.Fill = false;
-			// Container child hbox5.Gtk.Box+BoxChild
-			this.lblRef6 = new global::Gtk.Label ();
-			this.lblRef6.Name = "lblRef6";
-			this.lblRef6.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">$ 000.00</span>");
-			this.lblRef6.UseMarkup = true;
-			this.hbox5.Add (this.lblRef6);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblRef6]));
-			w24.Position = 1;
-			this.vbox4.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox5]));
-			w25.Position = 2;
-			w25.Expand = false;
-			w25.Fill = false;
-			this.vbox3.Add (this.vbox4);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox4]));
-			w26.PackType = ((global::Gtk.PackType)(1));
-			w26.Position = 3;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblRef3]));
+			w26.Position = 0;
 			w26.Expand = false;
 			w26.Fill = false;
+			// Container child hbox5.Gtk.Box+BoxChild
+			this.lblChange = new global::Gtk.Label ();
+			this.lblChange.Name = "lblChange";
+			this.lblChange.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"30000\">$ 000.00</span>");
+			this.lblChange.UseMarkup = true;
+			this.hbox5.Add (this.lblChange);
+			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblChange]));
+			w27.Position = 1;
+			this.vbox4.Add (this.hbox5);
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox5]));
+			w28.Position = 2;
+			w28.Expand = false;
+			w28.Fill = false;
+			this.vbox3.Add (this.vbox4);
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox4]));
+			w29.PackType = ((global::Gtk.PackType)(1));
+			w29.Position = 4;
+			w29.Expand = false;
+			w29.Fill = false;
 			this.hbox1.Add (this.vbox3);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox3]));
-			w27.Position = 0;
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox3]));
+			w30.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.vbox1 = new global::Gtk.VBox ();
+			this.vbox1.WidthRequest = 434;
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
 			// Container child vbox1.Gtk.Box+BoxChild
@@ -367,31 +403,30 @@ namespace paySolution
 			this.imgLogo.Name = "imgLogo";
 			this.imgLogo.Xalign = 1F;
 			this.vbox1.Add (this.imgLogo);
-			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.imgLogo]));
-			w28.Position = 0;
-			w28.Expand = false;
-			w28.Fill = false;
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.imgLogo]));
+			w31.Position = 0;
+			w31.Expand = false;
+			w31.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment1.HeightRequest = 127;
 			this.alignment1.Name = "alignment1";
 			this.vbox1.Add (this.alignment1);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.alignment1]));
-			w29.Position = 1;
-			w29.Expand = false;
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.alignment1]));
+			w32.Position = 1;
+			w32.Expand = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.lblAcept = new global::Gtk.Label ();
-			this.lblAcept.HeightRequest = 214;
-			this.lblAcept.Name = "lblAcept";
-			this.lblAcept.Xalign = 1F;
-			this.lblAcept.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"90000\">$ 000.00</span>");
-			this.lblAcept.UseMarkup = true;
-			this.lblAcept.Justify = ((global::Gtk.Justification)(1));
-			this.vbox1.Add (this.lblAcept);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.lblAcept]));
-			w30.Position = 2;
-			w30.Expand = false;
-			w30.Fill = false;
+			this.lblTotalPlus = new global::Gtk.Label ();
+			this.lblTotalPlus.HeightRequest = 214;
+			this.lblTotalPlus.Name = "lblTotalPlus";
+			this.lblTotalPlus.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"white\" size=\"90000\">$ 000.00</span>");
+			this.lblTotalPlus.UseMarkup = true;
+			this.lblTotalPlus.Justify = ((global::Gtk.Justification)(2));
+			this.vbox1.Add (this.lblTotalPlus);
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.lblTotalPlus]));
+			w33.Position = 2;
+			w33.Expand = false;
+			w33.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbox8 = new global::Gtk.HBox ();
 			this.hbox8.HeightRequest = 348;
@@ -405,37 +440,37 @@ namespace paySolution
 			this.lblCancel.UseMarkup = true;
 			this.lblCancel.Justify = ((global::Gtk.Justification)(1));
 			this.hbox8.Add (this.lblCancel);
-			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.lblCancel]));
-			w31.Position = 0;
+			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.lblCancel]));
+			w34.Position = 0;
 			// Container child hbox8.Gtk.Box+BoxChild
 			this.imgMajor = new global::Gtk.Image ();
 			this.imgMajor.Name = "imgMajor";
 			this.hbox8.Add (this.imgMajor);
-			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.imgMajor]));
-			w32.PackType = ((global::Gtk.PackType)(1));
-			w32.Position = 1;
-			w32.Expand = false;
-			w32.Fill = false;
+			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.imgMajor]));
+			w35.PackType = ((global::Gtk.PackType)(1));
+			w35.Position = 1;
+			w35.Expand = false;
+			w35.Fill = false;
 			this.vbox1.Add (this.hbox8);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox8]));
-			w33.Position = 3;
-			w33.Expand = false;
-			w33.Fill = false;
+			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox8]));
+			w36.Position = 3;
+			w36.Expand = false;
+			w36.Fill = false;
 			this.hbox1.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
-			w34.PackType = ((global::Gtk.PackType)(1));
-			w34.Position = 1;
-			w34.Expand = false;
-			w34.Fill = false;
+			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
+			w37.PackType = ((global::Gtk.PackType)(1));
+			w37.Position = 1;
+			w37.Expand = false;
+			w37.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.alignment4 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 			this.alignment4.WidthRequest = 62;
 			this.alignment4.Name = "alignment4";
 			this.hbox1.Add (this.alignment4);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment4]));
-			w35.PackType = ((global::Gtk.PackType)(1));
-			w35.Position = 2;
-			w35.Expand = false;
+			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.alignment4]));
+			w38.PackType = ((global::Gtk.PackType)(1));
+			w38.Position = 2;
+			w38.Expand = false;
 			this.Add (this.hbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -444,6 +479,8 @@ namespace paySolution
 			this.DefaultHeight = 768;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
+			this.button2.Clicked += new global::System.EventHandler (this.OnButton2Clicked);
 		}
 	}
 }

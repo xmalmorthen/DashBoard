@@ -94,6 +94,7 @@
     <Compile Include="Models\renewBoard.cs" />
     <Compile Include="Forms\frmChangeScreen.cs" />
     <Compile Include="gtk-gui\paySolution.frmChangeScreen.cs" />
+    <Compile Include="Models\ticket.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

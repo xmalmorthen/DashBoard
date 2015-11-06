@@ -8,6 +8,22 @@ namespace paySolution
 {
 	public static class payLogic
 	{
+		public enum paytype
+		{
+			ticket,
+			pension
+		}
+
+		private static paytype payType;
+		public static paytype PayType {
+			get {
+				return payType;
+			}
+			set {
+				payType = value;
+			}
+		}
+
 		public enum payStatus
 		{
 			init,							//Sin estatus
@@ -36,20 +52,24 @@ namespace paySolution
 			}
 			set {
 				toPay = value;
+				payable = toReturn = payDeposit = 0.00m;
+				MainClass.FrmPayPanel.populateDataLabels(PayType);
 			}
 		}
 
-		private static decimal payable;
+		private static decimal payable = 0.00m;
 		public static decimal Payable {
 			get {
 				return payable;
 			}
 			set {
+				payLogic.Status = payLogic.payStatus.withMoney;
+				if (value >= ToPay) {
+					ToReturn = value - ToPay;
 
-				if (value < 0) {
-					ToReturn = value * -1;
-					value = 0m;
+					payLogic.Status = value > ToPay ? payLogic.payStatus.withAmountPayedandReturnMoney : payLogic.payStatus.withAmountPayed;
 				}
+
 				payable = value;
 			}
 		}
@@ -70,7 +90,10 @@ namespace paySolution
 				return payDeposit;
 			}
 			set {
-				Payable -= value;
+				Payable += value;
+
+				MainClass.FrmPayPanel.populateDataLabels(PayType);
+
 				payDeposit = value;
 			}
 		}
@@ -95,7 +118,8 @@ namespace paySolution
 							case "a":			//aceptar renovación de pensión
 								payLogic.Status = payLogic.payStatus.readingTicket;
 								
-								MainClass.FrmPayPanel.setIdPay(frmPayPanel.payType.pension,renewBoard.PensionID);
+								PayType = paytype.pension;
+								payLogic.ToPay = renewBoard.TotalPay;
 
 								changeStatusAfterSleepTime(payLogic.payStatus.waithToMoney,true);	//tiempo de espera para mostrar publicidad
 							break;
@@ -104,11 +128,26 @@ namespace paySolution
 								MainClass.FrmRenovation.Visible = false;
 								changeStatusAfterSleepTime(payLogic.payStatus.insertTicket,true);
 							break;
+							case "cc":			//cancelar pago
+								/*
+								 * TODO: Logica para regresar dinero insertado y cancelar la acción de pago
+								 */ 
+
+								payLogic.Status = payLogic.payStatus.insertTicket;
+								
+							break;
 						}
 					break;
 					case "com2":
 						switch (dataInput.Trim().ToLower()) {
-							case "q":
+							case "z":
+								/*
+								 * TODO: Logica de lectura de monedas y billetes
+								 */ 
+
+								Random val = new Random();
+								payLogic.PayDeposit = val.Next(1,50);
+
 							break;
 						}
 					break;			
@@ -124,7 +163,7 @@ namespace paySolution
 				}
 			}
 		}
-			
+
 		private static void readTicket(string dataInput){
 			payLogic.Status = payLogic.payStatus.readingTicket;
 			/*
@@ -136,7 +175,14 @@ namespace paySolution
 			/*
 			 * TODO: Logica para calcular el monto a pagar
 			 */
-			payLogic.ToPay = 50.15m;	//valor simulado
+
+			ticket.TicketId = dataInput;
+			ticket.TotalPay = 50.15m;	//valor simulado
+			ticket.Entry = new DateTime(2015,11,06,09,10,10);
+			ticket.Exit = DateTime.Now;
+
+			PayType = paytype.ticket;
+			payLogic.ToPay = ticket.TotalPay;
 
 			changeStatusAfterSleepTime(payLogic.payStatus.waithToMoney,true);	//tiempo de espera para mostrar publicidad
 		}
@@ -180,6 +226,9 @@ namespace paySolution
 					MainClass.FrmRenovation.Visible = value == payStatus.waithToRenewBoard;
 					MainClass.FrmPublicity.Visible = value == payStatus.readingTicket || value == payStatus.calculatingAmount;
 					MainClass.FrmPayPanel.Visible = !MainClass.MainWin.Visible && !MainClass.FrmPublicity.Visible && !MainClass.FrmRenovation.Visible;
+					MainClass.FrmChangeScreen.Visible = value == payStatus.withAmountPayed || value == payStatus.withAmountPayedandReturnMoney;
+
+					status = value;
 
 					switch (value) {
 						case payStatus.insertTicket: 		//En espera de ticket
@@ -189,8 +238,22 @@ namespace paySolution
 							MainClass.MainWin.SetNotification = payStatus.errorReadingTicketorRFID;
 							changeStatusAfterSleepTime (payLogic.payStatus.insertTicket);
 						break;
-					}
-					status = value;					
+						case payStatus.withAmountPayed:
+							/*
+							 * TODO: Logica para guardar información sobre el pago
+							 */ 
+							changeStatusAfterSleepTime (payLogic.payStatus.insertTicket,true);
+						break;
+						case payStatus.withAmountPayedandReturnMoney:
+							/*
+							 * TODO: Logica para regresar el cambio derivado del pago
+							 */
+							/*
+							* TODO: Logica para guardar información sobre el pago
+							*/ 
+							changeStatusAfterSleepTime (payLogic.payStatus.insertTicket,true);
+						break;
+					}									
 				}
 			}
 		}

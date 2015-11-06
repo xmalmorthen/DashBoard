@@ -14,6 +14,11 @@ namespace paySolution
 
 		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 		{
+			this.tick.Stop ();
+			this.tick.Enabled = false;
+			this.tick.Dispose ();
+			this.tick = null;
+
 			Gtk.Application.Quit ();
 			a.RetVal = true;
 		}
@@ -39,7 +44,14 @@ namespace paySolution
 			};
 
 			lblCancel.ModifyFont (FontDescription.FromString (fontType[1]));
-			lblRef.ModifyFont (FontDescription.FromString (fontType[1]));
+			lblRef.ModifyFont (FontDescription.FromString (fontType[0]));
+			lblTotal.ModifyFont (FontDescription.FromString (fontType[0]));
+			lblTotalPlus.ModifyFont (FontDescription.FromString (fontType[0]));
+			lblPagado.ModifyFont (FontDescription.FromString (fontType[0]));
+			lblChange.ModifyFont (FontDescription.FromString (fontType[0]));
+			lblIngreso.ModifyFont (FontDescription.FromString (fontType[0]));
+			lblSalida.ModifyFont (FontDescription.FromString (fontType[0]));
+			lblEstancia.ModifyFont (FontDescription.FromString (fontType[0]));
 		}
 
 		private string[] color = new string[] { 
@@ -48,11 +60,21 @@ namespace paySolution
 		};
 		private void putLabels(){
 			lblCancel.LabelProp = markup.make (Culturize.GetString (26), color[0], null, "30000", "heavy");
+			lblDate.LabelProp = markup.make (DateTime.Now.ToString("D"), color[0], null, "25000", "heavy");
 		}
 
-		public void populateDataLabels(){
-			
+		private System.Windows.Forms.Timer tick = new System.Windows.Forms.Timer();
+		private void init(){
+			tick.Interval = 1000;
+			tick.Enabled = true;
+			tick.Tick += new EventHandler ((object sender, EventArgs e) => {
+				Gtk.Application.Invoke( delegate {
+					lblTime.LabelProp = markup.make (DateTime.Now.ToString("hh:mm:ss tt"), color[0], null, "30000", "heavy");
+				});
+			});
+			tick.Start ();
 		}
+
 
 		public frmPayPanel () :base (Gtk.WindowType.Toplevel)
 		{	
@@ -70,16 +92,39 @@ namespace paySolution
 			this.putLabelBorders ();
 			this.changeFontType ();
 			this.putLabels ();
+			this.init();
 		}
 
-		public enum payType
+
+
+		public void populateDataLabels(payLogic.paytype type){
+			vbox5.Visible = type == payLogic.paytype.ticket;
+
+			lblRef.LabelProp = markup.make (string.Format("{0} - {1}", (type == payLogic.paytype.pension ? Culturize.GetString (36) : Culturize.GetString (37)) ,(type == payLogic.paytype.pension ? renewBoard.PensionID : ticket.TicketId)), color[0], null, "20000", "heavy");
+
+			lblTotal.LabelProp = markup.make (string.Format("$ {0}",payLogic.ToPay.ToString()), color[0], null, "60000", "heavy");
+			lblTotalPlus.LabelProp = markup.make (string.Format("$ {0}",payLogic.ToPay.ToString()), color[0], null, "83000", "heavy");
+			lblPagado.LabelProp = markup.make (string.Format("$ {0}",payLogic.Payable.ToString()), color[0], null, "40000", "heavy");
+			lblChange.LabelProp = markup.make (string.Format("$ {0}",payLogic.ToReturn.ToString()), color[0], null, "50000", "heavy");
+
+			switch (type) {
+				case payLogic.paytype.ticket:
+					lblIngreso.LabelProp = markup.make (ticket.Entry.ToString("hh:mm:ss tt"), color[0], null, "30000", "heavy");
+					lblSalida.LabelProp = markup.make (ticket.Exit.ToString("hh:mm:ss tt"), color[0], null, "30000", "heavy");
+					lblEstancia.LabelProp = markup.make (string.Format("{0} hr(s).",ticket.Stay), color[0], null, "30000", "heavy");
+				break;
+			}
+
+		}
+
+		protected void OnButton1Clicked (object sender, EventArgs e)
 		{
-			ticket,
-			pension
+			payLogic.LogicFlow ("COM2", "Z");
 		}
 
-		public void setIdPay(payType type, string data){			
-			lblRef.LabelProp = markup.make (string.Format("{0} - {1}", (type == payType.pension ? Culturize.GetString (36) : Culturize.GetString (37)) ,data.Trim()), color[0], null, "20000", "heavy");
+		protected void OnButton2Clicked (object sender, EventArgs e)
+		{
+			payLogic.LogicFlow ("COM1", "cc");
 		}
 
 	}
