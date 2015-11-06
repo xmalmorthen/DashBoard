@@ -112,7 +112,7 @@ namespace paySolution
 								readRFID (dataInput);
 							break;
 							case "+":			//agregar mes a la renovación de la pensión
-								renewBoard.RenovateMonths = renewBoard.RenovateMonths < 5 ? renewBoard.RenovateMonths + 1 : 0;
+								renewBoard.RenovateMonths = renewBoard.RenovateMonths < 5 ? renewBoard.RenovateMonths + 1 : 1;
 								MainClass.FrmRenovation.populateDataLabels();
 							break;
 							case "a":			//aceptar renovación de pensión
