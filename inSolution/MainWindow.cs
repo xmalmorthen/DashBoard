@@ -172,18 +172,10 @@ public partial class MainWindow: Gtk.Window
 
 	void sport_DataReceived(object sender, SerialDataReceivedEventArgs e){
 		SerialPort thisPort = (sender as SerialPort);
-
-		byte[] buf = new byte[thisPort.BytesToRead];
-		thisPort.Read(buf, 0, buf.Length);
-
-		string strData = string.Empty;
-		foreach (Byte b in buf)
-		{
-			BitacoraModel.addItem ("Leer puerto",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("Dato recibido [ {0} ] ",b));
-
-			strData += ((char) b).ToString();
-		}
+		string strData = thisPort.ReadExisting ();
 		BitacoraModel.addItem ("Cadena recibida",string.Format ("Puerto {0}", thisPort.PortName),string.Format ("Cadena [ {0} ] ",strData));
+
+		//logic.flow (thisPort.PortName, strData);
 	}
 
 	void sport_ErrorReceived(object sender, SerialErrorReceivedEventArgs e){
